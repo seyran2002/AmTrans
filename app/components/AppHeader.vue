@@ -70,7 +70,7 @@ const isTransparent = computed(() => {
         <!-- ── Desktop Navigation ── -->
         <nav
           :class="[
-            'hidden lg:flex items-center gap-1 rounded-full px-2 py-1.5 transition-colors duration-300',
+            'hidden lg:flex items-center gap-1 rounded-full p-1.5 transition-colors duration-300',
             isTransparent
               ? 'bg-zinc-900/5 backdrop-blur-md border border-black/5'
               : 'bg-zinc-100/70'
@@ -82,7 +82,7 @@ const isTransparent = computed(() => {
             v-for="link in navLinks"
             :key="link.to"
             :to="link.to"
-            class="relative px-4 py-2 min-h-[44px] inline-flex items-center rounded-full text-xs xl:text-sm font-semibold tracking-wide transition-all duration-300 outline-none select-none whitespace-nowrap focus-visible:ring-2 focus-visible:ring-primary"
+            class="relative px-3.5 py-1 min-h-[32px] inline-flex items-center rounded-full text-xs xl:text-sm font-semibold tracking-wide transition-all duration-300 outline-none select-none whitespace-nowrap focus-visible:ring-2 focus-visible:ring-primary"
             :class="[
               link.isActive
                 ? 'bg-white text-primary shadow-sm shadow-zinc-900/[0.04]'
@@ -93,7 +93,7 @@ const isTransparent = computed(() => {
             <!-- Active accent dot -->
             <span
               v-if="link.isActive"
-              class="absolute bottom-1 left-1/2 -translate-x-1/2 w-1.5 h-1.5 rounded-full bg-secondary"
+              class="absolute -bottom-0.5 left-1/2 -translate-x-1/2 w-1 h-1 rounded-full bg-secondary"
             />
           </NuxtLink>
         </nav>
