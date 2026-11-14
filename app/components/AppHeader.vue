@@ -40,7 +40,7 @@ const isTransparent = computed(() => {
   <header class="fixed top-0 left-0 right-0 z-50 w-full transition-all duration-500">
     <!-- White background with subtle shadow on scroll (Desktop only) -->
     <div
-      class="absolute inset-0 transition-all duration-500 hidden lg:block pointer-events-none"
+      class="absolute inset-0 transition-all duration-500 block pointer-events-none"
       :class="
         isTransparent
           ? 'opacity-0 bg-transparent'
@@ -50,15 +50,15 @@ const isTransparent = computed(() => {
 
     <!-- Header Content Container -->
     <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="flex items-center justify-between h-16 sm:h-20">
+      <div class="flex items-center justify-between h-12 sm:h-20">
 
         <!-- ── Logo ── -->
         <NuxtLink
           to="/"
-          class="relative z-10 flex items-center shrink-0 min-h-[48px] outline-none select-none focus-visible:ring-2 focus-visible:ring-primary rounded-xl"
+          class="relative z-10 flex items-center shrink-0 min-h-8 sm:min-h-12 outline-none select-none focus-visible:ring-2 focus-visible:ring-primary rounded-xl"
           aria-label="AmTrans Logistics Homepage"
         >
-          <img src="~/assets/logo.png" fetchpriority="high" alt="AmTrans Logo" class="h-16" />
+          <img src="~/assets/logo.png" fetchpriority="high" alt="AmTrans Logo" class="translate-y-[10%] h-12 sm:h-16" />
         </NuxtLink>
 
         <!-- ── Desktop Navigation ── -->
@@ -99,7 +99,7 @@ const isTransparent = computed(() => {
             type="button"
             @click="isCalculatorOpen = true"
             :class="[
-              'group flex items-center justify-center w-10 h-10 rounded-full transition-all duration-300 outline-none select-none border cursor-pointer focus-visible:ring-2 focus-visible:ring-primary focus-visible:outline-none',
+              'group flex items-center justify-center w-8 h-8 sm:w-10 sm:h-10 rounded-full transition-all duration-300 outline-none select-none border cursor-pointer focus-visible:ring-2 focus-visible:ring-primary focus-visible:outline-none',
               isTransparent
                 ? 'bg-white/70 backdrop-blur-md border-zinc-200/80 text-zinc-800 hover:text-primary hover:bg-white hover:border-zinc-300 shadow-sm'
                 : 'bg-white border-zinc-200 text-zinc-800 hover:text-primary hover:bg-zinc-50 hover:border-zinc-300 shadow-sm',

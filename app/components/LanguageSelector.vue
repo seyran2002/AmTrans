@@ -17,7 +17,7 @@ const { locales, currentLocale, currentLanguage, isOpen, menuRef, toggle, select
     <button
       @click="toggle"
       :class="[
-        'group flex items-center gap-1.5 px-2.5 py-1.5 min-h-[44px] rounded-full transition-all duration-300 outline-none select-none border focus-visible:ring-2 focus-visible:ring-primary focus-visible:outline-none cursor-pointer',
+        'group flex items-center gap-1.5 px-2.5 py-1.5 min-h-8 md:min-h-[44px] rounded-full transition-all duration-300 outline-none select-none border focus-visible:ring-2 focus-visible:ring-primary focus-visible:outline-none cursor-pointer',
         isTransparent
           ? 'bg-white/80 backdrop-blur-md border-zinc-300 text-zinc-800 hover:bg-white hover:border-zinc-400 shadow-sm'
           : 'bg-white border-zinc-300 text-zinc-800 hover:bg-zinc-50 hover:border-zinc-400 shadow-sm',
@@ -28,7 +28,7 @@ const { locales, currentLocale, currentLanguage, isOpen, menuRef, toggle, select
     >
       <!-- Circular Flag -->
       <span
-        class="w-6 h-6 lg:w-7 lg:h-7 rounded-full overflow-hidden flex-shrink-0 shadow-sm transition-transform duration-300 group-hover:scale-110 border border-white/20"
+        class="w-5 h-5 sm:w-6 sm:h-6 lg:w-7 lg:h-7 rounded-full overflow-hidden flex-shrink-0 shadow-sm transition-transform duration-300 group-hover:scale-110 border border-white/20"
         v-html="currentLocale?.flag"
       />
 
