@@ -4,7 +4,6 @@ import { useRoute } from '#imports'
 import { useNavLinks } from '~/composables/useNavLinks'
 import { useI18n } from '~/composables/useI18n'
 import LanguageSelector from '~/components/LanguageSelector.vue'
-import CalculatorModal from '~/components/CalculatorModal.vue'
 import { useAuth } from '~/composables/useAuth'
 
 const route = useRoute()
@@ -162,7 +161,7 @@ const isTransparent = computed(() => {
     </div>
 
     <!-- Shipping Cost Calculator Modal -->
-    <CalculatorModal
+    <LazyCalculatorModal
       :is-open="isCalculatorOpen"
       @close="isCalculatorOpen = false"
     />

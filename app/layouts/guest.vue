@@ -2,8 +2,6 @@
 import { ref, computed, onMounted, onUnmounted } from 'vue'
 import { useRoute } from '#imports'
 import AppHeader from '~/components/AppHeader.vue'
-import AppFooter from '~/components/AppFooter.vue'
-import MobileTabBar from '~/components/MobileTabBar.vue'
 
 const route = useRoute()
 const isScrolled = ref(false)
@@ -36,9 +34,9 @@ const isTransparent = computed(() => {
       <slot />
     </main>
 
-    <AppFooter />
+    <LazyAppFooter />
 
     <!-- Mobile floating tab bar — sits above everything on small screens -->
-    <MobileTabBar :is-transparent="isTransparent" />
+    <LazyMobileTabBar :is-transparent="isTransparent" />
   </div>
 </template>
