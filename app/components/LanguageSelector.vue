@@ -23,17 +23,17 @@ const { locales, currentLocale, currentLanguage, isOpen, menuRef, toggle, select
           : 'bg-white border-zinc-300 text-zinc-800 hover:bg-zinc-50 hover:border-zinc-400 shadow-sm',
       ]"
       aria-label="Change language"
-      aria-expanded="isOpen"
+      :aria-expanded="isOpen"
       aria-haspopup="listbox"
     >
       <!-- Circular Flag -->
       <span
         class="w-6 h-6 lg:w-7 lg:h-7 rounded-full overflow-hidden flex-shrink-0 shadow-sm transition-transform duration-300 group-hover:scale-110 border border-white/20"
-        v-html="currentLocale.flag"
+        v-html="currentLocale?.flag"
       />
 
       <span class="text-[10px] font-bold uppercase tracking-wider text-zinc-800">
-        {{ currentLocale.short }}
+        {{ currentLocale?.short }}
       </span>
 
       <!-- Chevron -->
