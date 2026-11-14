@@ -125,7 +125,7 @@ const isExpanded = computed(() => isHovered.value || isFocused.value || props.is
 
             <!-- Expanded Logo (logo.png) -->
             <img
-              src="~/assets/logo.png"
+              src="/logo.png"
               alt="AmTrans Logo"
               class="h-8 w-auto object-contain absolute left-1 sm:left-1.5 top-1/2 -translate-y-1/2 transition-opacity duration-200"
               :class="isExpanded ? 'opacity-100' : 'opacity-0 pointer-events-none'"

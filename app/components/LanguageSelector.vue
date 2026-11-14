@@ -57,7 +57,7 @@ const { locales, currentLocale, currentLanguage, isOpen, menuRef, toggle, select
       <div
         v-if="isOpen"
         role="listbox"
-        class="absolute top-full mt-2.5 right-0 bg-white/95 backdrop-blur-xl border border-zinc-200/80 rounded-2xl shadow-[0_10px_40px_-10px_rgba(0,0,0,0.15)] py-1.5 min-w-[148px] z-[100] origin-top-right"
+        class="absolute top-full mt-2.5 right-0 bg-white/95 backdrop-blur-xl border border-zinc-200/80 rounded-2xl shadow-[0_10px_40px_-10px_rgba(0,0,0,0.15)] py-1.5 min-w-28 sm:min-w-[148px] z-[100] origin-top-right"
       >
         <button
           v-for="lang in locales"
@@ -65,7 +65,7 @@ const { locales, currentLocale, currentLanguage, isOpen, menuRef, toggle, select
           role="option"
           :aria-selected="currentLanguage === lang.code"
           @click="select(lang.code)"
-          class="w-full min-h-[44px] flex items-center justify-between px-3.5 py-2.5 text-[13px] transition-all duration-200 outline-none group/item focus-visible:ring-2 focus-visible:ring-primary focus-visible:outline-none cursor-pointer"
+          class="w-full min-h-8 sm:min-h-[44px] flex items-center justify-between px-1.5 py-1 sm:px-3.5 sm:py-2.5 text-xs sm:text-[13px] transition-all duration-200 outline-none group/item focus-visible:ring-2 focus-visible:ring-primary focus-visible:outline-none cursor-pointer"
           :class="
             currentLanguage === lang.code
               ? 'bg-primary/10 text-primary font-bold'

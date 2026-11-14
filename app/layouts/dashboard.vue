@@ -66,7 +66,7 @@ const routeTitle = computed(() => {
           <!-- Breadcrumb / Header Title -->
           <NuxtLink to="/" class="flex items-center h-8 w-full relative focus:outline-none focus-visible:ring-2 focus-visible:ring-primary/40 rounded-xl">
             <img
-              src="~/assets/logo.png"
+              src="/logo.png"
               alt="AmTrans Logo"
               class="h-16"
             />

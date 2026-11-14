@@ -58,7 +58,13 @@ const isTransparent = computed(() => {
           class="relative z-10 flex items-center shrink-0 min-h-8 sm:min-h-12 outline-none select-none focus-visible:ring-2 focus-visible:ring-primary rounded-xl"
           aria-label="AmTrans Logistics Homepage"
         >
-          <img src="~/assets/logo.png" fetchpriority="high" alt="AmTrans Logo" class="translate-y-[10%] h-12 sm:h-16" />
+          <NuxtImg 
+            src="/logo.png"
+            preload 
+            fetchpriority="high"
+            alt="AmTrans Logo" 
+            class="translate-y-[10%] h-12 sm:h-16 w-auto object-contain" 
+          />  
         </NuxtLink>
 
         <!-- ── Desktop Navigation ── -->
