@@ -20,6 +20,7 @@ definePageMeta({
   layout: 'dashboard'
 })
 
+const config = useRuntimeConfig()
 const { t } = useI18n()
 const { user } = useAuth()
 const { apiFetch } = useApi()
@@ -191,7 +192,7 @@ const handleSaveProfile = async () => {
 
 const isTelegramConnected = ref(!!user.value?.telegramChatId)
 const isTelegramDisconnecting = ref(false)
-const telegramBotUsername = 'AmTransBot'
+const telegramBotUsername = config.public.telegramBotUsername
 const telegramDeepLink = computed(() => `https://t.me/${telegramBotUsername}?start=${user.value?.id}`)
 const telegramSuccessMessage = ref<string | null>(null)
 const telegramErrorMessage = ref<string | null>(null)

@@ -207,6 +207,8 @@ import { useI18n } from '~/composables/useI18n'
 import { useVerify, type VerifyUserResponse, type UpdateProfilePayload } from '~/composables/useVerify'
 import { parsePhoneNumberFromString } from 'libphonenumber-js'
 
+const config = useRuntimeConfig()
+
 const props = defineProps<{
   user: VerifyUserResponse
 }>()
@@ -253,7 +255,7 @@ const errorMessage = ref<string | null>(null)
 const successMessage = ref<string | null>(null)
 
 const isTelegramConnected = ref(!!props.user.telegramChatId)
-const telegramBotUsername = 'AmTransBot';
+const telegramBotUsername = config.public.telegramBotUsername;
 const telegramDeepLink = computed(() => `https://t.me/${telegramBotUsername}?start=${props.user.id}`)
 
 let pollTimer: any = null
