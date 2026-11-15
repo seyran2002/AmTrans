@@ -41,7 +41,7 @@ const handleSubmit = async () => {
     <!-- Header info -->
     <div class="relative z-10 mb-8 sm:mb-10">
       <div
-        class="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-primary/10 border border-primary/20 text-xs font-bold uppercase tracking-wider text-primary mb-3"
+        class="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-primary/10 border border-primary/20 text-[10px] font-bold uppercase tracking-wider text-primary mb-3"
       >
         <span class="w-1.5 h-1.5 rounded-full bg-secondary" />
         {{ t('contact.form.badge') }}

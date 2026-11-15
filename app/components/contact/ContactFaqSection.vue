@@ -24,7 +24,7 @@ const faqs = [
       <!-- Section Header -->
       <div class="text-center mb-10 sm:mb-12">
         <div
-          class="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-amber-500/10 border border-amber-600/30 text-xs font-bold uppercase tracking-wider text-amber-800 mb-3"
+          class="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-amber-500/10 border border-amber-600/30 text-[10px] font-bold uppercase tracking-wider text-amber-800 mb-3"
         >
           <span class="w-1.5 h-1.5 rounded-full bg-secondary" />
           {{ t('contact.faq.badge') }}

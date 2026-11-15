@@ -68,7 +68,7 @@ const reasons = computed<Reason[]>(() => [
 
       <!-- Section header -->
       <div class="text-center mb-14 sm:mb-20">
-        <span class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-tertiary/10 border border-tertiary/20 text-xs font-bold uppercase tracking-[0.18em] text-tertiary mb-5">
+        <span class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-tertiary/10 border border-tertiary/20 text-[10px] font-bold uppercase tracking-[0.18em] text-tertiary mb-5">
           <span class="w-1.5 h-1.5 rounded-full bg-tertiary" aria-hidden="true" />
           {{ t('about.whyUs.badge') }}
         </span>

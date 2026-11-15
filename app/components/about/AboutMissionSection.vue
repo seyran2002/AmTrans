@@ -14,7 +14,7 @@ const { t } = useI18n()
 
       <!-- Section header -->
       <div class="text-center mb-14 sm:mb-20">
-        <span class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-primary/10 border border-primary/20 text-xs font-bold uppercase tracking-[0.18em] text-primary mb-5">
+        <span class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-primary/10 border border-primary/20 text-[10px] font-bold uppercase tracking-[0.18em] text-primary mb-5">
           <span class="w-1.5 h-1.5 rounded-full bg-secondary" aria-hidden="true" />
           {{ t('about.mission.badge') }}
         </span>
