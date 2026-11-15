@@ -92,7 +92,7 @@ useHead({
 
       <!-- Main headline: Single semantic H1 with full accessibility & visual preservation -->
       <h1
-        class="text-3xl min-[380px]:text-4xl sm:text-5xl md:text-6xl lg:text-6xl xl:text-7xl font-extrabold text-white tracking-tight leading-[1.1] mb-4 sm:mb-5 max-w-4xl shrink-0 drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)]"
+        class="text-3xl sm:text-5xl md:text-6xl lg:text-6xl xl:text-7xl font-extrabold text-white tracking-tight leading-[1.1] mb-4 sm:mb-5 max-w-4xl shrink-0 drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)]"
         aria-label="AmTrans Լոգիստիկ Ընկերության Մասին"
       >
         <span class="sr-only">AmTrans Լոգիստիկ Ընկերության Մասին - </span>
