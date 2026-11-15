@@ -26,7 +26,7 @@ const { t } = useI18n()
     <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center">
 
       <!-- Top Badge -->
-      <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/10 backdrop-blur-md border border-white/20 text-xs font-bold uppercase tracking-[0.18em] text-white mb-6 shadow-lg shadow-black/20">
+      <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/10 backdrop-blur-md border border-white/20 text-[10px] font-bold uppercase tracking-[0.18em] text-white mb-6 shadow-lg shadow-black/20">
         <span class="w-2 h-2 rounded-full bg-secondary animate-pulse" />
         {{ t('home.cta.badge') }}
       </div>
@@ -66,7 +66,7 @@ const { t } = useI18n()
         <NuxtLink to="/contact-us" class="w-full sm:w-auto inline-flex items-center justify-center min-h-[48px] rounded-2xl focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-400 focus-visible:ring-offset-2 focus-visible:ring-offset-slate-900">
           <button
             type="button"
-            class="w-full sm:w-auto min-h-[48px] inline-flex items-center justify-center gap-2 px-8 py-4 rounded-2xl text-base font-bold text-white bg-white/10 hover:bg-white/20 backdrop-blur-md border border-white/25 shadow-lg transition-all duration-200 hover:-translate-y-0.5 active:scale-[0.98] outline-none focus-visible:ring-2 focus-visible:ring-amber-400 focus-visible:outline-none cursor-pointer"
+            class="w-full sm:w-auto min-h-[48px] inline-flex items-center justify-center gap-2 py-3 px-8 sm:py-4 rounded-2xl text-base font-bold text-white bg-white/10 hover:bg-white/20 backdrop-blur-md border border-white/25 shadow-lg transition-all duration-200 hover:-translate-y-0.5 active:scale-[0.98] outline-none focus-visible:ring-2 focus-visible:ring-amber-400 focus-visible:outline-none cursor-pointer"
           >
             <span>{{ t('home.cta.contactUs') }}</span>
           </button>

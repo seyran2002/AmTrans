@@ -75,7 +75,6 @@
             <span class="w-2.5 h-2.5 rounded-full bg-primary inline-block" />
             {{ t('howToUse.ch4.mockupTitle') }}
           </span>
-          <span class="text-slate-400 font-mono text-[11px] truncate">app/components/dashboard/OrderModal.vue</span>
         </div>
 
         <!-- Simulated Modal Content -->

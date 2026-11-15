@@ -53,7 +53,6 @@
             <span class="w-2.5 h-2.5 rounded-full bg-secondary inline-block" />
             {{ t('howToUse.ch2.mockupTitle') }}
           </span>
-          <span class="text-slate-400 font-mono text-[11px] truncate">app/components/sections/verify/VerifyProfileForm.vue</span>
         </div>
 
         <!-- Entity Type Toggle (Simulating EntityTypeSwitch.vue) -->

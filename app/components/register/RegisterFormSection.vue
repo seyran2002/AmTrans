@@ -2,7 +2,7 @@
   <div>
     <!-- Card Header -->
     <div class="text-center mb-8">
-      <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-amber-500/10 border border-amber-500/20 text-amber-700 text-xs font-semibold mb-3">
+      <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-amber-500/10 border border-amber-500/20 text-amber-700 text-[10px] font-semibold mb-3">
         <span class="w-2 h-2 rounded-full bg-secondary animate-pulse"></span>
         <span>Logistics & Transport</span>
       </div>

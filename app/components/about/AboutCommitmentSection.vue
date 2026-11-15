@@ -29,7 +29,7 @@ const { t } = useI18n()
     <div class="relative max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
 
       <!-- Label badge with WCAG AA compliant text -->
-      <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/10 border border-white/20 text-xs font-bold uppercase tracking-[0.18em] text-white mb-8">
+      <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/10 border border-white/20 text-[10px] font-bold uppercase tracking-[0.18em] text-white mb-8">
         <span class="w-1.5 h-1.5 rounded-full bg-secondary animate-pulse" aria-hidden="true" />
         {{ t('about.commitment.badge') }}
       </div>

@@ -31,7 +31,7 @@ const { t } = useI18n()
         class="inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full bg-white/10 backdrop-blur-md border border-white/20 mb-6 shadow-lg shadow-black/20"
       >
         <span class="w-2 h-2 rounded-full bg-secondary animate-pulse" />
-        <span class="text-xs sm:text-sm font-bold uppercase tracking-[0.2em] text-white/95">
+        <span class="text-[10px] font-bold uppercase tracking-[0.2em] text-white/95">
           {{ t('contact.badge') }}
         </span>
       </div>

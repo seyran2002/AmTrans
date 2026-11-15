@@ -28,7 +28,7 @@ function goToDashboardOffices() {
 
       <!-- Section Header -->
       <div class="text-center max-w-3xl mx-auto mb-12 sm:mb-16">
-        <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-primary/10 border border-primary/20 text-xs font-bold uppercase tracking-wider text-primary mb-4">
+        <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-primary/10 border border-primary/20 text-[10px] font-bold uppercase tracking-wider text-primary mb-4">
           <span class="w-1.5 h-1.5 rounded-full bg-secondary animate-pulse" />
           {{ t('contact.offices.badge') }}
         </div>

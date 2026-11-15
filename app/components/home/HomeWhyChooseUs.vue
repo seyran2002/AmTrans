@@ -73,7 +73,7 @@ const benefits = computed<BenefitCard[]>(() => [
 
       <!-- Section Header -->
       <div class="text-center mb-14 sm:mb-20 max-w-3xl mx-auto">
-        <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-primary/10 border border-primary/30 text-xs font-bold uppercase tracking-[0.18em] text-primary mb-4 shadow-xs">
+        <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-primary/10 border border-primary/30 text-[10px] font-bold uppercase tracking-[0.18em] text-primary mb-4 shadow-xs">
           <span class="w-1.5 h-1.5 rounded-full bg-primary" />
           {{ t('home.whyUs.badge') }}
         </div>

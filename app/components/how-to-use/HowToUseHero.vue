@@ -15,7 +15,7 @@
       </nav>
 
       <!-- Badge -->
-      <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-primary/10 text-primary border border-primary/20 text-xs font-bold tracking-wide uppercase mb-5 shadow-2xs">
+      <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-primary/10 text-primary border border-primary/20 text-[10px] font-bold tracking-wide uppercase mb-5 shadow-2xs">
         <span class="w-2 h-2 rounded-full bg-secondary animate-pulse" />
         <span>{{ t('howToUse.hero.badge') }}</span>
       </div>

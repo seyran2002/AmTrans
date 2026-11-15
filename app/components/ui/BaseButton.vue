@@ -3,7 +3,7 @@
     :type="type"
     :disabled="disabled || loading"
     :class="[
-      'inline-flex items-center justify-center gap-2 font-bold tracking-wide transition-all duration-200 rounded-2xl select-none focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-600 focus-visible:ring-offset-2',
+      'inline-flex items-center justify-center gap-2 font-bold tracking-wide transition-all duration-200 rounded-xl sm:rounded-2xl select-none focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-600 focus-visible:ring-offset-2',
       sizeClasses,
       variantClasses,
       block ? 'w-full' : '',
@@ -44,12 +44,12 @@ const props = withDefaults(
 const sizeClasses = computed(() => {
   switch (props.size) {
     case 'sm':
-      return 'min-h-[44px] py-2.5 px-4 text-xs'
+      return 'min-h-unset sm:min-h-[44px] py-2 sm:py-2.5 px-2 sm:px-4 text-xs'
     case 'lg':
-      return 'min-h-[52px] py-4 px-8 text-base font-extrabold'
+      return 'min-h-unset sm:min-h-[52px] py-3 sm:py-4 sm:px-8 text-base font-extrabold'
     case 'md':
     default:
-      return 'min-h-[48px] py-3 sm:py-3.5 px-4 sm:px-6 text-xs sm:text-sm'
+      return 'min-h-unset sm:min-h-[48px] py-2.5 sm:py-3.5 px-4 sm:px-6 text-xs sm:text-sm'
   }
 })
 

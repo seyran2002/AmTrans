@@ -65,7 +65,7 @@ const formatPrice = (val: number | string | undefined): string => {
 
       <!-- Section Header -->
       <div class="text-center mb-14 sm:mb-20 max-w-3xl mx-auto">
-        <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-amber-500/10 border border-amber-600/30 text-xs font-bold uppercase tracking-[0.18em] text-amber-800 mb-4 shadow-xs">
+        <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-amber-500/10 border border-amber-600/30 text-[10px] font-bold uppercase tracking-[0.18em] text-amber-800 mb-4 shadow-xs">
           <span class="w-1.5 h-1.5 rounded-full bg-secondary animate-pulse" />
           {{ t('home.tariffs.badge') }}
         </div>

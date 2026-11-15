@@ -27,7 +27,7 @@
       <!-- 3. Form Section -->
       <div v-else class="bg-white/85 backdrop-blur-2xl rounded-3xl p-6 sm:p-10 shadow-2xl shadow-primary/10 border border-white/60 relative animate-fade-in">
         <div class="text-center mb-8">
-          <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-amber-500/10 border border-amber-500/20 text-amber-800 text-xs font-bold mb-3 shadow-xs">
+          <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-amber-500/10 border border-amber-500/20 text-amber-800 text-[10px] font-bold mb-3 shadow-xs">
             <span class="w-2 h-2 rounded-full bg-secondary animate-pulse"></span>
             <span>Account Verification</span>
           </div>

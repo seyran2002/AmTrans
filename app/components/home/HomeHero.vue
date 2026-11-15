@@ -87,7 +87,7 @@ useHead({
       <!-- Badge with Primary Brand Styling -->
       <div class="hidden min-[380px]:inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-primary/20 backdrop-blur-md border border-primary/40 mb-6 sm:mb-8 shadow-lg shadow-primary/10">
         <span class="w-2 h-2 rounded-full bg-secondary animate-pulse" />
-        <span class="text-[10px] sm:text-xs font-bold uppercase tracking-[0.2em] text-white drop-shadow-[0_1px_2px_rgba(0,0,0,0.8)]">
+        <span class="text-[10px] font-bold uppercase tracking-[0.2em] text-white drop-shadow-[0_1px_2px_rgba(0,0,0,0.8)]">
           {{ $t('home.hero.welcome') }}
         </span>
       </div>
