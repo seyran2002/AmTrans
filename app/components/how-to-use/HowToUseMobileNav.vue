@@ -1,5 +1,5 @@
 <template>
-  <div class="lg:hidden sticky top-16 z-30 mb-6 -mx-4 px-4 sm:-mx-6 sm:px-6 py-2.5 bg-white/95 backdrop-blur-md border-y border-slate-200/80 shadow-xs">
+  <div class="lg:hidden sticky top-12 sm:top-20 z-30 mb-6 -mx-4 px-4 sm:-mx-6 sm:px-6 py-2.5 bg-white/95 backdrop-blur-md border-y border-slate-200/80 shadow-xs">
     <div class="flex items-center justify-between gap-3">
       <!-- Chapter Jump Button -->
       <button

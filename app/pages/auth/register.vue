@@ -1,15 +1,12 @@
 <template>
-  <div class="min-h-screen bg-bg-primary flex flex-col justify-between relative overflow-hidden font-sans selection:bg-secondary/20 selection:text-primary">
+  <div class="bg-bg-primary relative overflow-hidden font-sans selection:bg-secondary/20 selection:text-primary">
     <!-- Ambient Floating Background Accents -->
     <div class="absolute -top-40 -left-40 w-96 h-96 bg-secondary/20 rounded-full blur-3xl pointer-events-none"></div>
     <div class="absolute top-1/3 -right-40 w-96 h-96 bg-tertiary/15 rounded-full blur-3xl pointer-events-none"></div>
     <div class="absolute -bottom-40 left-1/3 w-96 h-96 bg-primary/15 rounded-full blur-3xl pointer-events-none"></div>
 
-    <!-- Global App Header -->
-    <AppHeader />
-
     <!-- Main Registration Container -->
-    <main class="w-full max-w-md mx-auto px-4 py-6 z-10 my-auto">
+    <main class="w-full max-w-md mx-auto px-4 z-10 pb-12 sm:pb-24 pt-24 sm:pt-36">
       <div class="bg-white/90 backdrop-blur-xl rounded-3xl p-6 sm:p-8 shadow-2xl shadow-primary/10 border border-white/60 relative">
         <!-- Registration Form Section -->
         <RegisterFormSection

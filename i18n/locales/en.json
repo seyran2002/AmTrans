@@ -21,6 +21,7 @@
     "exit": "Exit"
   },
   "auth": {
+    "badge": "Client Portal",
     "brandName": "AMTRANS",
     "brandTagline": "Your Trusted Logistics & Logistics Partner",
     "createAccount": "Create an Account",

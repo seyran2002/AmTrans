@@ -4,7 +4,7 @@
     <div class="text-center mb-8">
       <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-amber-500/10 border border-amber-500/20 text-amber-700 text-[10px] font-semibold mb-3">
         <span class="w-2 h-2 rounded-full bg-secondary animate-pulse"></span>
-        <span>Logistics & Transport</span>
+        <span>{{ t('auth.badge') }}</span>
       </div>
       <h1 class="text-2xl sm:text-3xl font-black text-primary tracking-tight">
         {{ t('auth.createAccount') }}
@@ -140,7 +140,7 @@
     </form>
 
     <!-- Login Link Footer -->
-    <div class="mt-8 pt-6 border-t border-slate-100 text-center">
+    <div class="pt-6 border-t border-slate-100 text-center">
       <p class="text-sm font-medium text-slate-500">
         {{ t('auth.alreadyHaveAccount') }}
         <NuxtLink

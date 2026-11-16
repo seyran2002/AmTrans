@@ -21,6 +21,7 @@
     "exit": "Выход"
   },
   "auth": {
+    "badge": "Клиентский портал",
     "brandName": "AMTRANS",
     "brandTagline": "Ваш надежный логистический партнер",
     "createAccount": "Создать аккаунт",
