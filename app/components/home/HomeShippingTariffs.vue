@@ -54,7 +54,7 @@ const formatPrice = (val: number | string | undefined): string => {
 <template>
   <section
     id="shipping-tariffs"
-    class="w-full bg-slate-50/70 py-20 sm:py-28 relative overflow-hidden scroll-mt-20 border-t border-slate-200/60"
+    class="w-full bg-slate-50/70 py-12 sm:py-28 relative overflow-hidden scroll-mt-20 border-t border-slate-200/60"
     aria-labelledby="tariffs-heading"
   >
     <!-- Background subtle ambient decorations -->

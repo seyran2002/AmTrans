@@ -10,7 +10,7 @@ const { t } = useI18n()
 <template>
   <section
     id="our-commitment"
-    class="w-full bg-gradient-to-br from-primary via-[#1c3260] to-primary-dark py-20 sm:py-28 relative overflow-hidden"
+    class="w-full bg-gradient-to-br from-primary via-[#1c3260] to-primary-dark py-12 sm:py-28 relative overflow-hidden"
     aria-labelledby="commitment-heading"
   >
     <!-- Decorative glow orbs -->

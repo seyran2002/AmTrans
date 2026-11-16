@@ -62,7 +62,7 @@ const benefits = computed<BenefitCard[]>(() => [
 <template>
   <section
     id="why-choose-us"
-    class="w-full bg-white py-20 sm:py-28 relative overflow-hidden scroll-mt-20 border-t border-slate-200/60"
+    class="w-full bg-white py-12 sm:py-28 relative overflow-hidden scroll-mt-20 border-t border-slate-200/60"
     aria-labelledby="why-us-heading"
   >
     <!-- Background subtle ambient decorations -->

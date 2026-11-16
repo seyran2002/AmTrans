@@ -30,56 +30,38 @@ const { allLinks } = useNavLinks()
         v-for="link in allLinks"
         :key="link.to"
         :to="link.to"
-        custom
-        v-slot="{ href, navigate, isActive }"
+        :aria-label="link.ariaLabel"
+        :active-class="isTransparent ? 'text-white' : 'text-primary'"
+        :class="[
+          'relative flex-1 min-w-0 min-h-[48px] flex flex-col items-center justify-center py-1.5 px-0.5 rounded-xl transition-all duration-300 outline-none select-none active:scale-90 focus-visible:ring-2 focus-visible:ring-primary',
+          isTransparent ? 'text-slate-100' : 'text-zinc-700',
+        ]"
+        v-slot="{ isActive }"
       >
-        <a
-          :href="href"
-          @click="navigate"
-          :aria-current="isActive ? 'page' : undefined"
-          :aria-label="link.ariaLabel"
-          :class="[
-            'relative flex-1 min-w-0 min-h-[48px] flex flex-col items-center justify-center py-1.5 px-0.5 rounded-xl transition-all duration-300 outline-none select-none active:scale-90 focus-visible:ring-2 focus-visible:ring-primary',
-            isActive
-              ? isTransparent ? 'text-white' : 'text-primary'
-              : isTransparent ? 'text-slate-100' : 'text-zinc-700',
-          ]"
-        >
-          <!-- Icon -->
-          <div class="relative flex items-center justify-center h-5 mb-0.5">
-            <BaseIcon
-              :name="link.icon"
-              :size="19"
-              :custom-class="[
-                'transition-all duration-300',
-                isActive
-                  ? (isTransparent ? 'text-white' : 'text-primary')
-                  : (isTransparent ? 'text-slate-100' : 'text-zinc-700'),
-              ].join(' ')"
-            />
-          </div>
-
-          <!-- Label -->
-          <span
-            :class="[
-              'text-[9px] sm:text-[10px] leading-tight font-semibold transition-colors duration-300 truncate max-w-full block w-full text-center px-0.5',
-              isActive
-                ? isTransparent ? 'text-white' : 'text-primary'
-                : isTransparent ? 'text-slate-100' : 'text-zinc-700',
-            ]"
-          >
-            {{ link.label }}
-          </span>
-
-          <!-- Active indicator bar -->
-          <span
-            class="absolute -bottom-0.5 left-1/2 -translate-x-1/2 h-[2.5px] rounded-full transition-all duration-300 ease-out"
-            :class="[
-              isActive ? 'w-4 opacity-100' : 'w-0 opacity-0',
-              isTransparent ? 'bg-white' : 'bg-secondary',
-            ]"
+        <!-- Icon -->
+        <div class="relative flex items-center justify-center h-5 mb-0.5">
+          <BaseIcon
+            :name="link.icon"
+            :size="19"
+            custom-class="transition-all duration-300"
           />
-        </a>
+        </div>
+
+        <!-- Label -->
+        <span
+          class="text-[9px] sm:text-[10px] leading-tight font-semibold transition-colors duration-300 truncate max-w-full block w-full text-center px-0.5"
+        >
+          {{ link.label }}
+        </span>
+
+        <!-- Active indicator bar -->
+        <span
+          class="absolute -bottom-0.5 left-1/2 -translate-x-1/2 h-[2.5px] rounded-full transition-all duration-300 ease-out"
+          :class="[
+            isActive ? 'w-4 opacity-100' : 'w-0 opacity-0',
+            isTransparent ? 'bg-white' : 'bg-secondary',
+          ]"
+        />
       </NuxtLink>
     </nav>
   </div>

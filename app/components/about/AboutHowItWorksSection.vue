@@ -42,7 +42,7 @@ const steps = computed<Step[]>(() => [
 <template>
   <section
     id="how-it-works"
-    class="w-full bg-white py-20 sm:py-28 scroll-mt-20"
+    class="w-full bg-white py-12 sm:py-28 scroll-mt-20"
     aria-labelledby="how-it-works-heading"
   >
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">

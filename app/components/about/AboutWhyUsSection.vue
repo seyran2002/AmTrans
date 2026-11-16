@@ -61,7 +61,7 @@ const reasons = computed<Reason[]>(() => [
 <template>
   <section
     id="why-choose-us"
-    class="w-full bg-bgPrimary py-20 sm:py-28 scroll-mt-20"
+    class="w-full bg-bgPrimary py-12 sm:py-28 scroll-mt-20"
     aria-labelledby="why-choose-heading"
   >
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">

@@ -1,5 +1,5 @@
 <template>
-  <header class="relative overflow-hidden pt-24 pb-10 sm:pt-36 sm:pb-16 mb-6 sm:mb-8 lg:mb-12">
+  <header class="relative overflow-hidden pt-20 pb-6 sm:pt-32 sm:pb-16 mb-4 sm:mb-8 lg:mb-12">
     
     <div class="relative z-10">
       <!-- Breadcrumbs -->

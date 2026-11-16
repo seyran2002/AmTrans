@@ -10,7 +10,7 @@ const { t } = useI18n()
 <template>
   <section
     id="get-started"
-    class="w-full py-20 sm:py-28 relative overflow-hidden bg-gradient-to-br from-primary via-[#1c3260] to-slate-950 text-white"
+    class="w-full py-12 sm:py-28 relative overflow-hidden bg-gradient-to-br from-primary via-[#1c3260] to-slate-950 text-white"
     aria-labelledby="cta-heading"
   >
     <!-- Background glowing orbs & radial overlays -->

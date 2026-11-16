@@ -1,5 +1,5 @@
 <template>
-  <div class="min-h-screen bg-slate-50/60 pb-20">
+  <div class="min-h-screen bg-slate-50/60 pb-12 sm:pb-20">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <!-- ── Hero Section ──────────────────────────────────────────────── -->
       <HowToUseHero @start-learning="scrollToChapter('chapter-01')" />
@@ -15,7 +15,7 @@
       <!-- ── Main Grid Layout: Tutorial Content + Desktop Sticky Sidebar ─ -->
       <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 items-start">
         <!-- Main Tutorial Chapters (Left / Center) -->
-        <main class="lg:col-span-8 xl:col-span-9 space-y-8 sm:space-y-12 lg:space-y-16">
+        <main class="lg:col-span-8 xl:col-span-9 space-y-6 sm:space-y-12 lg:space-y-16">
           <!-- Chapter 01: Getting Started -->
           <ChapterGettingStarted
             :chapter="chapters[0]"

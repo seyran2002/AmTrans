@@ -19,7 +19,7 @@ const faqs = [
 </script>
 
 <template>
-  <section class="w-full py-16 sm:py-20 border-t border-slate-200/60" aria-label="Frequently Asked Questions">
+  <section class="w-full py-12 sm:py-28 border-t border-slate-200/60" aria-label="Frequently Asked Questions">
     <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
       <!-- Section Header -->
       <div class="text-center mb-10 sm:mb-12">

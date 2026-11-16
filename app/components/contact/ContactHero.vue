@@ -6,7 +6,7 @@ const { t } = useI18n()
 
 <template>
   <section
-    class="relative w-full overflow-hidden bg-gradient-to-b from-slate-950 via-[#132244] to-[#243E75] text-white pt-28 sm:pt-36 pb-20 sm:pb-28"
+    class="relative w-full overflow-hidden bg-gradient-to-b from-slate-950 via-[#132244] to-[#243E75] text-white pt-24 sm:pt-36 pb-12 sm:pb-28"
     aria-label="Contact Us Hero"
   >
     <!-- Background glow & ambient lighting effects -->
