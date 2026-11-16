@@ -44,7 +44,7 @@ const props = withDefaults(
 const sizeClasses = computed(() => {
   switch (props.size) {
     case 'sm':
-      return 'min-h-unset sm:min-h-[44px] py-2 sm:py-2.5 px-2 sm:px-4 text-xs'
+      return 'min-h-unset sm:min-h-[44px] py-2 sm:py-2.5 px-3 sm:px-4 text-xs'
     case 'lg':
       return 'min-h-unset sm:min-h-[52px] py-3 sm:py-4 sm:px-8 text-base font-extrabold'
     case 'md':
