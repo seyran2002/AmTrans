@@ -21,6 +21,11 @@ export default defineNuxtRouteMiddleware(async (_to, _from) => {
   const isSupporter = Boolean(user.value?.isSupporter)
   // Check if role is ADMIN, OPERATOR, or user is a designated SUPPORTER
   if (role !== 'ADMIN' && role !== 'OPERATOR' && !isSupporter) {
+    if (_to.name === 'dashboard-office') {
+      return navigateTo('/dashboard/addresses')
+    } else if(_to.name === 'dashboard-manage-orders') {
+      return navigateTo('/dashboard/orders')
+    }
     return navigateTo('/dashboard')
   }
 })
