@@ -34,6 +34,8 @@ export interface OrderOffice {
   city: string
   province: string
   fullAddress: string
+  phone: string
+  postalCode?: string
   country?: {
     id: string
     enName: string

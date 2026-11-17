@@ -1,9 +1,9 @@
 <template>
-  <div class="flex flex-col lg:flex-row items-start lg:items-center justify-between gap-4 pb-4 border-b border-slate-100 flex-wrap">
+  <div class="flex flex-col lg:flex-row items-start lg:items-center justify-between gap-3 sm:gap-4 pb-3 sm:pb-4 border-b border-slate-100 flex-wrap">
     <div class="w-full lg:w-auto">
       <!-- Mobile Select -->
       <div class="sm:hidden w-full">
-        <label for="order-status-filter-mobile" class="block text-xs font-bold text-slate-500 uppercase tracking-wider mb-1.5">
+        <label for="order-status-filter-mobile" class="block text-xs font-bold text-slate-500 uppercase tracking-wider mb-1">
           {{ t('orders.filterByStatus') }}
         </label>
         <div class="relative">
@@ -11,7 +11,7 @@
             id="order-status-filter-mobile"
             :value="selectedStatus"
             @change="$emit('update:selectedStatus', ($event.target as HTMLSelectElement).value as FilterStatus)"
-            class="w-full px-4 py-2.5 bg-slate-50 border border-slate-200 text-slate-800 text-sm font-semibold rounded-2xl focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary appearance-none cursor-pointer pr-10"
+            class="w-full px-3.5 py-2 bg-slate-50 border border-slate-200 text-slate-800 text-xs sm:text-sm font-semibold rounded-xl focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary appearance-none cursor-pointer pr-10"
           >
             <option value="ALL">{{ t('orders.allStatuses') }} ({{ totalOrders }})</option>
             <option
@@ -98,7 +98,7 @@
           :value="activeTracking"
           @input="onTrackingInput(($event.target as HTMLInputElement).value)"
           :placeholder="t('orders.filterByTracking')"
-          class="w-full pl-9 pr-8 py-1.5 bg-slate-50 hover:bg-slate-100/80 focus:bg-white border border-slate-200 text-slate-800 text-xs font-semibold rounded-2xl focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all placeholder:text-slate-400 placeholder:font-normal"
+          class="w-full pl-9 pr-8 py-1.5 bg-slate-50 hover:bg-slate-100/80 focus:bg-white border border-slate-200 text-slate-800 text-xs font-semibold rounded-xl sm:rounded-2xl focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all placeholder:text-slate-400 placeholder:font-normal"
         />
         <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-slate-400">
           <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">

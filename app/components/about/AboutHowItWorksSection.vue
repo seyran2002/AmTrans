@@ -49,7 +49,7 @@ const steps = computed<Step[]>(() => [
 
       <!-- Section header -->
       <div class="text-center mb-14 sm:mb-20">
-        <span class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-secondary/10 border border-secondary/25 text-[10px] font-bold uppercase tracking-[0.18em] text-secondary mb-5">
+        <span class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-amber-500/10 border border-amber-600/30 text-amber-800 text-[10px] font-bold uppercase tracking-[0.18em] mb-5">
           <span class="w-1.5 h-1.5 rounded-full bg-secondary" aria-hidden="true" />
           {{ t('about.howItWorks.badge') }}
         </span>

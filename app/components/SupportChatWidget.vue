@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref, computed, onMounted, onUnmounted, nextTick } from 'vue'
+import { ref, computed, watch, onMounted, onUnmounted, nextTick } from 'vue'
 import { useRoute } from 'vue-router'
 import { io, type Socket } from 'socket.io-client'
 import { useApi } from '~/composables/useApi'
@@ -98,7 +98,7 @@ function connectSocket() {
     }
 
     if (isOpen.value) {
-      markChatAsRead()
+      markChatAsRead();
       if (isNearBottom()) {
         scrollToBottom(true)
       }
@@ -286,9 +286,55 @@ const formattedMessages = computed(() =>
   }),
 )
 
+// ── Mobile Scroll Lock ─────────────────────────────────────────────────
+const isScrollLocked = ref(false)
+
+function lockMobileScroll() {
+  if (!import.meta.client || isScrollLocked.value) return
+  if (window.innerWidth < 640) {
+    document.documentElement.style.overflow = 'hidden'
+    document.body.style.overflow = 'hidden'
+    isScrollLocked.value = true
+  }
+}
+
+function unlockMobileScroll() {
+  if (!import.meta.client || !isScrollLocked.value) return
+  document.documentElement.style.overflow = ''
+  document.body.style.overflow = ''
+  isScrollLocked.value = false
+}
+
+function handleResize() {
+  if (!import.meta.client) return
+  if (isOpen.value) {
+    if (window.innerWidth < 640) {
+      lockMobileScroll()
+    } else {
+      unlockMobileScroll()
+    }
+  } else if (isScrollLocked.value) {
+    unlockMobileScroll()
+  }
+}
+
+watch(isOpen, (newVal) => {
+  if (!import.meta.client) return
+  if (newVal) {
+    if (window.innerWidth < 640) {
+      lockMobileScroll()
+    }
+  } else {
+    unlockMobileScroll()
+  }
+})
+
 // ── Lifecycle ──────────────────────────────────────────────────────────
 onMounted(async () => {
   document.addEventListener('keydown', onEscape)
+  if (import.meta.client) {
+    window.addEventListener('resize', handleResize)
+  }
   // Eagerly connect socket and prefetch chat unread count if token is present
   if (token.value) {
     connectSocket()
@@ -298,6 +344,10 @@ onMounted(async () => {
 
 onUnmounted(() => {
   document.removeEventListener('keydown', onEscape)
+  if (import.meta.client) {
+    window.removeEventListener('resize', handleResize)
+  }
+  unlockMobileScroll()
   disconnectSocket()
 })
 </script>
@@ -409,7 +459,7 @@ onUnmounted(() => {
           <div
             ref="messagesContainer"
             @scroll="handleScroll"
-            class="flex-1 overflow-y-auto px-4 pb-3 pt-16 space-y-3 bg-slate-50/60"
+            class="flex-1 overflow-y-auto overscroll-contain px-4 pb-3 pt-16 space-y-3 bg-slate-50/60"
           >
             <!-- Upward Infinite Scroll Loading Indicator -->
             <div

@@ -147,9 +147,9 @@ useHead({
     </div>
 
     <!-- ── 4. Scroll Indicator ── -->
-    <div class="relative bottom-8 z-10 pb-12 shrink-0 flex flex-col items-center gap-1.5 opacity-70 hover:opacity-100 transition-opacity duration-300" aria-hidden="true">
-      <span class="text-[9px] font-bold uppercase tracking-[0.2em] text-white">{{ t('about.hero.scroll') }}</span>
-      <div class="w-4 h-7 rounded-full border-2 border-white/40 flex items-start justify-center p-0.5">
+    <div class="relative bottom-8 z-10 pb-12 shrink-0 flex flex-col items-center gap-1.5 opacity-90 hover:opacity-100 transition-opacity duration-300" aria-hidden="true">
+      <span class="text-[9px] font-bold uppercase tracking-[0.2em] text-white drop-shadow-[0_1px_2px_rgba(0,0,0,0.8)]">Scroll</span>
+      <div class="w-4 h-7 rounded-full border-2 border-white/60 flex items-start justify-center p-0.5">
         <span class="w-1 h-1.5 rounded-full bg-white animate-bounce" />
       </div>
     </div>

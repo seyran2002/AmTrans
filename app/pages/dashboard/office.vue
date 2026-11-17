@@ -117,7 +117,6 @@ const filteredOffices = computed(() => {
         o.city.toLowerCase().includes(query) ||
         o.province.toLowerCase().includes(query) ||
         o.fullAddress.toLowerCase().includes(query) ||
-        o.postalCode.toLowerCase().includes(query) ||
         o.phone.toLowerCase().includes(query) ||
         countryName.includes(query)
       )
@@ -247,7 +246,7 @@ onMounted(async () => {
 </script>
 
 <template>
-  <div class="max-w-7xl mx-auto space-y-6 [&>.popup]:!mt-0 [&>.popup]:!mt-0">
+  <div class="max-w-7xl mx-auto space-y-4 sm:space-y-6 [&>.popup]:!mt-0 [&>.popup]:!mt-0">
     <!-- Header Section -->
     <OfficeHeader
       :active-tab="activeTab"
@@ -266,7 +265,7 @@ onMounted(async () => {
     />
 
     <!-- Navigation Tabs & Content Container -->
-    <div class="bg-white rounded-3xl p-6 shadow-sm border border-slate-200/80 space-y-6 [&>.popup]:!mt-0  [&>.popup]:!mt-0">
+    <div class="bg-white rounded-2xl sm:rounded-3xl p-4 sm:p-6 shadow-sm border border-slate-200/80 space-y-4 sm:space-y-6 [&>.popup]:!mt-0 [&>.popup]:!mt-0">
       <!-- Tab Buttons & Search Controls Row -->
       <OfficeTabs
         v-model:active-tab="activeTab"

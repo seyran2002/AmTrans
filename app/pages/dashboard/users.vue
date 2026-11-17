@@ -134,7 +134,7 @@ onMounted(() => {
     <!-- Header Section -->
     <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
       <div>
-        <h1 class="text-2xl font-extrabold text-primary tracking-tight">
+        <h1 class="text-xl sm:text-2xl font-extrabold text-primary tracking-tight">
           {{ t('users.title') }}
         </h1>
         <p class="text-slate-600 font-medium text-sm mt-1">

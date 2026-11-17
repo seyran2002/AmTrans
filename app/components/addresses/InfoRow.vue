@@ -1,8 +1,8 @@
 <template>
   <div
-    class="group/row flex items-center justify-between gap-2 py-1 -mx-1.5 px-1.5 rounded-xl hover:bg-slate-50/80 transition-colors"
+    class="group/row flex items-center justify-between gap-2 py-0.5 sm:py-1 -mx-1 sm:-mx-1.5 px-1 sm:px-1.5 rounded-xl hover:bg-slate-50/80 transition-colors"
   >
-    <div class="flex items-start gap-2.5 flex-1 min-w-0">
+    <div class="flex items-start gap-2 sm:gap-2.5 flex-1 min-w-0">
       <div class="shrink-0 mt-0.5">
         <svg
           class="w-3.5 h-3.5 text-slate-400 group-hover/row:text-primary transition-colors"
@@ -13,10 +13,10 @@
         />
       </div>
       <div class="flex-1 min-w-0">
-        <p class="text-[10px] font-bold uppercase tracking-wider text-slate-400 mb-0.5">
+        <p class="text-[9px] sm:text-[10px] font-bold uppercase tracking-wider text-slate-400 mb-0.5">
           {{ label }}
         </p>
-        <p class="text-sm font-medium text-slate-700 leading-snug break-words">
+        <p class="text-xs sm:text-sm font-medium text-slate-700 leading-snug break-words">
           <slot />
         </p>
       </div>
@@ -27,7 +27,7 @@
       type="button"
       @click="handleCopy"
       :title="isCopied ? 'Copied to clipboard!' : `Copy ${label}`"
-      class="shrink-0 p-1.5 rounded-lg text-xs font-medium transition-all flex items-center gap-1 cursor-pointer"
+      class="shrink-0 p-1 sm:p-1.5 rounded-lg text-xs font-medium transition-all flex items-center gap-1 cursor-pointer"
       :class="[
         isCopied
           ? 'bg-emerald-50 text-emerald-600 ring-1 ring-emerald-200'
@@ -98,22 +98,24 @@ const emit = defineEmits<{
 const isCopied = ref(false)
 let timer: ReturnType<typeof setTimeout> | null = null
 
-const canCopy = computed(() => Boolean(props.value && props.value !== '—'))
 const iconSvg = computed(() => ICONS[props.icon] ?? '')
 
-const handleCopy = async () => {
-  const text = props.value?.trim()
-  if (!text || text === '—') return
+const canCopy = computed(() => Boolean(props.value && props.value.trim().length > 0))
+
+async function handleCopy() {
+  if (!props.value) return
+
   try {
-    await navigator.clipboard.writeText(text)
+    await navigator.clipboard.writeText(props.value)
     isCopied.value = true
-    emit('copy', text)
+    emit('copy', props.value)
+
     if (timer) clearTimeout(timer)
     timer = setTimeout(() => {
       isCopied.value = false
     }, 1800)
   } catch (err) {
-    console.error('Failed to copy:', err)
+    console.error('Failed to copy to clipboard:', err)
   }
 }
 

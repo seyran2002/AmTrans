@@ -117,7 +117,7 @@ const isExpanded = computed(() => isHovered.value || isFocused.value || props.is
           <NuxtLink to="/" @click="handleNavItemClick" class="flex items-center h-8 w-full relative focus:outline-none focus-visible:ring-2 focus-visible:ring-primary/40 rounded-xl">
             <!-- Collapsed Logo (logo-small.png) -->
             <img
-              src="~/assets/logo-small.png"
+              src="/logo.png"
               alt="AmTrans Brand Icon"
               class="h-8 w-auto object-contain absolute left-1 sm:left-1.5 top-1/2 -translate-y-1/2 transition-opacity duration-200"
               :class="isExpanded ? 'opacity-0 pointer-events-none' : 'opacity-100'"
@@ -127,7 +127,7 @@ const isExpanded = computed(() => isHovered.value || isFocused.value || props.is
             <img
               src="/logo.png"
               alt="AmTrans Logo"
-              class="h-8 w-auto object-contain absolute left-1 sm:left-1.5 top-1/2 -translate-y-1/2 transition-opacity duration-200"
+              class="h-12 w-auto object-contain absolute left-1 sm:left-1.5 top-1/2 -translate-y-1/2 transition-opacity duration-200"
               :class="isExpanded ? 'opacity-100' : 'opacity-0 pointer-events-none'"
             />
           </NuxtLink>

@@ -22,7 +22,7 @@
     </EmptyState>
 
     <!-- Offices Table -->
-    <div v-else class="overflow-x-auto -mx-6 sm:mx-0">
+    <div v-else class="overflow-x-auto -mx-4 sm:mx-0">
       <table class="w-full text-left border-collapse min-w-[850px]">
         <thead>
           <tr class="border-b border-slate-100 text-xs font-bold text-slate-400 uppercase tracking-wider bg-slate-50/50">
@@ -79,9 +79,13 @@
 
             <!-- Postal Code -->
             <td class="py-4 px-6">
-              <span class="font-mono text-xs font-bold text-slate-700 bg-slate-100 px-2.5 py-1 rounded-lg border border-slate-200">
+              <span
+                v-if="office.postalCode"
+                class="font-mono text-xs font-bold text-slate-700 bg-slate-100 px-2.5 py-1 rounded-lg border border-slate-200"
+              >
                 {{ office.postalCode }}
               </span>
+              <span v-else class="text-slate-400 text-xs">—</span>
             </td>
 
             <!-- Phone -->

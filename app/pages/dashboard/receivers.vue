@@ -131,30 +131,33 @@ onMounted(() => {
 </script>
 
 <template>
-  <div class="max-w-7xl mx-auto space-y-6 [&>.popup]:!mt-0">
+  <div class="max-w-7xl mx-auto space-y-4 sm:space-y-6 [&>.popup]:!mt-0">
     <!-- Header Section -->
-    <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+    <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-2.5 sm:gap-4">
       <div>
-        <h1 class="text-2xl font-extrabold text-primary tracking-tight">
+        <h1 class="text-xl sm:text-2xl font-extrabold text-primary tracking-tight leading-tight">
           {{ t('receivers.title') }}
         </h1>
-        <p class="text-slate-600 font-medium text-sm mt-1">
+        <p class="text-slate-500 text-xs sm:text-sm font-medium mt-0.5 sm:mt-1">
           {{ t('receivers.subtitle') }}
         </p>
       </div>
 
-      <BaseButton
-        type="button"
-        variant="primary"
-        size="md"
-        :block="false"
-        @click="handleOpenCreateModal"
-      >
-        <svg class="w-5 h-5 text-white shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
-        </svg>
-        <span>{{ t('receivers.addReceiver') }}</span>
-      </BaseButton>
+      <div class="w-full sm:w-auto">
+        <BaseButton
+          type="button"
+          variant="primary"
+          size="md"
+          :block="false"
+          class="w-full sm:w-auto !min-h-[40px] sm:!min-h-[44px]"
+          @click="handleOpenCreateModal"
+        >
+          <svg class="w-4 h-4 sm:w-5 sm:h-5 text-white shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
+          </svg>
+          <span>{{ t('receivers.addReceiver') }}</span>
+        </BaseButton>
+      </div>
     </div>
 
     <!-- Notification Banners -->
@@ -168,9 +171,9 @@ onMounted(() => {
     />
 
     <!-- Main Container -->
-    <div class="bg-white rounded-3xl p-6 shadow-sm border border-slate-200/80 transition-all">
+    <div class="bg-white rounded-2xl sm:rounded-3xl p-4 sm:p-6 shadow-sm border border-slate-200/80 transition-all">
       <!-- Loading Skeleton State -->
-      <div v-if="isLoading" class="space-y-4 py-4">
+      <div v-if="isLoading" class="space-y-3 sm:space-y-4 py-3 sm:py-4">
         <div class="h-10 bg-slate-100 rounded-2xl animate-pulse w-full"></div>
         <div class="space-y-3">
           <div v-for="i in 4" :key="i" class="h-16 bg-slate-50 rounded-2xl animate-pulse w-full"></div>
@@ -180,17 +183,17 @@ onMounted(() => {
       <!-- Empty State -->
       <div
         v-else-if="!isLoading && receivers.length === 0"
-        class="text-center py-12 px-4 max-w-md mx-auto"
+        class="text-center py-10 sm:py-12 px-4 max-w-md mx-auto"
       >
-        <div class="w-16 h-16 bg-primary/10 text-primary rounded-3xl flex items-center justify-center mx-auto mb-4 border border-primary/20">
-          <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <div class="w-14 h-14 sm:w-16 sm:h-16 bg-primary/10 text-primary rounded-2xl sm:rounded-3xl flex items-center justify-center mx-auto mb-3 sm:mb-4 border border-primary/20">
+          <svg class="w-7 h-7 sm:w-8 sm:h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
           </svg>
         </div>
-        <h3 class="text-lg font-bold text-slate-900 mb-1">
+        <h3 class="text-base sm:text-lg font-bold text-slate-900 mb-1">
           {{ t('receivers.emptyTitle') }}
         </h3>
-        <p class="text-slate-500 text-sm mb-6 leading-relaxed">
+        <p class="text-slate-500 text-xs sm:text-sm mb-5 sm:mb-6 leading-relaxed">
           {{ t('receivers.emptySubtitle') }}
         </p>
         <BaseButton
@@ -208,17 +211,17 @@ onMounted(() => {
       </div>
 
       <!-- Receivers List / Table -->
-      <div v-else class="overflow-x-auto -mx-6 sm:mx-0">
+      <div v-else class="overflow-x-auto -mx-4 sm:mx-0">
         <table class="w-full text-left border-collapse min-w-[700px]">
           <thead>
             <tr class="border-b border-slate-100 text-xs font-bold text-slate-400 uppercase tracking-wider bg-slate-50/50">
-              <th class="py-4 px-6 rounded-l-2xl">{{ t('receivers.firstName') }}</th>
-              <th class="py-4 px-6">{{ t('receivers.lastName') }}</th>
-              <th class="py-4 px-6">{{ t('receivers.documentType') }}</th>
-              <th class="py-4 px-6">{{ t('receivers.documentNumber') }}</th>
-              <th class="py-4 px-6">{{ t('receivers.address') }}</th>
-              <th class="py-4 px-6">{{ t('receivers.phoneNumber') }}</th>
-              <th class="py-4 px-6 text-right rounded-r-2xl">{{ t('receivers.actions') }}</th>
+              <th class="py-3.5 sm:py-4 px-4 sm:px-6 rounded-l-2xl">{{ t('receivers.firstName') }}</th>
+              <th class="py-3.5 sm:py-4 px-4 sm:px-6">{{ t('receivers.lastName') }}</th>
+              <th class="py-3.5 sm:py-4 px-4 sm:px-6">{{ t('receivers.documentType') }}</th>
+              <th class="py-3.5 sm:py-4 px-4 sm:px-6">{{ t('receivers.documentNumber') }}</th>
+              <th class="py-3.5 sm:py-4 px-4 sm:px-6">{{ t('receivers.address') }}</th>
+              <th class="py-3.5 sm:py-4 px-4 sm:px-6">{{ t('receivers.phoneNumber') }}</th>
+              <th class="py-3.5 sm:py-4 px-4 sm:px-6 text-right rounded-r-2xl">{{ t('receivers.actions') }}</th>
             </tr>
           </thead>
           <tbody class="divide-y divide-slate-100 text-sm font-medium text-slate-700">

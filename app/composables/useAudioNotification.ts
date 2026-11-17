@@ -1,12 +1,16 @@
 export const useAudioNotification = () => {
-  const playNotification = async () => {
+  let audio: HTMLAudioElement | null = null
+
+  const playNotification = () => {
+    if (!import.meta.client) return
+
     try {
-      const audio = new Audio('/sounds/notification.mp3')
-      audio.currentTime = 0 // Reset play position
-      await audio.play()
-    } catch (error) {
-      // Բրաուզերը կարող է արգելափակել auto-play-ը, եթե օգտատերը դեռ էջի հետ չի փոխազդել (click)
-      console.warn('Audio playback was blocked or failed:', error)
+      audio = new Audio('/sounds/notification.mp3')
+      audio.play().catch(() => {
+        console.warn('1')
+      })
+    } catch {
+      console.warn('2')
     }
   }
 

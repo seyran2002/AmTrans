@@ -1,8 +1,10 @@
 <template>
-  <form @submit.prevent="handleSubmit" class="space-y-6 [&>.popup]:!mt-0">
+  <form @submit.prevent="handleSubmit" class="space-y-4 sm:space-y-5 [&>.popup]:!mt-0">
     <SuccessBanner v-if="successMessage" :title="t('verify.successTitle')" :message="successMessage" />
     
     <AlertBanner v-if="errorMessage" :message="errorMessage" />
+
+    <p class="text-xs text-slate-500 font-medium">{{ t('latin') }}</p>
 
     <!-- Segmented Entity Type Switch -->
     <EntityTypeSwitch
@@ -14,7 +16,7 @@
 
     <!-- Individual Fields -->
     <template v-if="form.isIndividual">
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
         <BaseInput
           id="firstName"
           v-model="form.firstName"
@@ -46,7 +48,7 @@
         </BaseInput>
       </div>
 
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
         <BaseSelect
           id="documentType"
           v-model="selectedDocumentType"
@@ -75,7 +77,7 @@
 
     <!-- Legal Entity Fields -->
     <template v-else>
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
         <BaseInput
           id="companyName"
           v-model="form.companyName"
@@ -109,7 +111,7 @@
     </template>
 
     <!-- Common Fields: Address & Phone -->
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+    <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
       <BaseInput
         id="address"
         v-model="form.address"
@@ -135,22 +137,22 @@
     </div>
 
     <!-- Telegram Integration Section -->
-    <div class="p-5 bg-gradient-to-r from-sky-500/10 via-sky-400/5 to-indigo-500/10 border border-sky-500/25 rounded-2xl flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 shadow-sm">
+    <div class="p-3.5 sm:p-5 bg-gradient-to-r from-sky-500/10 via-sky-400/5 to-indigo-500/10 border border-sky-500/25 rounded-xl sm:rounded-2xl flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 sm:gap-4 shadow-sm">
       <div>
-        <h4 class="font-bold text-primary text-sm flex items-center gap-2">
-          <svg class="w-5 h-5 text-sky-500 shrink-0" fill="currentColor" viewBox="0 0 24 24">
+        <h4 class="font-bold text-primary text-xs sm:text-sm flex items-center gap-1.5 sm:gap-2">
+          <svg class="w-4 h-4 sm:w-5 sm:h-5 text-sky-500 shrink-0" fill="currentColor" viewBox="0 0 24 24">
             <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm4.64 6.8c-.15 1.58-.8 5.42-1.13 7.19-.14.75-.42 1-.68 1.03-.58.05-1.02-.38-1.58-.75-.88-.58-1.38-.94-2.23-1.5-.99-.65-.35-1.01.22-1.59.15-.15 2.71-2.48 2.76-2.69a.2.2 0 00-.05-.18c-.06-.05-.14-.03-.21-.02-.09.02-1.49.95-4.22 2.79-.4.27-.76.41-1.08.4-.36-.01-1.04-.2-1.55-.37-.63-.2-1.12-.31-1.08-.66.02-.18.27-.36.74-.55 2.92-1.27 4.86-2.11 5.83-2.51 2.78-1.16 3.35-1.36 3.73-1.36.08 0 .27.02.39.12.1.08.13.19.14.27-.01.06.01.24 0 .38z"/>
           </svg>
           {{ t('verify.connectTelegramTitle') }}
         </h4>
-        <p class="text-xs text-slate-500 font-medium mt-1">
+        <p class="text-[11px] sm:text-xs text-slate-500 font-medium mt-0.5 sm:mt-1">
           {{ t('verify.connectTelegramSubtitle') }}
         </p>
       </div>
 
       <div class="shrink-0 w-full sm:w-auto">
         <template v-if="isTelegramConnected">
-          <div class="px-4 py-2.5 bg-emerald-500/15 text-emerald-700 border border-emerald-500/30 rounded-xl text-xs font-bold flex items-center justify-center gap-2 shadow-sm">
+          <div class="px-3.5 sm:px-4 py-2 sm:py-2.5 bg-emerald-500/15 text-emerald-700 border border-emerald-500/30 rounded-xl text-xs font-bold flex items-center justify-center gap-2 shadow-sm">
             <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
             <svg class="w-4 h-4 text-emerald-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7" />
@@ -163,7 +165,7 @@
             :href="telegramDeepLink"
             target="_blank"
             rel="noopener"
-            class="inline-flex items-center justify-center w-full sm:w-auto px-5 py-2.5 bg-gradient-to-r from-sky-500 to-sky-600 hover:from-sky-600 hover:to-sky-700 text-white font-bold text-xs rounded-xl shadow-md shadow-sky-500/25 transition-all gap-2 active:scale-95"
+            class="inline-flex items-center justify-center w-full sm:w-auto px-4 sm:px-5 py-2 sm:py-2.5 bg-gradient-to-r from-sky-500 to-sky-600 hover:from-sky-600 hover:to-sky-700 text-white font-bold text-xs rounded-xl shadow-md shadow-sky-500/25 transition-all gap-2 active:scale-95 min-h-[38px] sm:min-h-[42px]"
           >
             <svg class="w-4 h-4 fill-current shrink-0" viewBox="0 0 24 24">
               <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm4.64 6.8c-.15 1.58-.8 5.42-1.13 7.19-.14.75-.42 1-.68 1.03-.58.05-1.02-.38-1.58-.75-.88-.58-1.38-.94-2.23-1.5-.99-.65-.35-1.01.22-1.59.15-.15 2.71-2.48 2.76-2.69a.2.2 0 00-.05-.18c-.06-.05-.14-.03-.21-.02-.09.02-1.49.95-4.22 2.79-.4.27-.76.41-1.08.4-.36-.01-1.04-.2-1.55-.37-.63-.2-1.12-.31-1.08-.66.02-.18.27-.36.74-.55 2.92-1.27 4.86-2.11 5.83-2.51 2.78-1.16 3.35-1.36 3.73-1.36.08 0 .27.02.39.12.1.08.13.19.14.27-.01.06.01.24 0 .38z"/>
@@ -175,24 +177,24 @@
     </div>
 
     <!-- Submit Button -->
-    <div class="pt-2">
+    <div class="pt-1 sm:pt-2">
       <BaseButton
         type="submit"
         variant="secondary"
-        size="lg"
+        size="sm"
+        class="!py-2.5 sm:!py-3 text-xs sm:text-sm font-bold min-h-[42px] sm:min-h-[46px]"
         :loading="isSubmitting"
         :disabled="isSubmitting"
         block
       >
         <span>{{ isSubmitting ? t('verify.submitting') : t('verify.submit') }}</span>
-        <svg v-if="!isSubmitting" class="w-5 h-5 text-white/90" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <svg v-if="!isSubmitting" class="w-4 h-4 sm:w-5 sm:h-5 text-white/90" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3" />
         </svg>
       </BaseButton>
     </div>
   </form>
 </template>
-
 
 <script setup lang="ts">
 import { ref, reactive, computed, onMounted, onUnmounted } from 'vue'

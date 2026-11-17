@@ -23,7 +23,7 @@ function goToDashboardOffices() {
 </script>
 
 <template>
-  <section id="offices-directory" class="w-full py-12 sm:py-28" aria-label="Branch Offices Directory">
+  <section id="offices-directory" class="w-full py-12 sm:py-28 bg-slate-50/70" aria-label="Branch Offices Directory">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 
       <!-- Section Header -->

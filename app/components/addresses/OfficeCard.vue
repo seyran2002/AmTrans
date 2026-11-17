@@ -9,14 +9,14 @@
 -->
 <template>
   <div
-    class="group bg-white rounded-2xl border border-slate-200/80 shadow-sm hover:shadow-md hover:border-primary/20 transition-all duration-200 overflow-hidden"
+    class="group bg-white rounded-xl sm:rounded-2xl border border-slate-200/80 shadow-sm hover:shadow-md hover:border-primary/20 transition-all duration-200 overflow-hidden"
   >
     <!-- ── Card header ───────────────────────────────────────── -->
-    <div class="flex items-center gap-3 px-5 pt-5 pb-4 border-b border-slate-100">
+    <div class="flex items-center gap-2.5 sm:gap-3 px-3.5 sm:px-5 pt-3.5 sm:pt-5 pb-3 sm:pb-4 border-b border-slate-100">
       <div
-        class="w-10 h-10 rounded-xl bg-primary/8 text-primary flex items-center justify-center shrink-0"
+        class="w-8 h-8 sm:w-10 sm:h-10 rounded-lg sm:rounded-xl bg-primary/8 text-primary flex items-center justify-center shrink-0"
       >
-        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <svg class="w-4 h-4 sm:w-5 sm:h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path
             stroke-linecap="round"
             stroke-linejoin="round"
@@ -26,22 +26,22 @@
         </svg>
       </div>
       <div class="flex-1 min-w-0">
-        <p class="text-sm font-bold text-slate-900 leading-tight truncate">
+        <p class="text-xs sm:text-sm font-bold text-slate-900 leading-tight truncate">
           {{ office.city }}<span v-if="office.province">, {{ office.province }}</span>
         </p>
-        <p class="text-xs text-slate-400 font-medium mt-0.5">{{ countryName }}</p>
+        <p class="text-[11px] sm:text-xs text-slate-400 font-medium mt-0.5 truncate">{{ countryName }}</p>
       </div>
     </div>
 
     <!-- ── Body ─────────────────────────────────────────────── -->
-    <div class="px-5 py-4 space-y-3.5">
+    <div class="px-3.5 sm:px-5 py-3 sm:py-4 space-y-2.5 sm:space-y-3.5">
 
       <!-- 1) Receiver dropdown -->
-      <div class="space-y-1.5 group/receiver p-1.5 -mx-1.5 rounded-xl hover:bg-slate-50/80 transition-colors">
+      <div class="space-y-1 sm:space-y-1.5 group/receiver p-1 sm:p-1.5 -mx-1 sm:-mx-1.5 rounded-xl hover:bg-slate-50/80 transition-colors">
         <div class="flex items-center justify-between">
           <label
             :for="`receiver-${office.id}`"
-            class="block text-xs font-bold uppercase tracking-wider text-primary/90"
+            class="block text-[10px] sm:text-xs font-bold uppercase tracking-wider text-primary/90"
           >
             {{ t('addresses.receiver') || 'Receiver' }}
           </label>
@@ -71,14 +71,14 @@
           <!-- Loading skeleton -->
           <div
             v-if="isLoadingReceivers"
-            class="h-11 w-full bg-slate-100 animate-pulse rounded-2xl"
+            class="h-9 sm:h-11 w-full bg-slate-100 animate-pulse rounded-xl sm:rounded-2xl"
           />
 
           <select
             v-else
             :id="`receiver-${office.id}`"
             v-model="selectedReceiverValue"
-            class="w-full px-4 py-3 bg-white border border-slate-200/90 text-slate-800 text-sm font-medium rounded-2xl transition-all duration-200 focus:outline-none focus:ring-4 focus:ring-primary/10 focus:border-primary appearance-none shadow-xs cursor-pointer hover:border-slate-300"
+            class="w-full px-3 sm:px-4 py-2 sm:py-2.5 bg-white border border-slate-200/90 text-slate-800 text-xs sm:text-sm font-medium rounded-xl sm:rounded-2xl transition-all duration-200 focus:outline-none focus:ring-4 focus:ring-primary/10 focus:border-primary appearance-none shadow-xs cursor-pointer hover:border-slate-300"
           >
             <option
               v-for="opt in receiverOptions"
@@ -89,7 +89,7 @@
 
           <!-- Chevron -->
           <div
-            class="absolute inset-y-0 right-0 flex items-center pr-4 pointer-events-none text-slate-400 group-focus-within/select:text-primary transition-colors"
+            class="absolute inset-y-0 right-0 flex items-center pr-3 sm:pr-4 pointer-events-none text-slate-400 group-focus-within/select:text-primary transition-colors"
           >
             <svg class="w-4 h-4 fill-current" viewBox="0 0 20 20">
               <path
@@ -108,7 +108,7 @@
       >
         <span
           v-if="selectedCode"
-          class="font-mono text-xs font-bold text-primary bg-primary/8 px-2.5 py-1 rounded-lg tracking-wide inline-block"
+          class="font-mono text-[11px] sm:text-xs font-bold text-primary bg-primary/8 px-2 sm:px-2.5 py-0.5 sm:py-1 rounded-md sm:rounded-lg tracking-wide inline-block"
         >{{ selectedCode }}</span>
         <span v-else class="text-slate-400 text-xs italic">—</span>
       </InfoRow>
@@ -165,6 +165,7 @@
 
       <!-- 8) Postal Code -->
       <InfoRow
+        v-if="office.postalCode"
         icon="postal"
         :label="t('addresses.postalCode') || 'Postal Code'"
         :value="office.postalCode"
@@ -257,5 +258,3 @@ async function copyReceiver() {
   }
 }
 </script>
-
-

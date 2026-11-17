@@ -39,7 +39,7 @@ export interface Office {
   country?: Country
   province: string
   city: string
-  postalCode: string
+  postalCode?: string
   fullAddress: string
   phone: string
   operators?: OperatorUser[]
@@ -51,7 +51,7 @@ export interface CreateOfficePayload {
   countryId: string
   province: string
   city: string
-  postalCode: string
+  postalCode?: string
   fullAddress: string
   phone: string
 }

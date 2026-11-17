@@ -328,7 +328,7 @@ const handleChangePassword = async () => {
     <!-- Page Header -->
     <div class="flex items-start justify-between gap-4">
       <div>
-        <h1 class="text-2xl font-extrabold text-primary tracking-tight">
+        <h1 class="text-xl sm:text-2xl font-extrabold text-primary tracking-tight">
           {{ t('profile.pageTitle') }}
         </h1>
         <p class="text-sm text-slate-500 font-medium mt-1">

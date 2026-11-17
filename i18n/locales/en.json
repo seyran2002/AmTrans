@@ -1,4 +1,5 @@
 {
+  "latin": "Please use only Latin letters when entering text․",
   "nav": {
     "home": "Home",
     "howToUse": "How to Use",
@@ -195,6 +196,9 @@
     "confirmDeleteCountryMessage": "Are you sure you want to delete this country? Deleting a country may affect associated offices.",
     "addOffice": "Add Office",
     "editOffice": "Edit Office",
+    "addOfficeSubTitle": "Create a new office location",
+    "editOfficeSubTitle": "Update branch address and phone details",
+    "addCountrySubtitle": "Add a new country to register office locations.",
     "deleteOffice": "Delete Office",
     "confirmDeleteOfficeTitle": "Confirm Office Deletion",
     "confirmDeleteOfficeMessage": "Are you sure you want to delete this office location? This action cannot be undone.",
@@ -307,15 +311,17 @@
     "loading": "Loading users..."
   },
   "addresses": {
+    "subTitle": "Find AmTrans office addresses and contact information.",
     "offices": "Offices",
     "receiver": "Receiver",
-    "identCode": "Identification Code",
+    "identCode": "Address 2 (Identification Code)",
     "address": "Street Address",
     "country": "Country",
     "city": "City",
     "province": "Province/State",
     "phone": "Phone Number",
-    "postalCode": "Postal Code"
+    "postalCode": "Postal Code",
+    "noOffices": "No offices found."
   },
   "orders": {
     "subtitle": "Manage and track your active freight orders.",
@@ -770,7 +776,6 @@
       "subtitle": "AmTrans is a fully licensed leader in air cargo freight, built on over a decade of proven expertise, complete transparency, and legal compliance. We deliver ultra-fast express shipping from Armenia to Russia (Moscow, St. Petersburg, and other cities), from Moscow to Armenia, and from Dubai to Armenia—handling every parcel with the highest standard of care and guaranteed professionalism.",
       "storyBtn": "Our Story",
       "contactBtn": "Get in Touch",
-      "scroll": "Scroll",
       "imageAlt": "AmTrans international parcel logistics background"
     },
     "mission": {
@@ -1563,6 +1568,22 @@
         "label": "Cancelled",
         "description": "Order cancelled upon customer request or price estimate decline."
       }
+    }
+  },
+  "error": {
+    "404": {
+      "badge": "Error 404",
+      "title": "Page Not Found",
+      "description": "The page you are looking for might have been moved, deleted, or does not exist. Please check the URL or return home.",
+      "homeBtn": "Back to Home",
+      "backBtn": "Go Back",
+      "metaTitle": "404 — Page Not Found | AmTrans"
+    },
+    "generic": {
+      "badge": "System Error",
+      "title": "Something Went Wrong",
+      "description": "An unexpected error occurred while processing your request. Please try again or return home.",
+      "metaTitle": "Error | AmTrans"
     }
   }
 }

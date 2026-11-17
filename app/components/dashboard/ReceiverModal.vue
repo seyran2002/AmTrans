@@ -2,19 +2,22 @@
   <Transition name="fade-modal">
     <div
       v-if="isOpen"
-      class="popup fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-950/60 backdrop-blur-sm overflow-y-auto"
+      class="popup fixed inset-0 z-[60] flex items-center justify-center p-3 sm:p-4 bg-slate-950/60 backdrop-blur-sm !mt-0"
       @click.self="handleClose"
     >
       <div
-        class="bg-white rounded-3xl max-w-lg w-full p-6 sm:p-8 shadow-2xl border border-slate-100 transform transition-all animate-scale-up my-8"
+        class="bg-white rounded-2xl sm:rounded-3xl max-w-lg w-full shadow-2xl border border-slate-100 transform transition-all animate-scale-up flex flex-col max-h-[calc(100vh-70px)] max-h-[calc(100dvh-70px)] overflow-hidden"
+        role="dialog"
+        aria-modal="true"
+        :aria-label="receiver ? t('receivers.editReceiver') : t('receivers.addReceiver')"
       >
-        <!-- Modal Header -->
-        <div class="flex items-center justify-between pb-4 border-b border-slate-100 mb-6">
+        <!-- Modal Header (Fixed at Top) -->
+        <div class="px-4 sm:px-6 py-3 sm:py-3.5 border-b border-slate-100 flex items-center justify-between shrink-0 bg-white">
           <div>
-            <h3 class="text-xl font-bold text-slate-900">
+            <h3 class="text-base sm:text-lg font-bold text-slate-900 leading-tight">
               {{ receiver ? t('receivers.editReceiver') : t('receivers.addReceiver') }}
             </h3>
-            <p class="text-xs text-slate-500 font-medium mt-0.5">
+            <p class="text-[11px] sm:text-xs text-slate-500 font-medium leading-normal mt-0.5">
               {{ receiver ? t('receivers.edit') : t('receivers.addReceiver') }}
             </p>
           </div>
@@ -22,120 +25,125 @@
             type="button"
             @click="handleClose"
             :disabled="isSubmitting"
-            class="p-2 text-slate-400 hover:text-slate-600 hover:bg-slate-100 rounded-full transition-colors focus:outline-none"
+            class="min-h-[36px] min-w-[36px] p-2 text-slate-400 hover:text-slate-600 hover:bg-slate-100 rounded-full transition-colors flex items-center justify-center cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed focus:outline-none focus-visible:ring-2 focus-visible:ring-primary"
+            :aria-label="t('receivers.cancel')"
           >
-            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <svg class="w-4 h-4 sm:w-5 sm:h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
             </svg>
           </button>
         </div>
 
-        <!-- Alert Error Banner inside Modal -->
-        <div v-if="error" class="mb-5">
-          <AlertBanner :message="error" />
-        </div>
+        <!-- Form (Wraps Scrollable Body + Fixed Footer) -->
+        <form @submit.prevent="handleSubmit" class="flex flex-col flex-1 min-h-0 overflow-hidden">
+          <!-- Scrollable Body Area -->
+          <div class="px-4 sm:px-6 py-3.5 sm:py-4 space-y-3 sm:space-y-3.5 flex-1 overflow-y-auto overscroll-contain">
+            <!-- Alert Error Banner inside Modal -->
+            <div v-if="error" class="animate-fade-in">
+              <AlertBanner :message="error" />
+            </div>
 
-        <!-- Modal Form -->
-        <form @submit.prevent="handleSubmit" class="space-y-4">
-          <!-- First Name & Last Name -->
-          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <!-- First Name & Last Name -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-2.5 sm:gap-3">
+              <BaseInput
+                id="receiverFirstName"
+                v-model="form.firstName"
+                :label="t('receivers.firstName')"
+                :placeholder="t('receivers.firstNamePlaceholder')"
+                :required="true"
+                :error="errors.firstName"
+                :disabled="isSubmitting"
+              >
+                <template #icon>
+                  <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+                  </svg>
+                </template>
+              </BaseInput>
+
+              <BaseInput
+                id="receiverLastName"
+                v-model="form.lastName"
+                :label="t('receivers.lastName')"
+                :placeholder="t('receivers.lastNamePlaceholder')"
+                :required="true"
+                :error="errors.lastName"
+                :disabled="isSubmitting"
+              >
+                <template #icon>
+                  <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+                  </svg>
+                </template>
+              </BaseInput>
+            </div>
+
+            <!-- Document Type & Document Number -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-2.5 sm:gap-3">
+              <BaseSelect
+                id="receiverDocumentType"
+                v-model="form.documentTypeKey"
+                :label="t('receivers.documentType')"
+                :placeholder="t('receivers.documentTypePlaceholder')"
+                :options="documentTypeOptions"
+                :required="true"
+                :error="errors.documentType"
+                :disabled="isSubmitting"
+              />
+
+              <BaseInput
+                id="receiverDocumentNumber"
+                v-model="form.documentNumber"
+                :label="t('receivers.documentNumber')"
+                :placeholder="t('receivers.documentNumberPlaceholder')"
+                :required="true"
+                :error="errors.documentNumber"
+                :disabled="isSubmitting"
+              >
+                <template #icon>
+                  <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H5a2 2 0 00-2 2v9a2 2 0 002 2h14a2 2 0 002-2V8a2 2 0 00-2-2h-5m-4 0V5a2 2 0 114 0v1m-4 0a2 2 0 104 0m-5 8a2 2 0 100-4 2 2 0 000 4zm0 0c1.306 0 2.417.835 2.83 2M9 14a3.001 3.001 0 00-2.83 2" />
+                  </svg>
+                </template>
+              </BaseInput>
+            </div>
+
+            <!-- Address -->
             <BaseInput
-              id="receiverFirstName"
-              v-model="form.firstName"
-              :label="t('receivers.firstName')"
-              :placeholder="t('receivers.firstNamePlaceholder')"
+              id="receiverAddress"
+              v-model="form.address"
+              :label="t('receivers.address')"
+              :placeholder="t('receivers.addressPlaceholder')"
               :required="true"
-              :error="errors.firstName"
+              :error="errors.address"
               :disabled="isSubmitting"
             >
               <template #icon>
                 <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
                 </svg>
               </template>
             </BaseInput>
 
-            <BaseInput
-              id="receiverLastName"
-              v-model="form.lastName"
-              :label="t('receivers.lastName')"
-              :placeholder="t('receivers.lastNamePlaceholder')"
+            <!-- Phone Number -->
+            <PhoneInput
+              v-model="form.phoneNumber"
+              :label="t('receivers.phoneNumber')"
+              :placeholder="'+374 99 123456'"
               :required="true"
-              :error="errors.lastName"
-              :disabled="isSubmitting"
-            >
-              <template #icon>
-                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
-                </svg>
-              </template>
-            </BaseInput>
-          </div>
-
-          <!-- Document Type & Document Number -->
-          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-            <BaseSelect
-              id="receiverDocumentType"
-              v-model="form.documentTypeKey"
-              :label="t('receivers.documentType')"
-              :placeholder="t('receivers.documentTypePlaceholder')"
-              :options="documentTypeOptions"
-              :required="true"
-              :error="errors.documentType"
-              :disabled="isSubmitting"
+              :error="errors.phoneNumber"
             />
-
-            <BaseInput
-              id="receiverDocumentNumber"
-              v-model="form.documentNumber"
-              :label="t('receivers.documentNumber')"
-              :placeholder="t('receivers.documentNumberPlaceholder')"
-              :required="true"
-              :error="errors.documentNumber"
-              :disabled="isSubmitting"
-            >
-              <template #icon>
-                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H5a2 2 0 00-2 2v9a2 2 0 002 2h14a2 2 0 002-2V8a2 2 0 00-2-2h-5m-4 0V5a2 2 0 114 0v1m-4 0a2 2 0 104 0m-5 8a2 2 0 100-4 2 2 0 000 4zm0 0c1.306 0 2.417.835 2.83 2M9 14a3.001 3.001 0 00-2.83 2" />
-                </svg>
-              </template>
-            </BaseInput>
           </div>
 
-          <!-- Address -->
-          <BaseInput
-            id="receiverAddress"
-            v-model="form.address"
-            :label="t('receivers.address')"
-            :placeholder="t('receivers.addressPlaceholder')"
-            :required="true"
-            :error="errors.address"
-            :disabled="isSubmitting"
-          >
-            <template #icon>
-              <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
-              </svg>
-            </template>
-          </BaseInput>
-
-          <!-- Phone Number -->
-          <PhoneInput
-            v-model="form.phoneNumber"
-            :label="t('receivers.phoneNumber')"
-            :placeholder="'+374 99 123456'"
-            :required="true"
-            :error="errors.phoneNumber"
-          />
-
-          <!-- Modal Actions -->
-          <div class="flex items-center justify-end gap-3 pt-6 border-t border-slate-100 mt-6">
+          <!-- Modal Footer (Fixed at Bottom) -->
+          <div class="px-4 sm:px-6 py-2.5 sm:py-3 border-t border-slate-100 bg-slate-50/80 flex items-center justify-end gap-2.5 shrink-0">
             <BaseButton
               type="button"
               variant="outline"
-              size="md"
+              size="sm"
               :block="false"
+              class="!min-h-[36px] !py-1.5 !px-4 text-xs"
               :disabled="isSubmitting"
               @click="handleClose"
             >
@@ -145,8 +153,9 @@
             <BaseButton
               type="submit"
               variant="primary"
-              size="md"
+              size="sm"
               :block="false"
+              class="!min-h-[36px] !py-1.5 !px-5 text-xs"
               :loading="isSubmitting"
               :disabled="isSubmitting"
             >
@@ -160,7 +169,7 @@
 </template>
 
 <script setup lang="ts">
-import { reactive, watch, computed } from 'vue'
+import { reactive, watch, computed, onMounted, onUnmounted } from 'vue'
 import BaseInput from '~/components/ui/BaseInput.vue'
 import BaseSelect from '~/components/ui/BaseSelect.vue'
 import PhoneInput from '~/components/ui/PhoneInput.vue'
@@ -240,10 +249,43 @@ const documentTypeOptions = computed(() => [
   { value: 'Foreign', label: t('verify.docForeign') }
 ])
 
+// ─── Background Page Scroll Lock ───────────────────────────────────────────
+let originalOverflow = ''
+let originalPaddingRight = ''
+let isScrollLocked = false
+
+const lockScroll = () => {
+  if (!import.meta.client || isScrollLocked) return
+  originalOverflow = document.body.style.overflow
+  originalPaddingRight = document.body.style.paddingRight
+
+  const scrollbarWidth = window.innerWidth - document.documentElement.clientWidth
+  if (scrollbarWidth > 0) {
+    document.body.style.paddingRight = `${scrollbarWidth}px`
+  }
+  document.body.style.overflow = 'hidden'
+  isScrollLocked = true
+}
+
+const unlockScroll = () => {
+  if (!import.meta.client || !isScrollLocked) return
+  document.body.style.overflow = originalOverflow
+  document.body.style.paddingRight = originalPaddingRight
+  isScrollLocked = false
+}
+
+const onKeydown = (event: KeyboardEvent) => {
+  if (event.key === 'Escape' && props.isOpen && !props.isSubmitting) {
+    handleClose()
+  }
+}
+
+// ─── Watchers & Lifecycle ──────────────────────────────────────────────────
 watch(
   () => props.isOpen,
   (newVal) => {
     if (newVal) {
+      lockScroll()
       Object.keys(errors).forEach(key => delete errors[key])
       if (props.receiver) {
         form.firstName = props.receiver.firstName || ''
@@ -265,10 +307,28 @@ watch(
         form.address = ''
         form.phoneNumber = ''
       }
+    } else {
+      unlockScroll()
     }
   },
   { immediate: true }
 )
+
+onMounted(() => {
+  if (props.isOpen) {
+    lockScroll()
+  }
+  if (import.meta.client) {
+    window.addEventListener('keydown', onKeydown)
+  }
+})
+
+onUnmounted(() => {
+  unlockScroll()
+  if (import.meta.client) {
+    window.removeEventListener('keydown', onKeydown)
+  }
+})
 
 const validate = (): boolean => {
   Object.keys(errors).forEach(key => delete errors[key])

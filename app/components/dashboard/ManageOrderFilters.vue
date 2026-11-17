@@ -1,5 +1,5 @@
 <template>
-  <div class="bg-white rounded-3xl p-5 sm:p-6 border border-slate-200/90 shadow-sm space-y-4">
+  <div class="bg-white rounded-2xl sm:rounded-3xl p-4 sm:p-6 border border-slate-200/90 shadow-sm space-y-3 sm:space-y-4">
     <!-- Top Row: Main Filters Grid -->
     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-3 sm:gap-4">
       <!-- 1. Filter by User Code (Identifier Code) -->

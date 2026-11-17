@@ -1,7 +1,7 @@
 <template>
   <div
     :class="[
-      'bg-white rounded-3xl p-5 sm:p-6 border shadow-sm hover:shadow-md transition-all duration-300 flex flex-col justify-between group relative overflow-hidden',
+      'bg-white rounded-2xl sm:rounded-3xl p-4 sm:p-6 border shadow-sm hover:shadow-md transition-all duration-300 flex flex-col justify-between group relative overflow-hidden',
       order.status === 'PENDING_ESTIMATE'
         ? 'border-amber-300/90 bg-amber-50/20 hover:border-amber-400'
         : 'border-slate-200/90 hover:border-slate-300'
@@ -141,7 +141,7 @@
         </p>
 
         <!-- Package Specs: Pieces, Weight & Dimensions -->
-        <div class="grid grid-cols-3 gap-2 pt-1 text-xs">
+        <div class="grid grid-cols-2 gap-2 pt-1 text-xs">
           <div class="flex items-center gap-1.5 bg-slate-50 px-2.5 py-1.5 rounded-xl border border-slate-100 min-w-0">
             <svg class="w-3.5 h-3.5 text-slate-400 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4" />
@@ -157,19 +157,18 @@
             <span class="text-slate-500 font-medium truncate">{{ t('manageOrders.weight') }}:</span>
             <span class="text-slate-800 font-bold ml-auto flex items-center gap-1">
               {{ order.weight }} kg
-              <span v-if="billableWeight > Number(order.weight)" class="text-[10px] text-amber-700 font-semibold">({{ billableWeight }}b)</span>
+              <span v-if="billableWeight > Number(order.weight)" class="text-xs text-amber-700 font-semibold">({{ billableWeight }} kg)</span>
             </span>
           </div>
-
-          <div class="flex items-center gap-1.5 bg-slate-50 px-2.5 py-1.5 rounded-xl border border-slate-100 min-w-0">
-            <svg class="w-3.5 h-3.5 text-slate-400 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 8V4m0 0h4M4 4l5 5m11-1V4m0 0h-4m4 0l-5 5M4 16v4m0 0h4m-4 0l5-5m11 5l-5-5m5 5v-4m0 4h-4" />
-            </svg>
-            <span class="text-slate-500 font-medium truncate">{{ t('manageOrders.dimensions') }}:</span>
-            <span class="text-slate-800 font-bold ml-auto truncate" :title="`${order.length}×${order.width}×${order.height} cm`">
-              {{ order.length }}×{{ order.width }}×{{ order.height }}
-            </span>
-          </div>
+        </div>
+        <div class="flex text-xs items-center gap-1.5 bg-slate-50 px-2.5 py-1.5 rounded-xl border border-slate-100 min-w-0">
+          <svg class="w-3.5 h-3.5 text-slate-400 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 8V4m0 0h4M4 4l5 5m11-1V4m0 0h-4m4 0l-5 5M4 16v4m0 0h4m-4 0l5-5m11 5l-5-5m5 5v-4m0 4h-4" />
+          </svg>
+          <span class="text-slate-500 font-medium truncate">{{ t('manageOrders.dimensions') }}:</span>
+          <span class="text-slate-800 font-bold ml-auto truncate" :title="`${order.length}×${order.width}×${order.height} cm`">
+            {{ order.length }}×{{ order.width }}×{{ order.height }}
+          </span>
         </div>
 
         <!-- Optional Comment -->

@@ -57,7 +57,7 @@ const isCurrentlyOpen = computed(() => {
         </p>
 
         <a
-          href="tel:+37410555123"
+          href="tel:+37498890233"
           class="text-sm sm:text-base font-extrabold text-primary hover:text-primary-dark transition-colors tracking-tight block select-all"
         >
           {{ t('contact.cards.phoneValue') }}
@@ -66,7 +66,7 @@ const isCurrentlyOpen = computed(() => {
 
       <div class="mt-5 pt-4 border-t border-slate-100">
         <a
-          href="tel:+37410555123"
+          href="tel:+37498890233"
           class="inline-flex items-center gap-2 text-xs font-bold text-secondary hover:text-secondary-hover transition-colors group-hover:translate-x-0.5 duration-200"
         >
           <span>{{ t('contact.cards.phoneAction') }}</span>

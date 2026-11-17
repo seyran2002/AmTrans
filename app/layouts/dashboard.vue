@@ -49,8 +49,8 @@ const routeTitle = computed(() => {
     <div class="flex-1 flex flex-col min-w-0">
       
       <!-- Top Bar (Full Width Spanning Across Screen) -->
-      <header class="h-16 sm:h-20 bg-white/90 backdrop-blur-md border-b border-slate-200/80 px-4 sm:px-6 lg:pl-28 lg:pr-8 flex items-center justify-between sticky top-0 z-20 w-full transition-all duration-300">
-        <div class="flex items-center gap-3">
+      <header class="h-12 sm:h-20 bg-white/90 backdrop-blur-md border-b border-slate-200/80 px-4 sm:px-6 lg:pl-28 lg:pr-8 flex items-center justify-between sticky top-0 z-20 w-full transition-all duration-300">
+        <div class="flex items-center gap-0 sm:gap-3">
           <!-- Mobile Menu Toggle Button (Below LG) -->
           <button
             type="button"
@@ -58,18 +58,24 @@ const routeTitle = computed(() => {
             class="lg:hidden p-2 rounded-xl text-slate-600 hover:text-primary hover:bg-slate-100 transition-colors focus:outline-none focus:ring-2 focus:ring-primary/40 cursor-pointer"
             aria-label="Toggle navigation menu"
           >
-            <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 min-[420px]:w-6 min-[420px]:h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
             </svg>
           </button>
 
           <!-- Breadcrumb / Header Title -->
-          <NuxtLink to="/" class="flex items-center h-8 w-full relative focus:outline-none focus-visible:ring-2 focus-visible:ring-primary/40 rounded-xl">
-            <img
+          <NuxtLink
+            to="/"
+            class="relative z-10 flex items-center shrink-0 min-h-8 sm:min-h-12 outline-none select-none focus-visible:ring-2 focus-visible:ring-primary rounded-xl"
+            aria-label="AmTrans Logistics Homepage"
+          >
+            <NuxtImg 
               src="/logo.png"
-              alt="AmTrans Logo"
-              class="h-16"
-            />
+              preload 
+              fetchpriority="high"
+              alt="AmTrans Logo" 
+              class="translate-y-[10%] h-9 min-[420px]:h-12 sm:h-16 w-auto object-contain" 
+            />  
           </NuxtLink>
         </div>
 

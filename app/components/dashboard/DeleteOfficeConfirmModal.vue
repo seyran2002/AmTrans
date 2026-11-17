@@ -2,7 +2,7 @@
   <Transition name="fade-modal">
     <div
       v-if="isOpen"
-      class="popup fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-950/60 backdrop-blur-sm overflow-y-auto"
+      class="popup fixed inset-0 z-[60] flex items-center justify-center p-4 bg-slate-950/60 backdrop-blur-sm overflow-y-auto"
       @click.self="handleClose"
     >
       <div

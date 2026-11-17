@@ -172,7 +172,7 @@
         </div>
         <p class="text-xs text-white/60 font-medium mb-2">{{ t('manageOrders.transitPriceHint') }}</p>
         <div class="flex items-baseline gap-1.5">
-          <span class="text-2xl font-black text-white tracking-tight">
+          <span class="text-xl sm:text-2xl font-black text-white tracking-tight">
             {{ formatAmount(effectiveOrderPrice) }}
           </span>
           <span class="text-sm font-bold text-white/80">AMD</span>

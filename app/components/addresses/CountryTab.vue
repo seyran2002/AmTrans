@@ -5,7 +5,7 @@
     :aria-pressed="isActive"
     @click="$emit('select', country.id)"
     :class="[
-      'group relative flex items-center gap-2.5 px-4 py-2.5 rounded-2xl text-sm font-semibold transition-all duration-200 whitespace-nowrap focus:outline-none focus:ring-2 focus:ring-primary/30 shrink-0',
+      'group relative flex items-center gap-2 sm:gap-2.5 px-3 sm:px-4 py-2 sm:py-2.5 rounded-xl sm:rounded-2xl text-xs sm:text-sm font-semibold transition-all duration-200 whitespace-nowrap focus:outline-none focus:ring-2 focus:ring-primary/30 shrink-0 cursor-pointer',
       isActive
         ? 'bg-primary text-white shadow-md shadow-primary/25 -translate-y-0.5'
         : 'bg-white text-slate-700 border border-slate-200 hover:border-primary/30 hover:text-primary hover:bg-primary/5 hover:shadow-sm'
@@ -17,13 +17,13 @@
         v-if="(country.icon || country.flag) && !imgError"
         :src="country.icon || country.flag || ''"
         :alt="displayName"
-        class="w-5 h-5 rounded-full object-cover"
+        class="w-4 h-4 sm:w-5 sm:h-5 rounded-full object-cover"
         @error="onImgError"
       />
       <!-- Fallback globe icon -->
       <svg
         v-else
-        class="w-4 h-4 shrink-0"
+        class="w-3.5 h-3.5 sm:w-4 sm:h-4 shrink-0"
         :class="isActive ? 'text-white/80' : 'text-slate-400 group-hover:text-primary/60'"
         fill="none"
         stroke="currentColor"

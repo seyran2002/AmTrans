@@ -1,14 +1,11 @@
 <template>
-  <div class="min-h-screen bg-bg-primary flex flex-col justify-between relative overflow-hidden font-sans selection:bg-secondary/20 selection:text-primary">
+  <div class="relative overflow-hidden font-sans selection:bg-secondary/20 selection:text-primary pt-20 sm:pt-28 pb-10 sm:pb-16 min-h-[calc(100vh-140px)] flex flex-col justify-center">
     <!-- Ambient Floating Background Accents -->
-    <div class="absolute -top-40 -left-40 w-96 h-96 bg-secondary/20 rounded-full blur-3xl pointer-events-none"></div>
-    <div class="absolute top-1/3 -right-40 w-96 h-96 bg-tertiary/10 rounded-full blur-3xl pointer-events-none"></div>
-    <div class="absolute -bottom-40 left-1/3 w-96 h-96 bg-primary/15 rounded-full blur-3xl pointer-events-none"></div>
+    <div class="absolute -top-32 -left-32 w-64 sm:w-96 h-64 sm:h-96 bg-secondary/15 rounded-full blur-3xl pointer-events-none"></div>
+    <div class="absolute top-1/3 -right-32 w-64 sm:w-96 h-64 sm:h-96 bg-tertiary/10 rounded-full blur-3xl pointer-events-none"></div>
+    <div class="absolute -bottom-32 left-1/3 w-64 sm:w-96 h-64 sm:h-96 bg-primary/10 rounded-full blur-3xl pointer-events-none"></div>
 
-    <!-- Global App Header -->
-    <AppHeader />
-
-    <main class="w-full max-w-2xl mx-auto px-4 py-8 z-10 my-auto">
+    <main class="w-full max-w-2xl mx-auto px-3.5 sm:px-6 z-10 relative">
       <!-- 1. Loading State -->
       <VerifyLoadingSection
         v-if="isLoading"
@@ -25,16 +22,16 @@
       />
 
       <!-- 3. Form Section -->
-      <div v-else class="bg-white/85 backdrop-blur-2xl rounded-3xl p-6 sm:p-10 shadow-2xl shadow-primary/10 border border-white/60 relative animate-fade-in">
-        <div class="text-center mb-8">
-          <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-amber-500/10 border border-amber-500/20 text-amber-800 text-[10px] font-bold mb-3 shadow-xs">
-            <span class="w-2 h-2 rounded-full bg-secondary animate-pulse"></span>
+      <div v-else class="bg-white/90 backdrop-blur-2xl rounded-2xl sm:rounded-3xl p-4 sm:p-8 shadow-xl sm:shadow-2xl shadow-primary/10 border border-white/60 relative animate-fade-in">
+        <div class="text-center mb-5 sm:mb-7">
+          <div class="inline-flex items-center gap-1.5 sm:gap-2 px-3 py-1 rounded-full bg-amber-500/10 border border-amber-500/20 text-amber-800 text-[10px] sm:text-xs font-bold mb-2 sm:mb-2.5 shadow-xs">
+            <span class="w-1.5 h-1.5 sm:w-2 sm:h-2 rounded-full bg-secondary animate-pulse"></span>
             <span>Account Verification</span>
           </div>
-          <h1 class="text-2xl sm:text-3xl font-black text-primary tracking-tight">
+          <h1 class="text-xl sm:text-2xl font-black text-primary tracking-tight">
             {{ t('verify.title') }}
           </h1>
-          <p class="text-sm text-slate-500 mt-2 font-medium max-w-md mx-auto">
+          <p class="text-xs sm:text-sm text-slate-500 mt-1 sm:mt-1.5 font-medium max-w-md mx-auto">
             {{ t('verify.subtitle') }}
           </p>
         </div>
@@ -45,17 +42,12 @@
         />
       </div>
     </main>
-
-    <!-- Global App Footer -->
-    <AppFooter />
   </div>
 </template>
 
 <script setup lang="ts">
 import { ref, onMounted } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
-import AppHeader from '~/components/AppHeader.vue'
-import AppFooter from '~/components/AppFooter.vue'
 import VerifyLoadingSection from '~/components/sections/verify/VerifyLoadingSection.vue'
 import VerifyNotFoundSection from '~/components/sections/verify/VerifyNotFoundSection.vue'
 import VerifyProfileForm from '~/components/sections/verify/VerifyProfileForm.vue'

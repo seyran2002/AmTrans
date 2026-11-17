@@ -165,7 +165,7 @@ onMounted(() => {
 </script>
 
 <template>
-  <div class="max-w-7xl mx-auto space-y-6 [&>.popup]:!mt-0">
+  <div class="max-w-7xl mx-auto space-y-4 sm:space-y-6 [&>.popup]:!mt-0">
     <!-- ── Header ────────────────────────────────────────────────────────── -->
     <OrdersHeader @add-order="handleOpenModal" />
 

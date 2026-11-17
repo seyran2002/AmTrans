@@ -125,7 +125,7 @@ const quickLinks = [
               <!-- Phone -->
               <li>
                 <a
-                  href="tel:+37410555123"
+                  href="tel:+37498890233"
                   class="group flex items-center gap-3 text-slate-200 hover:text-white transition-colors duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-400 rounded-md"
                 >
                   <div class="w-8 h-8 rounded-lg bg-white/[0.07] border border-white/20 flex items-center justify-center shrink-0 group-hover:bg-secondary/20 group-hover:border-secondary/30 transition-all duration-300 mt-0.5">

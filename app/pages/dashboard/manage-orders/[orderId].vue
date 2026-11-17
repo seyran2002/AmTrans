@@ -1,10 +1,10 @@
 <template>
-  <div class="max-w-7xl mx-auto space-y-6 [&>.popup]:!mt-0">
+  <div class="max-w-7xl mx-auto space-y-4 sm:space-y-6 [&>.popup]:!mt-0">
 
     <!-- ── Loading Skeleton ────────────────────────────────────────────── -->
-    <div v-if="isLoading" class="space-y-6 [&>.popup]:!mt-0">
+    <div v-if="isLoading" class="space-y-4 sm:space-y-6 [&>.popup]:!mt-0">
       <!-- Header skeleton -->
-      <div class="bg-white rounded-3xl p-6 border border-slate-200/80 animate-pulse space-y-4">
+      <div class="bg-white rounded-2xl sm:rounded-3xl p-4 sm:p-6 border border-slate-200/80 animate-pulse space-y-4">
         <div class="flex items-center gap-3">
           <div class="h-8 w-28 bg-slate-100 rounded-xl" />
           <div class="h-6 w-20 bg-slate-100 rounded-full" />
@@ -16,11 +16,11 @@
       </div>
 
       <!-- Cards skeleton grid -->
-      <div class="grid grid-cols-1 lg:grid-cols-2 gap-5 sm:gap-6">
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-4 sm:gap-6">
         <div
           v-for="i in 4"
           :key="i"
-          class="bg-white rounded-3xl p-6 border border-slate-200/80 animate-pulse space-y-4"
+          class="bg-white rounded-2xl sm:rounded-3xl p-4 sm:p-6 border border-slate-200/80 animate-pulse space-y-4"
         >
           <div class="flex items-center gap-2">
             <div class="w-8 h-8 bg-slate-100 rounded-xl" />
@@ -83,9 +83,9 @@
       />
 
       <!-- Main Content Grid -->
-      <div class="grid grid-cols-1 lg:grid-cols-3 gap-5 sm:gap-6">
+      <div class="grid grid-cols-1 lg:grid-cols-3 gap-4 sm:gap-6">
         <!-- Left Column (2/3 width on lg) -->
-        <div class="lg:col-span-2 space-y-5 sm:space-y-6 [&>.popup]:!mt-0">
+        <div class="lg:col-span-2 space-y-4 sm:space-y-6 [&>.popup]:!mt-0">
           <!-- Route Card -->
           <OrderRouteCard
             :from-office="order.fromOffice"
@@ -110,7 +110,7 @@
         </div>
 
         <!-- Right Column (1/3 width on lg) -->
-        <div class="space-y-5 sm:space-y-6 [&>.popup]:!mt-0">
+        <div class="space-y-4 sm:space-y-6 [&>.popup]:!mt-0">
           <!-- QR Code & Invoice Card -->
           <OrderQrCard :order="order" />
         </div>

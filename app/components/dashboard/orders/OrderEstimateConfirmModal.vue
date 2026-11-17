@@ -10,7 +10,7 @@
     >
       <div
         v-if="confirmingEstimate"
-        class="fixed inset-0 z-50 flex items-center justify-center px-4"
+        class="fixed inset-0 z-[60] flex items-center justify-center px-4"
       >
         <!-- Backdrop -->
         <div class="absolute inset-0 bg-black/40 backdrop-blur-sm" @click="$emit('dismiss')" />
@@ -52,7 +52,7 @@
             <span class="text-[11px] font-bold text-amber-900 uppercase tracking-wider block">
               {{ t('orders.finalCalculatedPrice') }}
             </span>
-            <div class="text-2xl font-black text-slate-900">
+            <div class="text-xl sm:text-2xl font-black text-slate-900">
               {{ calculatedPriceText }}
             </div>
             <div class="text-xs text-amber-800 font-semibold">

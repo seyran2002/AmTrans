@@ -190,7 +190,7 @@
         <span class="text-[10px] font-bold text-slate-400 uppercase tracking-wider block">
           {{ t('manageOrders.transitPrice') }}
         </span>
-        <div class="text-2xl font-black text-primary tracking-tight">
+        <div class="text-xl sm:text-2xl font-black text-primary tracking-tight">
           {{ order.price && Number(order.price) ? formatPrice(order.price, "AMD") : '—' }}
         </div>
       </div>
