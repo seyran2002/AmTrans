@@ -326,7 +326,9 @@
     "province": "Province/State",
     "phone": "Phone Number",
     "postalCode": "Postal Code",
-    "noOffices": "No offices found."
+    "noOffices": "No offices found.",
+    "noCountries": "No countries found.",
+    "noCountriesTxt": "There are no countries configured yet. Please check back later."
   },
   "orders": {
     "subtitle": "Manage and track your active freight orders.",

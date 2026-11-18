@@ -117,9 +117,9 @@ onMounted(fetchCountriesWithOffices)
             />
           </svg>
         </div>
-        <h3 class="text-base sm:text-lg font-bold text-slate-900 mb-1">No countries found</h3>
+        <h3 class="text-base sm:text-lg font-bold text-slate-900 mb-1">{{ t('addresses.noCountries') }}</h3>
         <p class="text-slate-500 text-xs sm:text-sm leading-relaxed max-w-xs mx-auto">
-          There are no countries configured yet. Please check back later.
+          {{ t('addresses.noCountriesTxt') }}
         </p>
       </div>
 
