@@ -69,8 +69,8 @@ const handleSubmit = async () => {
             </svg>
           </div>
           <div>
-            <p class="text-xs font-bold text-emerald-900">Direct reply to your inbox</p>
-            <p class="text-[11px] text-emerald-700">Check your email for confirmation and updates from our support desk.</p>
+            <p class="text-xs font-bold text-emerald-900">{{ t('contact.form.directReply') }}</p>
+            <p class="text-[11px] text-emerald-700">{{ t('contact.form.emailUpdates') }}</p>
           </div>
         </div>
 
@@ -91,7 +91,7 @@ const handleSubmit = async () => {
 
       <!-- Anti-Bot Honeypot field (hidden from view) -->
       <div class="hidden" aria-hidden="true">
-        <label for="contact-hp">Leave this empty</label>
+        <label for="contact-hp">{{ t('contact.form.leaveEmpty') }}</label>
         <input
           id="contact-hp"
           v-model="form._hp"

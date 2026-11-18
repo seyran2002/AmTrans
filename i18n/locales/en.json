@@ -698,7 +698,8 @@
       "sendAnother": "Send Another Message",
       "secureNotice": "Encrypted & secure. We never share your contact details.",
       "directReply": "Direct reply to your inbox",
-      "emailUpdates": "Check your inbox for a confirmation and updates from our support team."
+      "emailUpdates": "Check your inbox for a confirmation and updates from our support team.",
+      "leaveEmpty": "Leave this empty"
     },
     "validation": {
       "nameRequired": "Full name is required",
