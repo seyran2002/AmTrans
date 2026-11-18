@@ -24,6 +24,7 @@ const unreadCount = ref(0)
 const hasLoadedInitial = ref(false)
 
 // ── Service & Auth ─────────────────────────────────────────────────────
+const { t } = useI18n();
 const chatService = useSupportChatService()
 const { getApiUrl } = useApi()
 const token = useCookie<string | null>('auth_token')
@@ -419,7 +420,7 @@ onUnmounted(() => {
                 </svg>
               </div>
               <div>
-                <h3 class="font-bold text-sm sm:text-base leading-tight">Amtrans Support</h3>
+                <h3 class="font-bold text-sm sm:text-base leading-tight">AmTrans Support</h3>
                 <div class="flex items-center gap-1.5 mt-0.5">
                   <span
                     :class="[
@@ -529,8 +530,8 @@ onUnmounted(() => {
                   />
                 </svg>
               </div>
-              <p class="text-sm font-semibold text-slate-600">No messages yet</p>
-              <p class="text-xs text-slate-400">Ask us anything, our support team is here to help!</p>
+              <p class="text-sm font-semibold text-slate-600">{{ t('chat.noMessages') }}</p>
+              <p class="text-xs text-slate-400">{{ t('chat.askAnything') }}</p>
             </div>
 
             <!-- Messages List -->
@@ -606,7 +607,7 @@ onUnmounted(() => {
                 <BaseInput
                   id="support-chat-message-input"
                   v-model="newMessage"
-                  placeholder="Type a message..."
+                  :placeholder="t('chat.typeMessage')"
                   :disabled="!isConnected || isSending"
                   :touched="false"
                   autocomplete="off"

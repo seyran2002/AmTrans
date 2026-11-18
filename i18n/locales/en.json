@@ -971,7 +971,9 @@
     "deleteChatConfirm": "Are you sure you want to delete this entire chat? This action cannot be undone.",
     "yes": "Yes",
     "no": "No",
-    "deleting": "Deleting..."
+    "deleting": "Deleting...",
+    "typeMessage": "Type a message...",
+    "askAnything": "Ask us anything, our support team is here to help!"
   },
   "privacy": {
     "metaTitle": "Privacy Policy | AmTrans Logistics",
