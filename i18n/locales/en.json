@@ -962,6 +962,8 @@
     "emptyConversationText": "Reply below to connect with the customer",
     "typePlaceholder": "Type your message...",
     "noMessages": "No Messages",
+    "noActiveChat": "No active chats",
+    "noActiveChatTxt": "Incoming customer messages will appear here",
     "you": "You: ",
     "send": "Send",
     "searchCustomers": "Search customers...",
