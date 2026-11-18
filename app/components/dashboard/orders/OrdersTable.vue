@@ -144,7 +144,7 @@
                 <div v-if="isPendingWithEstimate(order)" class="space-y-1">
                   <!-- Final calculated price -->
                   <div class="font-extrabold text-slate-900 text-sm">
-                    {{ getCalculatedPrice(order) !== null ? formatCurrency(getCalculatedPrice(order)!, order.currency || 'AMD') : '-' }}
+                    {{ getCalculatedPrice(order) !== null ? formatCurrency(getCalculatedPrice(order)!, 'AMD') : '-' }}
                   </div>
                   <!-- Suggested tariff price (estimatedPrice) -->
                   <div class="text-xs font-semibold text-amber-700">
@@ -161,7 +161,7 @@
                     <svg class="w-3.5 h-3.5 text-primary shrink-0" fill="currentColor" viewBox="0 0 20 20">
                       <path fill-rule="evenodd" d="M5 9V7a5 5 0 0110 0v2a2 2 0 012 2v5a2 2 0 01-2 2H5a2 2 0 01-2-2v-5a2 2 0 012-2zm8-2v2H7V7a3 3 0 016 0z" clip-rule="evenodd" />
                     </svg>
-                    <span>{{ formatCurrency(Number(order.totalPrice ?? order.price ?? (order.tariffRateAtBooking * getBillableWeight(order))), order.currency || 'AMD') }}</span>
+                    <span>{{ formatCurrency(Number(order.totalPrice ?? order.price ?? (order.tariffRateAtBooking * getBillableWeight(order))), 'AMD') }}</span>
                   </div>
                   <div class="text-[11px] text-slate-500 font-medium">
                     {{ formatCurrency(+order.tariffRateAtBooking, "AMD") }}/kg
@@ -173,7 +173,7 @@
 
                 <!-- Has a final price -->
                 <span v-else-if="order.totalPrice || order.price" class="font-bold text-slate-900">
-                  {{ Number(order.totalPrice ?? order.price) ? formatCurrency(Number(order.totalPrice ?? order.price), order.currency) : "-" }}
+                  {{ Number(order.totalPrice ?? order.price) ? formatCurrency(Number(order.totalPrice ?? order.price), "AMD") : "-" }}
                 </span>
 
                 <!-- Pending estimate waiting for operator -->

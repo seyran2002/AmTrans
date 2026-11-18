@@ -495,7 +495,7 @@ const officeOptions = computed(() =>
 
 const destinationOfficeOptions = computed(() =>
   offices.value
-    .filter(o => o.id !== form.fromOfficeId)
+    .filter(o => o.id !== form.fromOfficeId && o.city !== "Dubai")
     .map(o => ({
       value: o.id,
       label: [o.city, o.country?.enName].filter(Boolean).join(', ')

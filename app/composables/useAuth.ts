@@ -51,6 +51,7 @@ export interface LoginResponse {
  */
 export function useAuth() {
   const config = useRuntimeConfig()
+  const { t } = useI18n();
 
   // ── JWT stored in a cookie (7-day expiry, SameSite=lax, available on both client + server) ──
   const token = useCookie<string | null>('auth_token', {
@@ -144,13 +145,11 @@ export function useAuth() {
       error.value = 'Failed to verify session after login.'
       return false
     } catch (err: any) {
-      const serverMsg = err?.data?.message || err?.response?._data?.message || err?.message
-      if (Array.isArray(serverMsg)) {
-        error.value = serverMsg.join(', ')
-      } else if (typeof serverMsg === 'string') {
-        error.value = serverMsg
-      } else {
-        error.value = 'Login failed. Please check your credentials.'
+      const statusCode = err?.statusCode ?? err?.response?.status
+      if (statusCode === 401) {
+          error.value = t('auth.errors.invalidCredentials')
+      }else {
+        error.value = t('auth.errors.loginFailed')
       }
       return false
     } finally {

@@ -348,8 +348,8 @@ const operatorName = (op: OperatorUser): string => {
 
 const operatorInitials = (op: OperatorUser): string => {
   if (op.firstName && op.lastName) return `${op.firstName[0]}${op.lastName[0]}`.toUpperCase()
-  if (op.firstName) return op.firstName[0].toUpperCase()
-  return op.email[0].toUpperCase()
+  if (op.firstName) return (op.firstName[0] || "").toUpperCase()
+  return (op.email[0] || "").toUpperCase()
 }
 
 const showSuccess = (msg: string) => {
@@ -379,7 +379,7 @@ const parse409Error = (err: any): string | null => {
   }
   // hy (default)
   return city && countryName
-    ? `Այս օպերատորն արդեն կցված է , գրասենյակին։ ${city}, ${countryName}.`
+    ? `Այս օպերատորն արդեն կցված է, մեկ այլ գրասենյակի։ ${city}, ${countryName}.`
     : t('office.operatorAlreadyAssignedGenericHy')
 }
 

@@ -26,7 +26,7 @@
         <div class="text-center mb-5 sm:mb-7">
           <div class="inline-flex items-center gap-1.5 sm:gap-2 px-3 py-1 rounded-full bg-amber-500/10 border border-amber-500/20 text-amber-800 text-[10px] sm:text-xs font-bold mb-2 sm:mb-2.5 shadow-xs">
             <span class="w-1.5 h-1.5 sm:w-2 sm:h-2 rounded-full bg-secondary animate-pulse"></span>
-            <span>Account Verification</span>
+            <span>{{ t('verify.badge') }}</span>
           </div>
           <h1 class="text-xl sm:text-2xl font-black text-primary tracking-tight">
             {{ t('verify.title') }}

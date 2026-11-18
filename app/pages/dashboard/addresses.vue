@@ -28,13 +28,7 @@ const selectedCountry = computed(() =>
 
 const selectedOffices = computed(() => selectedCountry.value?.offices ?? [])
 
-const selectedCountryName = computed<string>(() => {
-  const c = selectedCountry.value
-  if (!c) return ''
-  if (currentLanguage.value === 'hy') return c.hyName
-  if (currentLanguage.value === 'ru') return c.ruName
-  return c.enName
-})
+const selectedCountryName = computed<string>(() => selectedCountry.value?.enName || "");
 
 // ── API fetch ────────────────────────────────────────────────────────────────
 const fetchCountriesWithOffices = async () => {
@@ -134,7 +128,7 @@ onMounted(fetchCountriesWithOffices)
 
         <!-- Country tabs strip -->
         <div class="px-4 sm:px-6 pb-0">
-          <div class="flex items-center gap-2 sm:gap-2.5 overflow-x-auto pt-4 sm:pt-6 pb-3 sm:pb-4 scrollbar-hide">
+          <div class="flex flex-wrap items-center gap-2 sm:gap-2.5 overflow-x-auto pt-4 sm:pt-6 pb-3 sm:pb-4 scrollbar-hide">
             <CountryTab
               v-for="country in countries"
               :key="country.id"
