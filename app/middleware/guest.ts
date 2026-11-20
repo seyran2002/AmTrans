@@ -10,17 +10,18 @@
  */
 export default defineNuxtRouteMiddleware(async (_to, _from) => {
   const { isAuthenticated, checkAuth, token } = useAuth()
+  const localePath = useLocalePath()
 
   // Already confirmed authenticated in state
   if (isAuthenticated.value) {
-    return navigateTo('/dashboard')
+    return navigateTo(localePath('/dashboard'))
   }
 
   // Token exists but state not hydrated yet (SSR / page refresh edge case)
   if (token.value) {
     const valid = await checkAuth()
     if (valid) {
-      return navigateTo('/dashboard')
+      return navigateTo(localePath('/dashboard'))
     }
   }
 })

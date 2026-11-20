@@ -3,6 +3,7 @@ import { computed } from 'vue'
 import { useI18n } from '~/composables/useI18n'
 
 const { t } = useI18n()
+const localePath = useLocalePath();
 
 interface Step {
   number: string
@@ -109,7 +110,7 @@ const steps = computed<Step[]>(() => [
       <div class="mt-16 sm:mt-20 text-center">
         <p class="text-sm text-slate-700 font-medium mb-5">{{ t('about.howItWorks.ctaText') }}</p>
         <NuxtLink
-          to="/auth/register"
+          :to="localePath('/auth/register')"
           class="inline-flex items-center justify-center min-h-[48px] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 rounded-2xl"
           aria-label="Գրանցվել և սկսել այսօր"
         >

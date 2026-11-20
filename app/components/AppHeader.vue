@@ -6,6 +6,7 @@ import { useI18n } from '~/composables/useI18n'
 import LanguageSelector from '~/components/LanguageSelector.vue'
 import { useAuth } from '~/composables/useAuth'
 
+const localePath = useLocalePath()
 const route = useRoute()
 const { navLinks } = useNavLinks()
 const { t } = useI18n()
@@ -31,7 +32,7 @@ onUnmounted(() => {
  * Transparent header on landing/hero pages when user has not scrolled down
  */
 const isTransparent = computed(() => {
-  const transparentRoutes = ['/', '/home', '/about-us']
+  const transparentRoutes = ['/', '/en', '/ru', '/en/about-us', '/ru/about-us',  '/en/home', '/ru/home', '/home', '/about-us']
   return transparentRoutes.includes(route.path) && !isScrolled.value
 })
 </script>
@@ -50,20 +51,20 @@ const isTransparent = computed(() => {
 
     <!-- Header Content Container -->
     <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="flex items-center justify-between h-12 sm:h-20">
+      <div class="flex items-center justify-between py-0.5 sm:py-1">
 
         <!-- ── Logo ── -->
         <NuxtLink
-          to="/"
+          :to="localePath('/')"
           class="relative z-10 flex items-center shrink-0 min-h-8 sm:min-h-12 outline-none select-none focus-visible:ring-2 focus-visible:ring-primary rounded-xl"
           aria-label="AmTrans Logistics Homepage"
         >
           <NuxtImg 
-            src="/logo.png"
+            src="/logo.webp"
             preload 
             fetchpriority="high"
             alt="AmTrans Logo" 
-            class="translate-y-[10%] h-12 sm:h-16 w-auto object-contain" 
+            class="h-11 sm:h-12 lg:h-16 w-auto object-contain" 
           />  
         </NuxtLink>
 
@@ -81,7 +82,7 @@ const isTransparent = computed(() => {
           <NuxtLink
             v-for="link in navLinks"
             :key="link.to"
-            :to="link.to"
+            :to="localePath(link.to)"
             class="relative px-3.5 py-1 min-h-[32px] inline-flex items-center rounded-full text-xs xl:text-sm font-semibold tracking-wide transition-all duration-300 outline-none select-none whitespace-nowrap focus-visible:ring-2 focus-visible:ring-primary"
             :class="[
               link.isActive
@@ -144,7 +145,7 @@ const isTransparent = computed(() => {
           <!-- Log In Button (Guest) — Desktop only -->
           <NuxtLink
             v-else
-            to="/auth/login"
+            :to="localePath('/auth/login')"
             class="hidden lg:inline-flex items-center gap-2 min-h-[44px] px-6 py-2.5 rounded-full text-xs xl:text-sm font-bold tracking-wide transition-all duration-300 outline-none select-none group focus-visible:ring-2 focus-visible:ring-primary shrink-0 text-slate-950 bg-gradient-to-r from-amber-400 via-amber-500 to-amber-600 hover:from-amber-500 hover:to-amber-400 hover:scale-[1.03] active:scale-[0.98] text-white "
           >
             <span>{{ t('nav.login') }}</span>

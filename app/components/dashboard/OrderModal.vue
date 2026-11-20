@@ -293,7 +293,7 @@
               <span class="text-[11px] sm:text-xs text-slate-600 leading-snug">
                 {{ t('orders.agreementPrefix') }}
                 <NuxtLink
-                  to="/privacy"
+                  :to="localePath('/privacy')"
                   target="_blank"
                   rel="noopener noreferrer"
                   class="font-semibold text-primary hover:text-primary-dark underline underline-offset-2 transition-colors inline-flex items-center gap-0.5"
@@ -303,7 +303,7 @@
                 </NuxtLink>
                 {{ t('orders.agreementAnd') }}
                 <NuxtLink
-                  to="/terms"
+                  :to="localePath('/terms')"
                   target="_blank"
                   rel="noopener noreferrer"
                   class="font-semibold text-primary hover:text-primary-dark underline underline-offset-2 transition-colors inline-flex items-center gap-0.5"
@@ -384,6 +384,7 @@ const emit = defineEmits<{
 }>()
 
 // ─── Composables ────────────────────────────────────────────────────────────
+const localePath = useLocalePath()
 const { t } = useI18n()
 const { offices, isLoading: officesLoading, fetchOffices } = useOffices()
 const { receivers, isLoading: receiversLoading, fetchReceivers } = useReceivers()

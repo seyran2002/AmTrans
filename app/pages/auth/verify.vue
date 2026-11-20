@@ -64,6 +64,7 @@ useHead({
   ]
 })
 
+const localePath = useLocalePath()
 const route = useRoute()
 const router = useRouter()
 const { t } = useI18n()
@@ -91,7 +92,7 @@ onMounted(async () => {
 
 const handleSuccess = (_updatedUser: VerifyUserResponse) => {
   setTimeout(() => {
-    router.push('/auth/login')
+    router.push(localePath('/auth/login'))
   }, 2500)
 }
 </script>

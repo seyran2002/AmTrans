@@ -4,6 +4,7 @@ import { useI18n } from '~/composables/useI18n'
 import BaseButton from '~/components/ui/BaseButton.vue'
 
 const { t } = useI18n()
+const localePath = useLocalePath();
 
 interface StepItem {
   number: string
@@ -137,7 +138,7 @@ const steps = computed<StepItem[]>(() => [
         <p class="text-xs sm:text-sm text-slate-600 mb-6 leading-relaxed">
           {{ t('home.howItWorks.learnMore') }}
         </p>
-        <NuxtLink to="/how-to-use" class="inline-flex min-h-[48px] items-center rounded-2xl focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2">
+        <NuxtLink :to="localePath('/how-to-use')" class="inline-flex min-h-[48px] items-center rounded-2xl focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2">
           <BaseButton variant="primary" size="md" :block="false" class="shadow-lg shadow-primary/20 min-h-[48px]">
             <span>{{ t('home.howItWorks.howToUseBtn') }}</span>
             <svg class="w-4 h-4 ml-1.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">

@@ -5,6 +5,7 @@ import BaseButton from '~/components/ui/BaseButton.vue'
 
 const { isAuthenticated } = useAuth()
 const { t } = useI18n()
+const localePath = useLocalePath()
 </script>
 
 <template>
@@ -49,7 +50,7 @@ const { t } = useI18n()
 
       <!-- Action Buttons -->
       <div class="flex flex-col sm:flex-row items-center justify-center gap-4 mb-12">
-        <NuxtLink :to="isAuthenticated ? '/dashboard' : '/auth/register'" class="w-full sm:w-auto inline-flex items-center justify-center min-h-[48px] rounded-2xl focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-400 focus-visible:ring-offset-2 focus-visible:ring-offset-slate-900">
+        <NuxtLink :to="localePath(isAuthenticated ? '/dashboard' : '/auth/register')" class="w-full sm:w-auto inline-flex items-center justify-center min-h-[48px] rounded-2xl focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-400 focus-visible:ring-offset-2 focus-visible:ring-offset-slate-900">
           <BaseButton
             variant="secondary"
             size="lg"
@@ -63,7 +64,7 @@ const { t } = useI18n()
           </BaseButton>
         </NuxtLink>
 
-        <NuxtLink to="/contact-us" class="w-full sm:w-auto inline-flex items-center justify-center min-h-[48px] rounded-2xl focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-400 focus-visible:ring-offset-2 focus-visible:ring-offset-slate-900">
+        <NuxtLink :to="localePath('/contact-us')" class="w-full sm:w-auto inline-flex items-center justify-center min-h-[48px] rounded-2xl focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-400 focus-visible:ring-offset-2 focus-visible:ring-offset-slate-900">
           <button
             type="button"
             class="w-full sm:w-auto min-h-[48px] inline-flex items-center justify-center gap-2 py-3 px-8 sm:py-4 rounded-2xl text-base font-bold text-white bg-white/10 hover:bg-white/20 backdrop-blur-md border border-white/25 shadow-lg transition-all duration-200 hover:-translate-y-0.5 active:scale-[0.98] outline-none focus-visible:ring-2 focus-visible:ring-amber-400 focus-visible:outline-none cursor-pointer"

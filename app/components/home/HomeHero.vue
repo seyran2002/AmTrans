@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import { computed } from 'vue'
 import { useHead } from '#imports'
 import BaseButton from '~/components/ui/BaseButton.vue'
 import { useAuth } from '~/composables/useAuth'
@@ -8,43 +7,48 @@ import { useI18n } from '~/composables/useI18n'
 const { isAuthenticated } = useAuth()
 const { t } = useI18n()
 const $t = t
+const localePath = useLocalePath()
 
-// Cloudinary image configuration
+// ─── Cloudinary Responsive LCP Hero Image ───
 const cloudinaryBase = 'https://res.cloudinary.com/tgatbuws/image/upload'
-const imagePath = 'v1790515541/home_hero.webp'
+const imageId = 'v1790515541/home_hero.webp'
 
-// Generate optimized Cloudinary crop URLs
-const getCloudinaryUrl = (width: number, quality = 75) => {
-  return `${cloudinaryBase}/c_fill,g_auto,w_${width},q_${quality},f_auto/${imagePath}`
+// Width breakpoints covering mobile (480, 640, 768), tablet/laptop (1024, 1280),
+// desktop (1536, 1920), and high-DPI displays (2560)
+const HERO_WIDTHS = [480, 640, 768, 1024, 1280, 1536, 1920, 2560] as const
+
+const getCloudinaryUrl = (width: number) => {
+  return `${cloudinaryBase}/c_fill,g_auto,w_${width},q_auto,f_auto/${imageId}`
 }
 
-const mobileWidths = [412, 480, 640, 768, 1024]
-const desktopWidths = [1280, 1440, 1600, 1920, 2560]
-  
-const mobileSrcset = computed(() =>
-  mobileWidths.map(w => `${getCloudinaryUrl(w)} ${w}w`).join(', ')
-)
+// Generate the responsive srcset string shared between <link rel="preload"> and <img>
+const heroSrcset = HERO_WIDTHS.map(w => `${getCloudinaryUrl(w)} ${w}w`).join(', ')
+const heroSizes = '100vw'
+const heroFallbackSrc = getCloudinaryUrl(1920)
 
-const desktopSrcset = computed(() =>
-  desktopWidths.map(w => `${getCloudinaryUrl(w)} ${w}w`).join(', ')
-)
-
-// Inject responsive image preloads for maximum performance (LCP optimization)
+// Preload the responsive LCP image using imagesrcset and imagesizes.
+// Because imagesrcset and imagesizes match the <img>'s srcset and sizes byte-for-byte,
+// the browser selects the exact same candidate during preload and rendering,
+// eliminating duplicate requests and "preloaded but not used" warnings.
 useHead({
   link: [
     {
-      rel: 'preload',
-      as: 'image',
-      media: '(max-width: 1024px)',
-      imagesrcset: mobileSrcset.value,
-      imagesizes: '100vw'
+      key: 'cloudinary-preconnect',
+      rel: 'preconnect',
+      href: 'https://res.cloudinary.com'
     },
     {
+      key: 'cloudinary-dns-prefetch',
+      rel: 'dns-prefetch',
+      href: 'https://res.cloudinary.com'
+    },
+    {
+      key: 'hero-preload',
       rel: 'preload',
       as: 'image',
-      media: '(min-width: 1025px)',
-      imagesrcset: desktopSrcset.value,
-      imagesizes: '100vw'
+      imagesrcset: heroSrcset,
+      imagesizes: heroSizes,
+      fetchpriority: 'high' as const
     }
   ]
 })
@@ -55,10 +59,12 @@ useHead({
 
     <!-- ── 1. Cloudinary Art-Directed Background Image with AVIF/WebP & zero CLS ── -->
     <div class="absolute inset-0 z-0 select-none pointer-events-none">
-      <NuxtImg
-        :src="getCloudinaryUrl(1920)"
-        :width="1920"
-        :height="1080"
+      <img
+        :srcset="heroSrcset"
+        :sizes="heroSizes"
+        :src="heroFallbackSrc"
+        width="1920"
+        height="1080"
         fetchpriority="high"
         loading="eager"
         decoding="async"
@@ -108,7 +114,7 @@ useHead({
       <!-- ── 4. Call-to-Action Buttons ── -->
       <div class="flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4 w-full sm:w-auto mb-6 sm:mb-8 shrink-0">
         <!-- Main CTA (Primary #00338a Blue Accent) -->
-        <NuxtLink :to="isAuthenticated ? '/dashboard' : '/auth/register'" class="w-full sm:w-auto inline-flex items-center justify-center min-h-[48px] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-400 focus-visible:ring-offset-2 focus-visible:ring-offset-slate-900 rounded-2xl">
+        <NuxtLink :to="localePath(isAuthenticated ? '/dashboard' : '/auth/register')" class="w-full sm:w-auto inline-flex items-center justify-center min-h-[48px] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-400 focus-visible:ring-offset-2 focus-visible:ring-offset-slate-900 rounded-2xl">
           <BaseButton
             variant="primary"
             size="md"
@@ -123,7 +129,7 @@ useHead({
         </NuxtLink>
 
         <!-- Secondary CTA ("How It Works") -->
-        <NuxtLink to="/how-to-use" class="w-full sm:w-auto inline-flex items-center justify-center min-h-[48px] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-400 focus-visible:ring-offset-2 focus-visible:ring-offset-slate-900 rounded-2xl">
+        <NuxtLink :to="localePath('/how-to-use')" class="w-full sm:w-auto inline-flex items-center justify-center min-h-[48px] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-400 focus-visible:ring-offset-2 focus-visible:ring-offset-slate-900 rounded-2xl">
           <button
             type="button"
             class="w-full sm:w-auto min-h-[48px] inline-flex items-center justify-center gap-2 px-6 py-3 rounded-2xl text-xs sm:text-sm font-bold text-white bg-primary/30 hover:bg-primary/40 backdrop-blur-md border border-primary/50 shadow-lg transition-all duration-200 hover:-translate-y-0.5 active:translate-y-0 active:scale-[0.98] outline-none focus-visible:ring-2 focus-visible:ring-amber-400 focus-visible:outline-none cursor-pointer"

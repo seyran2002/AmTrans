@@ -3,7 +3,7 @@
     <!-- ── Top Navigation & Back Button ──────────────────────────────────── -->
     <div class="flex items-center justify-between gap-3">
       <NuxtLink
-        to="/dashboard/manage-orders"
+        :to="localePath('/dashboard/manage-orders')"
         class="inline-flex items-center gap-2 text-xs font-bold text-slate-600 hover:text-primary transition-colors bg-white px-3 py-2 rounded-xl border border-slate-200/80 shadow-xs hover:border-slate-300 group"
       >
         <svg class="w-4 h-4 text-slate-400 group-hover:text-primary transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -217,6 +217,7 @@ const emit = defineEmits<{
   (e: 'updated', order: Order): void
 }>()
 
+const localePath = useLocalePath()
 const { t, currentLanguage } = useI18n()
 const { apiFetch } = useApi()
 

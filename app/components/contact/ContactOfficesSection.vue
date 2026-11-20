@@ -7,18 +7,19 @@ import { useI18n } from '~/composables/useI18n'
 const { t } = useI18n()
 const { isAuthenticated } = useAuth()
 const router = useRouter()
+const localePath = useLocalePath()
 
 const REDIRECT_TARGET = 'dashboard/addresses'
 
 const loginHref = computed(
-  () => `/auth/login?redirect=${encodeURIComponent(REDIRECT_TARGET)}`
+  () => localePath(`/auth/login?redirect=${encodeURIComponent(REDIRECT_TARGET)}`)
 )
 const registerHref = computed(
-  () => `/auth/register?redirect=${encodeURIComponent(REDIRECT_TARGET)}`
+  () => localePath(`/auth/register?redirect=${encodeURIComponent(REDIRECT_TARGET)}`)
 )
 
 function goToDashboardOffices() {
-  router.push(REDIRECT_TARGET)
+  router.push(localePath(REDIRECT_TARGET))
 }
 </script>
 
@@ -171,8 +172,8 @@ function goToDashboardOffices() {
 
             <!-- CTA Buttons -->
             <div class="flex flex-col sm:flex-row gap-3">
-              <a
-                :href="loginHref"
+              <nuxt-link
+                :to="loginHref"
                 class="inline-flex items-center justify-center gap-2.5 px-7 py-3.5 rounded-2xl text-sm font-bold text-white bg-primary hover:bg-primary/90 shadow-md shadow-primary/25 transition-all duration-200 hover:-translate-y-0.5 hover:shadow-lg min-h-[48px]"
                 :aria-label="t('contact.offices.auth.loginCta')"
               >
@@ -181,10 +182,10 @@ function goToDashboardOffices() {
                     d="M11 16l-4-4m0 0l4-4m-4 4h14m-5 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h7a3 3 0 013 3v1" />
                 </svg>
                 {{ t('contact.offices.auth.loginCta') }}
-              </a>
+              </nuxt-link>
 
-              <a
-                :href="registerHref"
+              <nuxt-link
+                :to="registerHref"
                 class="inline-flex items-center justify-center gap-2.5 px-7 py-3.5 rounded-2xl text-sm font-bold text-primary bg-primary/8 hover:bg-primary/15 border border-primary/25 hover:border-primary/40 transition-all duration-200 hover:-translate-y-0.5 min-h-[48px]"
                 :aria-label="t('contact.offices.auth.registerCta')"
               >
@@ -193,7 +194,7 @@ function goToDashboardOffices() {
                     d="M18 9v3m0 0v3m0-3h3m-3 0h-3m-2-5a4 4 0 11-8 0 4 4 0 018 0zM3 20a6 6 0 0112 0v1H3v-1z" />
                 </svg>
                 {{ t('contact.offices.auth.registerCta') }}
-              </a>
+              </nuxt-link>
             </div>
           </div>
 

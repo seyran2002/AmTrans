@@ -27,7 +27,7 @@
 
     <!-- Action Button -->
     <div class="pt-2">
-      <NuxtLink to="/auth/login" class="block w-full">
+      <NuxtLink :to="localePath('/auth/login')" class="block w-full">
         <BaseButton variant="primary">
           <span>{{ t('auth.backToLogin') }}</span>
           <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -46,4 +46,6 @@ defineProps<{
   registeredEmail: string
   t: (key: string) => string
 }>()
+
+const localePath = useLocalePath()
 </script>

@@ -9,6 +9,7 @@ interface Props {
 defineProps<Props>()
 
 const { locales, currentLocale, currentLanguage, isOpen, menuRef, toggle, select } = useLanguage()
+const switchLocalePath = useSwitchLocalePath()
 </script>
 
 <template>
@@ -55,13 +56,15 @@ const { locales, currentLocale, currentLanguage, isOpen, menuRef, toggle, select
       leave-to-class="scale-95 opacity-0 -translate-y-1"
     >
       <div
-        v-if="isOpen"
+        v-show="isOpen"
         role="listbox"
         class="absolute top-full mt-2.5 right-0 bg-white/95 backdrop-blur-xl border border-zinc-200/80 rounded-2xl shadow-[0_10px_40px_-10px_rgba(0,0,0,0.15)] py-1.5 min-w-28 sm:min-w-[148px] z-[100] origin-top-right"
       >
-        <button
+        <NuxtLink
           v-for="lang in locales"
           :key="lang.code"
+          :to="switchLocalePath(lang.code)"
+          :hreflang="lang.code"
           role="option"
           :aria-selected="currentLanguage === lang.code"
           @click="select(lang.code)"
@@ -86,7 +89,7 @@ const { locales, currentLocale, currentLanguage, isOpen, menuRef, toggle, select
             :size="13"
             class="text-primary ml-1 shrink-0"
           />
-        </button>
+        </NuxtLink>
       </div>
     </Transition>
   </div>

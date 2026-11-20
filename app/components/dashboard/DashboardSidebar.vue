@@ -18,6 +18,7 @@ const emit = defineEmits<{
 
 const route = useRoute()
 const { t } = useI18n()
+const localePath = useLocalePath()
 const { user, logout } = useAuth()
 
 interface NavItem {
@@ -51,7 +52,8 @@ const NAV_ITEMS = computed(() => {
 })
 
 const isActive = (to: string) => {
-  return route.path === to || route.path.startsWith(to + '/')
+  const normalizedPath = route.path.replace(/^\/(?:en|ru)(?=\/|$)/, '') || '/'
+  return normalizedPath === to || normalizedPath.startsWith(to + '/')
 }
 
 const handleNavItemClick = () => {
@@ -114,18 +116,18 @@ const isExpanded = computed(() => isHovered.value || isFocused.value || props.is
       >
         <!-- Sidebar Header / Brand Logo Swap -->
         <div class="border-b border-slate-100 pb-3 mb-1 shrink-0 px-3 pt-2">
-          <NuxtLink to="/" @click="handleNavItemClick" class="flex items-center h-8 w-full relative focus:outline-none focus-visible:ring-2 focus-visible:ring-primary/40 rounded-xl">
+          <NuxtLink :to="localePath('/')" @click="handleNavItemClick" class="flex items-center h-8 w-full relative focus:outline-none focus-visible:ring-2 focus-visible:ring-primary/40 rounded-xl">
             <!-- Collapsed Logo (logo-small.png) -->
             <img
-              src="/logo.png"
+              src="/logo.webp"
               alt="AmTrans Brand Icon"
               class="h-8 w-auto object-contain absolute left-1 sm:left-1.5 top-1/2 -translate-y-1/2 transition-opacity duration-200"
               :class="isExpanded ? 'opacity-0 pointer-events-none' : 'opacity-100'"
             />
 
-            <!-- Expanded Logo (logo.png) -->
+            <!-- Expanded Logo (logo.webp) -->
             <img
-              src="/logo.png"
+              src="/logo.webp"
               alt="AmTrans Logo"
               class="h-12 w-auto object-contain absolute left-1 sm:left-1.5 top-1/2 -translate-y-1/2 transition-opacity duration-200"
               :class="isExpanded ? 'opacity-100' : 'opacity-0 pointer-events-none'"
@@ -159,7 +161,7 @@ const isExpanded = computed(() => isHovered.value || isFocused.value || props.is
           <NuxtLink
             v-for="item in NAV_ITEMS"
             :key="item.key"
-            :to="item.to"
+            :to="localePath(item.to)"
             @click="handleNavItemClick"
             :title="!isExpanded ? t(item.labelKey) : undefined"
             :class="[

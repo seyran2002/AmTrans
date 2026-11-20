@@ -9,6 +9,7 @@ interface Props {
 defineProps<Props>()
 
 const { allLinks } = useNavLinks()
+const localePath = useLocalePath()
 </script>
 
 <template>
@@ -29,7 +30,7 @@ const { allLinks } = useNavLinks()
       <NuxtLink
         v-for="link in allLinks"
         :key="link.to"
-        :to="link.to"
+        :to="localePath(link.to)"
         :aria-label="link.ariaLabel"
         :active-class="isTransparent ? 'text-white' : 'text-primary'"
         :class="[

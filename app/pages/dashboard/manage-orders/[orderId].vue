@@ -39,7 +39,7 @@
     <template v-else-if="error">
       <div class="flex items-center gap-3 mb-4">
         <NuxtLink
-          to="/dashboard/manage-orders"
+          :to="localePath('/dashboard/manage-orders')"
           class="inline-flex items-center gap-2 text-xs font-bold text-slate-600 hover:text-primary transition-colors bg-white px-3 py-2 rounded-xl border border-slate-200/80 shadow-xs hover:border-slate-300 group"
         >
           <svg class="w-4 h-4 text-slate-400 group-hover:text-primary transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -55,7 +55,7 @@
     <template v-else-if="!order">
       <div class="flex items-center gap-3 mb-4">
         <NuxtLink
-          to="/dashboard/manage-orders"
+          :to="localePath('/dashboard/manage-orders')"
           class="inline-flex items-center gap-2 text-xs font-bold text-slate-600 hover:text-primary transition-colors bg-white px-3 py-2 rounded-xl border border-slate-200/80 shadow-xs hover:border-slate-300 group"
         >
           <svg class="w-4 h-4 text-slate-400 group-hover:text-primary transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -139,6 +139,7 @@ definePageMeta({
   layout: 'dashboard'
 })
 
+const localePath = useLocalePath()
 const route = useRoute()
 const { t } = useI18n()
 const {

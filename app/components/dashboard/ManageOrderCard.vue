@@ -21,7 +21,7 @@
         <div>
           <div class="flex items-center gap-2 flex-wrap">
             <NuxtLink
-              :to="`/dashboard/manage-orders/${order.id}`"
+              :to="localePath(`/dashboard/manage-orders/${order.id}`)"
               class="font-mono text-xs font-bold text-slate-600 hover:text-primary uppercase tracking-wider bg-slate-100 hover:bg-primary/10 px-2 py-0.5 rounded-lg border border-slate-200/60 transition-colors"
             >
               #{{ order.id.slice(0, 8).toUpperCase() }}
@@ -343,7 +343,7 @@
       <span v-else />
 
       <NuxtLink
-        :to="`/dashboard/manage-orders/${order.id}`"
+        :to="localePath(`/dashboard/manage-orders/${order.id}`)"
         :class="[
           'inline-flex items-center gap-1.5 text-xs font-bold transition-colors py-1 group/btn',
           order.status === 'PENDING_ESTIMATE' && !order.estimatedPrice
@@ -372,6 +372,7 @@ interface Props {
 
 const props = defineProps<Props>()
 const { t, currentLanguage } = useI18n()
+const localePath = useLocalePath()
 
 const billableWeight = computed<number>(() => {
   if (props.order.billableWeight !== undefined && props.order.billableWeight !== null && Number(props.order.billableWeight) > 0) {

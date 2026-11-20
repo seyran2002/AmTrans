@@ -10,7 +10,13 @@ import CalculatorModal from '~/components/CalculatorModal.vue'
 
 const route = useRoute()
 const { t } = useI18n()
+const localePath = useLocalePath()
 const { isSupporter, unreadCount } = useSupporterChatNotification()
+
+useSeoMeta({
+  robots: 'noindex, nofollow',
+})
+
 const isMobileSidebarOpen = ref(false)
 const isCalculatorOpen = ref(false)
 
@@ -49,7 +55,7 @@ const routeTitle = computed(() => {
     <div class="flex-1 flex flex-col min-w-0">
       
       <!-- Top Bar (Full Width Spanning Across Screen) -->
-      <header class="h-12 sm:h-20 bg-white/90 backdrop-blur-md border-b border-slate-200/80 px-4 sm:px-6 lg:pl-28 lg:pr-8 flex items-center justify-between sticky top-0 z-20 w-full transition-all duration-300">
+      <header class="py-0.5 sm:py-1 bg-white/90 backdrop-blur-md border-b border-slate-200/80 px-4 sm:px-6 lg:pl-28 lg:pr-8 flex items-center justify-between sticky top-0 z-20 w-full transition-all duration-300">
         <div class="flex items-center gap-0 sm:gap-3">
           <!-- Mobile Menu Toggle Button (Below LG) -->
           <button
@@ -65,16 +71,16 @@ const routeTitle = computed(() => {
 
           <!-- Breadcrumb / Header Title -->
           <NuxtLink
-            to="/"
+            :to="localePath('/')"
             class="relative z-10 flex items-center shrink-0 min-h-8 sm:min-h-12 outline-none select-none focus-visible:ring-2 focus-visible:ring-primary rounded-xl"
             aria-label="AmTrans Logistics Homepage"
           >
             <NuxtImg 
-              src="/logo.png"
+              src="/logo.webp"
               preload 
               fetchpriority="high"
               alt="AmTrans Logo" 
-              class="translate-y-[10%] h-9 min-[420px]:h-12 sm:h-16 w-auto object-contain" 
+              class="h-9 min-[420px]:h-11 sm:h-12 lg:h-16 w-auto object-contain" 
             />  
           </NuxtLink>
         </div>
@@ -84,7 +90,7 @@ const routeTitle = computed(() => {
           <!-- Support Notification Button (Supporters only) -->
           <NuxtLink
             v-if="isSupporter"
-            to="/admin/support-chat"
+            :to="localePath('/admin/support-chat')"
             class="relative p-2 sm:p-2.5 rounded-full transition-all duration-200 outline-none select-none focus-visible:ring-2 focus-visible:ring-primary/40 flex items-center justify-center cursor-pointer bg-slate-100 hover:bg-slate-200/80 text-slate-600 hover:text-primary"
             aria-label="Support inquiries"
             title="Support inquiries"

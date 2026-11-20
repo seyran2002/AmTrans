@@ -1,2 +1,8 @@
-User-Agent: *
-Disallow:
+User-agent: *
+Allow: /
+Disallow: /dashboard
+Disallow: /en/dashboard
+Disallow: /ru/dashboard
+Disallow: /api
+
+Sitemap: https://amtrans.am/sitemap.xml

@@ -79,7 +79,7 @@
           </div>
 
           <NuxtLink
-            to="/contact-us"
+            :to="localePath('/contact-us')"
             class="inline-flex items-center gap-2 text-xs font-bold text-amber-300 hover:text-white transition-colors group/link pt-1"
           >
             <span>{{ t('howToUse.nav.helpLink') }}</span>
@@ -98,6 +98,7 @@ import { useI18n } from '~/composables/useI18n'
 import type { TutorialChapter } from '~/data/how-to-use.data'
 
 const { t } = useI18n()
+const localePath = useLocalePath()
 
 defineProps<{
   chapters: TutorialChapter[]

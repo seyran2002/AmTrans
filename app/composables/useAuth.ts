@@ -1,4 +1,5 @@
 import { ref, computed } from 'vue'
+import { useI18n } from '~/composables/useI18n'
 
 export interface User {
   id: string
@@ -52,6 +53,7 @@ export interface LoginResponse {
 export function useAuth() {
   const config = useRuntimeConfig()
   const { t } = useI18n();
+  const localePath = useLocalePath()
 
   // ── JWT stored in a cookie (7-day expiry, SameSite=lax, available on both client + server) ──
   const token = useCookie<string | null>('auth_token', {
@@ -137,7 +139,7 @@ export function useAuth() {
         // Verify via /auth/me — backend is source of truth for user data
         const verified = await checkAuth()
         if (verified) {
-          await navigateTo('/dashboard')
+          await navigateTo(localePath('/dashboard'))
           return true
         }
       }
@@ -163,7 +165,7 @@ export function useAuth() {
   const logout = async () => {
     token.value = null
     user.value = null
-    await navigateTo('/auth/login')
+    await navigateTo(localePath('/auth/login'))
   }
 
   /**

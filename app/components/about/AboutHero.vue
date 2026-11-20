@@ -6,6 +6,7 @@ import BaseButton from '~/components/ui/BaseButton.vue'
 import NuxtImg from '~/components/NuxtImg.vue'
 
 const { t } = useI18n()
+const localePath = useLocalePath()
 
 // Cloudinary image configuration — optimized responsive loading for LCP < 1.2s
 const cloudinaryBase = 'https://res.cloudinary.com/tgatbuws/image/upload'
@@ -128,7 +129,7 @@ useHead({
         </a>
 
         <NuxtLink
-          to="/contact-us"
+          :to="localePath('/contact-us')"
           class="w-full sm:w-auto inline-flex items-center justify-center min-h-[48px] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-400 focus-visible:ring-offset-2 focus-visible:ring-offset-slate-900 rounded-2xl"
           aria-label="Կապ հաստատել AmTrans-ի հետ"
         >

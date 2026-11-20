@@ -8,6 +8,7 @@ import BaseButton from '~/components/ui/BaseButton.vue'
 import BaseBadge from '~/components/ui/BaseBadge.vue'
 
 const { t, currentLanguage } = useI18n()
+const localePath = useLocalePath()
 
 const tariffs = ref<Tariff[]>([])
 const isLoading = ref<boolean>(true)
@@ -156,7 +157,7 @@ const formatPrice = (val: number | string | undefined): string => {
         <p class="text-xs sm:text-sm text-slate-600 mb-6 leading-relaxed">
           {{ t('home.tariffs.emptyDesc') }}
         </p>
-        <NuxtLink to="/contact-us" class="inline-flex items-center min-h-[44px]">
+        <NuxtLink :to="localePath('/contact-us')" class="inline-flex items-center min-h-[44px]">
           <BaseButton variant="primary" size="sm" :block="false">
             {{ t('home.tariffs.contactSupport') }}
           </BaseButton>
@@ -267,7 +268,7 @@ const formatPrice = (val: number | string | undefined): string => {
                 </div>
               </div>
 
-              <NuxtLink to="/auth/register" class="inline-flex min-h-[44px] items-center">
+              <NuxtLink :to="localePath('/auth/register')" class="inline-flex min-h-[44px] items-center">
                 <BaseButton
                   variant="secondary"
                   size="sm"
@@ -325,7 +326,7 @@ const formatPrice = (val: number | string | undefined): string => {
           </div>
 
           <div class="shrink-0 w-full md:w-auto pt-2 md:pt-0">
-            <NuxtLink to="/contact-us" class="inline-block w-full md:w-auto">
+            <NuxtLink :to="localePath('/contact-us')" class="inline-block w-full md:w-auto">
               <button
                 type="button"
                 class="w-full md:w-auto min-h-[44px] sm:min-h-[48px] inline-flex items-center justify-center gap-2 px-5 py-2.5 rounded-xl text-xs font-bold text-primary bg-white border border-primary/30 hover:bg-primary/5 shadow-xs transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2"

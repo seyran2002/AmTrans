@@ -4,7 +4,7 @@
     <div class="relative z-10">
       <!-- Breadcrumbs -->
       <nav class="mb-6 flex items-center gap-2 text-xs text-slate-500 font-medium">
-        <NuxtLink to="/" class="hover:text-primary transition-colors flex items-center gap-1">
+        <NuxtLink :to="localePath('/')" class="hover:text-primary transition-colors flex items-center gap-1">
           <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
           </svg>
@@ -46,7 +46,7 @@
 
         <!-- Secondary CTA -->
         <NuxtLink
-          to="/dashboard"
+          :to="localePath('/dashboard')"
           class="inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-2xl bg-white hover:bg-slate-50 text-slate-700 hover:text-primary font-bold text-sm border border-slate-200/90 shadow-xs hover:border-primary/30 transition-all duration-200 active:scale-95 w-full sm:w-auto"
         >
           <span>{{ t('howToUse.hero.exploreDashboard') }}</span>
@@ -114,6 +114,7 @@
 import { useI18n } from '~/composables/useI18n'
 
 const { t } = useI18n()
+const localePath = useLocalePath()
 
 defineEmits<{
   (e: 'startLearning'): void

@@ -36,7 +36,7 @@
         </div>
 
         <NuxtLink
-          to="/dashboard/addresses"
+          :to="localePath('/dashboard/addresses')"
           class="inline-flex items-center gap-1.5 px-4 py-2 rounded-xl bg-slate-100 hover:bg-primary hover:text-white text-xs font-bold text-slate-700 transition-colors"
         >
           <span>{{ t('howToUse.ch3.viewAllAddresses') }}</span>
@@ -145,7 +145,7 @@
         </div>
 
         <NuxtLink
-          to="/dashboard/receivers"
+          :to="localePath('/dashboard/receivers')"
           class="inline-flex items-center gap-1.5 px-4 py-2 rounded-xl bg-slate-100 hover:bg-primary hover:text-white text-xs font-bold text-slate-700 transition-colors"
         >
           <span>{{ t('howToUse.ch3.manageReceivers') }}</span>
@@ -233,6 +233,7 @@ import HowToUseChapterNav from '../HowToUseChapterNav.vue'
 import type { TutorialChapter } from '~/data/how-to-use.data'
 
 const { t } = useI18n()
+const localePath = useLocalePath()
 
 defineProps<{
   chapter: TutorialChapter

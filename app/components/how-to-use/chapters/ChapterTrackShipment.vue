@@ -36,7 +36,7 @@
         </div>
 
         <NuxtLink
-          to="/dashboard/orders"
+          :to="localePath('/dashboard/orders')"
           class="inline-flex items-center gap-1.5 px-4 py-2 rounded-xl bg-slate-100 hover:bg-primary hover:text-white text-xs font-bold text-slate-700 transition-colors"
         >
           <span>{{ t('howToUse.ch6.trackMyOrders') }}</span>
@@ -192,6 +192,7 @@ import HowToUseChapterNav from '../HowToUseChapterNav.vue'
 import { getStatusDefinitions, type TutorialChapter } from '~/data/how-to-use.data'
 
 const { t } = useI18n()
+const localePath = useLocalePath()
 
 defineProps<{
   chapter: TutorialChapter

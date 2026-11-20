@@ -25,7 +25,7 @@
 
           <!-- Chapter 02: Account Setup -->
           <ChapterAccountSetup
-            :chapter="chapters[1]"
+            :chapter="chapters[1]!"
             :prev-chapter="chapters[0]"
             :next-chapter="chapters[2]"
             @navigate="scrollToChapter"
@@ -33,7 +33,7 @@
 
           <!-- Chapter 03: Addresses & Receivers -->
           <ChapterAddressesReceivers
-            :chapter="chapters[2]"
+            :chapter="chapters[2]!"
             :prev-chapter="chapters[1]"
             :next-chapter="chapters[3]"
             @navigate="scrollToChapter"
@@ -41,7 +41,7 @@
 
           <!-- Chapter 04: Register a Shipment -->
           <ChapterRegisterShipment
-            :chapter="chapters[3]"
+            :chapter="chapters[3]!"
             :prev-chapter="chapters[2]"
             :next-chapter="chapters[4]"
             @navigate="scrollToChapter"
@@ -49,7 +49,7 @@
 
           <!-- Chapter 05: Shipping Costs & Tariffs -->
           <ChapterShippingCosts
-            :chapter="chapters[4]"
+            :chapter="chapters[4]!"
             :prev-chapter="chapters[3]"
             :next-chapter="chapters[5]"
             @navigate="scrollToChapter"
@@ -57,7 +57,7 @@
 
           <!-- Chapter 06: Track Your Shipment -->
           <ChapterTrackShipment
-            :chapter="chapters[5]"
+            :chapter="chapters[5]!"
             :prev-chapter="chapters[4]"
             :next-chapter="chapters[6]"
             @navigate="scrollToChapter"
@@ -65,7 +65,7 @@
 
           <!-- Chapter 07: Receive Your Package -->
           <ChapterReceivePackage
-            :chapter="chapters[6]"
+            :chapter="chapters[6]!"
             :prev-chapter="chapters[5]"
             @navigate="scrollToChapter"
           />

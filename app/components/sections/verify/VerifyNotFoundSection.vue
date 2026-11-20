@@ -7,7 +7,7 @@
     </div>
     <h3 class="text-lg sm:text-2xl font-black text-primary tracking-tight mb-2 sm:mb-3">{{ title }}</h3>
     <p class="text-xs sm:text-sm text-slate-500 font-medium mb-5 sm:mb-8 leading-relaxed max-w-xs">{{ message }}</p>
-    <NuxtLink to="/" class="w-full">
+    <NuxtLink :to="localePath('/')" class="w-full">
       <BaseButton variant="secondary" size="md" block class="!py-2.5 sm:!py-3 text-xs sm:text-sm">
         {{ backText }}
       </BaseButton>
@@ -23,4 +23,5 @@ defineProps<{
   message: string
   backText: string
 }>()
+const localePath = useLocalePath()
 </script>

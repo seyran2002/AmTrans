@@ -98,7 +98,7 @@
       <p class="text-sm font-medium text-slate-500">
         {{ t('auth.dontHaveAccount') }}
         <NuxtLink
-          to="/auth/register"
+          :to="localePath('/auth/register')"
           class="font-bold text-primary hover:text-tertiary hover:underline transition-colors ml-1 inline-flex items-center gap-0.5"
         >
           {{ t('auth.createAccount') }}
@@ -132,5 +132,6 @@ defineEmits<{
   (e: 'submit'): void
 }>()
 
+const localePath = useLocalePath()
 const showPassword = ref(false)
 </script>

@@ -5,15 +5,16 @@ definePageMeta({
   middleware: [
     'auth',
     async () => {
+      const localePath = useLocalePath()
       const { user, checkAuth, token, isAuthenticated } = useAuth()
       if (!isAuthenticated.value && token.value) {
         await checkAuth()
       }
       const role = user.value?.role?.toUpperCase()
       if (role === 'ADMIN' || role === 'OPERATOR') {
-        return navigateTo('/dashboard/manage-orders')
+        return navigateTo(localePath('/dashboard/manage-orders'))
       }
-      return navigateTo('/dashboard/orders')
+      return navigateTo(localePath('/dashboard/orders'))
     }
   ],
   layout: 'dashboard'

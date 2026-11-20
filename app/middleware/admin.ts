@@ -6,16 +6,17 @@ import { useAuth } from '~/composables/useAuth'
  */
 export default defineNuxtRouteMiddleware(async (_to, _from) => {
   const { isAuthenticated, checkAuth, token, user } = useAuth()
+  const localePath = useLocalePath()
 
   if (!isAuthenticated.value && token.value) {
     await checkAuth()
   }
 
   if (!isAuthenticated.value) {
-    return navigateTo('/auth/login')
+    return navigateTo(localePath('/auth/login'))
   }
 
   if (user.value?.role?.toUpperCase() !== 'ADMIN') {
-    return navigateTo('/dashboard')
+    return navigateTo(localePath('/dashboard'))
   }
 })

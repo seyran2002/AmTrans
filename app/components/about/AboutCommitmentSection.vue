@@ -5,6 +5,7 @@ import { useI18n } from '~/composables/useI18n'
 
 const { isAuthenticated } = useAuth()
 const { t } = useI18n()
+const localePath = useLocalePath()
 </script>
 
 <template>
@@ -52,7 +53,7 @@ const { t } = useI18n()
       <!-- CTA buttons: Minimum 48px touch targets, visible high contrast focus indicators -->
       <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
         <NuxtLink
-          :to="isAuthenticated ? '/dashboard' : '/auth/register'"
+          :to="localePath(isAuthenticated ? '/dashboard' : '/auth/register')"
           class="w-full sm:w-auto inline-flex items-center justify-center min-h-[48px] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-400 focus-visible:ring-offset-2 focus-visible:ring-offset-slate-900 rounded-2xl"
           :aria-label="isAuthenticated ? t('about.commitment.btnDashboard') : t('about.commitment.btnRegister')"
         >
@@ -70,7 +71,7 @@ const { t } = useI18n()
         </NuxtLink>
 
         <NuxtLink
-          to="/contact-us"
+          :to="localePath('/contact-us')"
           class="w-full sm:w-auto inline-flex items-center justify-center min-h-[48px] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-slate-900 rounded-2xl"
           aria-label="Կապ հաստատել AmTrans-ի հետ"
         >

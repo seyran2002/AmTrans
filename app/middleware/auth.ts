@@ -9,6 +9,7 @@
  */
 export default defineNuxtRouteMiddleware(async (_to, _from) => {
   const { isAuthenticated, checkAuth, token } = useAuth()
+  const localePath = useLocalePath()
 
   // If already authenticated in state, allow through immediately
   if (isAuthenticated.value) return
@@ -20,5 +21,5 @@ export default defineNuxtRouteMiddleware(async (_to, _from) => {
   }
 
   // Not authenticated → redirect to login
-  return navigateTo('/auth/login')
+  return navigateTo(localePath('/auth/login'))
 })

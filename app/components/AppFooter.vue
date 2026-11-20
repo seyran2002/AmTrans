@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { useI18n } from '~/composables/useI18n'
 
+const localePath = useLocalePath()
 const { t } = useI18n()
 const currentYear = new Date().getFullYear()
 
@@ -29,12 +30,12 @@ const quickLinks = [
           <!-- ── Brand Section (4 cols) ── -->
           <div class="lg:col-span-4">
             <NuxtLink
-          to="/"
-          class="relative z-10 flex items-center shrink-0 min-h-[48px] outline-none select-none focus-visible:ring-2 focus-visible:ring-primary rounded-xl"
-          aria-label="AmTrans Logistics Homepage"
-        >
-          <img src="~/assets/logo-footer.png" fetchpriority="high" alt="AmTrans Logo" class="h-16" />
-        </NuxtLink>
+              :to="localePath('/')"
+              class="relative z-10 flex items-center shrink-0 min-h-[48px] outline-none select-none focus-visible:ring-2 focus-visible:ring-primary rounded-xl"
+              aria-label="AmTrans Logistics Homepage"
+            >
+              <img src="~/assets/logo-footer.png" fetchpriority="high" alt="AmTrans Logo" class="h-16" />
+            </NuxtLink>
 
             <p class="text-sm text-slate-200 leading-relaxed max-w-xs mb-6">
               {{ t('footer.brandDescription') }}
@@ -98,7 +99,7 @@ const quickLinks = [
             <ul class="space-y-3">
               <li v-for="link in quickLinks" :key="link.to">
                 <NuxtLink
-                  :to="link.to"
+                  :to="localePath(link.to)"
                   class="group inline-flex items-center gap-2 text-sm text-slate-200 hover:text-white transition-colors duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-400 rounded-md"
                 >
                   <svg

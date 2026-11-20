@@ -20,7 +20,7 @@ onUnmounted(() => {
 })
 
 const isTransparent = computed(() => {
-  const transparentRoutes = ['/', '/home', '/about-us']
+  const transparentRoutes = ['/', '/en', '/ru', '/en/about-us', '/ru/about-us',  '/en/home', '/ru/home', '/home', '/about-us']
   return transparentRoutes.includes(route.path) && !isScrolled.value
 })
 </script>
