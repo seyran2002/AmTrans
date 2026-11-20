@@ -32,7 +32,7 @@ onUnmounted(() => {
  * Transparent header on landing/hero pages when user has not scrolled down
  */
 const isTransparent = computed(() => {
-  const transparentRoutes = ['/', '/en', '/ru', '/en/about-us', '/ru/about-us',  '/en/home', '/ru/home', '/home', '/about-us']
+  const transparentRoutes = ['/', '/en', '/ru', '/en/', '/ru/', '/about-us', '/en/about-us', '/ru/about-us',  '/en/about-us/', '/ru/about-us/', '/about-us/']
   return transparentRoutes.includes(route.path) && !isScrolled.value
 })
 </script>
