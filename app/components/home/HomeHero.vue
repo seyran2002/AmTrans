@@ -99,7 +99,7 @@ useHead({
       </div>
 
       <!-- Main Headline with Primary Dominant Gradient -->
-      <h1 class="text-3xl sm:text-5xl md:text-6xl lg:text-6xl xl:text-7xl font-extrabold text-white tracking-tight leading-[1.1] mb-4 sm:mb-5 max-w-4xl shrink-0 drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)]">
+      <h1 class="text-3xl sm:text-5xl md:text-6xl lg:text-6xl xl:text-7xl font-extrabold text-white tracking-tight leading-[1.1] mb-4 sm:mb-5 max-w-4xl shrink-0">
         {{ $t('home.hero.title1') }}
         <span class="block sm:inline bg-gradient-to-r from-secondary via-amber-400 to-amber-300 bg-clip-text text-transparent drop-shadow-sm">
           {{ $t('home.hero.title2') }}

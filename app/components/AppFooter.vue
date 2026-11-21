@@ -16,7 +16,7 @@ const quickLinks = [
 <template>
   <footer class="relative w-full mt-auto overflow-hidden z-10">
     <!-- ── Main Footer ── -->
-    <div class="bg-gradient-to-br from-[#00338a] via-[#002566] to-[#001a45] text-white">
+    <div class="bg-gradient-to-br from-[#00338a] via-[#002566] to-[#001a45] text-white pb-16 lg:pb-0">
       <!-- Decorative top accent line -->
       <div class="h-1 w-full bg-gradient-to-r from-secondary via-amber-400 to-secondary" />
 

@@ -110,8 +110,9 @@
 
 <script setup lang="ts">
 import { ref, computed, onMounted, onUnmounted } from 'vue'
-import { useHead } from '#imports'
+import { definePageMeta } from '#imports'
 import { useI18n } from '~/composables/useI18n'
+import { useHowToUseSeo } from '~/composables/useHowToUseSeo'
 import { getTutorialChapters } from '~/data/how-to-use.data'
 import HowToUseHero from '~/components/how-to-use/HowToUseHero.vue'
 import HowToUseSidebarNav from '~/components/how-to-use/HowToUseSidebarNav.vue'
@@ -126,26 +127,11 @@ import ChapterReceivePackage from '~/components/how-to-use/chapters/ChapterRecei
 
 definePageMeta({ layout: 'guest' })
 
+// ─── Dedicated How To Use Page SEO Composable (100% SSR Reactive computed() refs) ─
+useHowToUseSeo()
+
 const { t } = useI18n()
 const chapters = computed(() => getTutorialChapters(t))
-
-useHead({
-  title: computed(() => t('howToUse.metaTitle')),
-  meta: [
-    {
-      name: 'description',
-      content: computed(() => t('howToUse.metaDescription'))
-    },
-    {
-      property: 'og:title',
-      content: computed(() => t('howToUse.ogTitle'))
-    },
-    {
-      property: 'og:description',
-      content: computed(() => t('howToUse.ogDescription'))
-    }
-  ]
-})
 
 // Active chapter and scroll progress
 const activeChapterId = ref<string>('chapter-01')

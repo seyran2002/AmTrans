@@ -1,50 +1,53 @@
 <script setup lang="ts">
-import { computed } from 'vue'
 import { useHead } from '#imports'
 import { useI18n } from '~/composables/useI18n'
 import BaseButton from '~/components/ui/BaseButton.vue'
-import NuxtImg from '~/components/NuxtImg.vue'
 
 const { t } = useI18n()
 const localePath = useLocalePath()
 
-// Cloudinary image configuration — optimized responsive loading for LCP < 1.2s
+// ─── Cloudinary Responsive LCP Hero Image ───
 const cloudinaryBase = 'https://res.cloudinary.com/tgatbuws/image/upload'
 const imagePath = 'v1792777621/about-hero.jpg'
 
-const getCloudinaryUrl = (width: number, quality = 75) =>
-  `${cloudinaryBase}/c_fill,g_auto,w_${width},q_${quality},f_auto/${imagePath}`
+// Width breakpoints covering mobile (480, 640, 768), tablet/laptop (1024, 1280),
+// desktop (1536, 1920), and high-DPI displays (2560) - matching HomeHero exactly
+const HERO_WIDTHS = [480, 640, 768, 1024, 1280, 1536, 1920, 2560] as const
 
-const mobileWidths = [412, 480, 640, 768, 1024]
-const desktopWidths = [1280, 1440, 1600, 1920, 2560]
+const getCloudinaryUrl = (width: number) => {
+  return `${cloudinaryBase}/c_fill,g_auto,w_${width},q_auto,f_auto/${imagePath}`
+}
 
-const mobileSrcset = computed(() =>
-  mobileWidths.map(w => `${getCloudinaryUrl(w)} ${w}w`).join(', '),
-)
-const desktopSrcset = computed(() =>
-  desktopWidths.map(w => `${getCloudinaryUrl(w)} ${w}w`).join(', '),
-)
+// Generate the responsive srcset string shared between <link rel="preload"> and <img>
+const heroSrcset = HERO_WIDTHS.map(w => `${getCloudinaryUrl(w)} ${w}w`).join(', ')
+const heroSizes = '100vw'
+const heroFallbackSrc = getCloudinaryUrl(1920)
 
-// Preload hero image in useHead with crossorigin: 'anonymous' for maximum performance (LCP)
+// Preload the responsive LCP image using imagesrcset and imagesizes.
+// Because imagesrcset and imagesizes match the <img>'s srcset and sizes byte-for-byte,
+// the browser selects the exact same candidate during preload and rendering,
+// eliminating duplicate requests and "preloaded but not used" warnings.
 useHead({
   link: [
     {
-      rel: 'preload',
-      as: 'image',
-      media: '(max-width: 1024px)',
-      imagesrcset: mobileSrcset.value,
-      imagesizes: '100vw',
-      crossorigin: 'anonymous',
+      key: 'cloudinary-preconnect',
+      rel: 'preconnect',
+      href: 'https://res.cloudinary.com'
     },
     {
+      key: 'cloudinary-dns-prefetch',
+      rel: 'dns-prefetch',
+      href: 'https://res.cloudinary.com'
+    },
+    {
+      key: 'about-hero-preload',
       rel: 'preload',
       as: 'image',
-      media: '(min-width: 1025px)',
-      imagesrcset: desktopSrcset.value,
-      imagesizes: '100vw',
-      crossorigin: 'anonymous',
-    },
-  ],
+      imagesrcset: heroSrcset,
+      imagesizes: heroSizes,
+      fetchpriority: 'high' as const
+    }
+  ]
 })
 </script>
 
@@ -54,16 +57,17 @@ useHead({
     class="about-hero relative w-full h-[100dvh] max-h-[100dvh] flex flex-col items-center justify-between overflow-hidden bg-slate-900"
     aria-label="About AmTrans hero"
   >
-    <!-- ── 1. Art-Directed Background Image via NuxtImg (CLS = 0.00, high priority, zero-cookie) ── -->
+    <!-- ── 1. Cloudinary Art-Directed Background Image with AVIF/WebP & zero CLS ── -->
     <div class="absolute inset-0 z-0 select-none pointer-events-none">
-      <NuxtImg
-        :src="getCloudinaryUrl(1920)"
-        :width="1920"
-        :height="1080"
+      <img
+        :srcset="heroSrcset"
+        :sizes="heroSizes"
+        :src="heroFallbackSrc"
+        width="1920"
+        height="1080"
         fetchpriority="high"
         loading="eager"
         decoding="async"
-        crossorigin="anonymous"
         class="absolute inset-0 w-full h-full object-cover object-left sm:object-center transform scale-[1.02] transition-transform duration-1000"
         :alt="t('about.hero.imageAlt')"
       />

@@ -1,30 +1,12 @@
 <script setup lang="ts">
-import { computed } from 'vue'
-import { useHead } from '#imports'
-import { useI18n } from '~/composables/useI18n'
+import { definePageMeta } from '#imports'
 import ContactHero from '~/components/contact/ContactHero.vue'
+import { useContactSeo } from '~/composables/useContactSeo'
 
 definePageMeta({ layout: 'guest' })
 
-const { t } = useI18n()
-
-useHead({
-  title: computed(() => t('contact.metaTitle')),
-  meta: [
-    {
-      name: 'description',
-      content: computed(() => t('contact.metaDescription')),
-    },
-    {
-      property: 'og:title',
-      content: computed(() => t('contact.metaTitle')),
-    },
-    {
-      property: 'og:description',
-      content: computed(() => t('contact.metaDescription')),
-    },
-  ],
-})
+// ─── Dedicated Contact Us Page SEO Composable (100% SSR Reactive computed() refs) ─
+useContactSeo()
 </script>
 
 <template>
