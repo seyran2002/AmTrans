@@ -9,6 +9,7 @@ import { useSupportChatService } from '~/services/support-chat.service'
 import type { SupportMessage, SupportChat } from '~/types/support-chat'
 import BaseButton from '~/components/ui/BaseButton.vue'
 import BaseInput from '~/components/ui/BaseInput.vue'
+import { useI18n } from '~/composables/useI18n'
 
 // ── State ──────────────────────────────────────────────────────────────
 const isOpen = ref(false)
