@@ -55,7 +55,7 @@ const routeTitle = computed(() => {
     <div class="flex-1 flex flex-col min-w-0">
       
       <!-- Top Bar (Full Width Spanning Across Screen) -->
-      <header class="py-0.5 sm:py-1 bg-white/90 backdrop-blur-md border-b border-slate-200/80 px-4 sm:px-6 lg:pl-28 lg:pr-8 flex items-center justify-between sticky top-0 z-20 w-full transition-all duration-300">
+      <header class="py-1 bg-white/90 backdrop-blur-md border-b border-slate-200/80 px-4 sm:px-6 lg:pl-28 lg:pr-8 flex items-center justify-between sticky top-0 z-20 w-full transition-all duration-300">
         <div class="flex items-center gap-0 sm:gap-3">
           <!-- Mobile Menu Toggle Button (Below LG) -->
           <button
