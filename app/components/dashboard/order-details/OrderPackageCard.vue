@@ -87,10 +87,18 @@
                 AMD/kg
               </span>
             </div>
-            <div v-if="previewPriceFromInput" class="text-xs text-amber-800 font-semibold pt-1">
-              {{ t('orders.calculatedShippingPrice') }}:
+            <div v-if="previewPriceFromInput" class="text-xs text-amber-800 font-semibold pt-1 flex items-center gap-1.5 flex-wrap">
+              <span>{{ t('orders.calculatedShippingPrice') }}:</span>
               <span class="font-bold text-amber-950">{{ formatAmount(previewPriceFromInput) }} AMD</span>
-              <span class="text-[11px] text-slate-500 ml-1">({{ chargeableWeight }} kg × {{ formatAmount(proposedPriceInput) }} AMD/kg)</span>
+              <span class="text-[11px] text-slate-500">
+                ({{ (billableWeight > 0 ? billableWeight : MIN_BILLABLE_KG) }} kg × {{ formatAmount(proposedPriceInput) }} AMD/kg)
+              </span>
+              <span
+                v-if="billableWeight > chargeableWeight || (!billableWeight && chargeableWeight < MIN_BILLABLE_KG)"
+                class="text-[10px] font-bold text-amber-700 bg-amber-100 border border-amber-200 px-1.5 py-0.5 rounded whitespace-nowrap"
+              >
+                min 5 kg
+              </span>
             </div>
           </div>
 
@@ -134,9 +142,17 @@
               </span>
               <span class="text-sm font-bold text-amber-800">AMD</span>
             </div>
-            <span v-if="chargeableWeight > 0" class="text-[11px] text-amber-800/80 font-medium block mt-0.5">
-              {{ chargeableWeight }} kg × {{ formatAmount(order.estimatedPrice || submittedEstimatePrice) }} AMD/kg
-            </span>
+            <div class="flex items-center gap-1.5 mt-0.5 flex-wrap">
+              <span v-if="billableWeight > 0" class="text-[11px] text-amber-800/80 font-medium">
+                {{ billableWeight }} kg × {{ formatAmount(order.estimatedPrice || submittedEstimatePrice) }} AMD/kg
+              </span>
+              <span
+                v-if="billableWeight > chargeableWeight"
+                class="text-[10px] font-bold text-amber-700 bg-amber-100 border border-amber-200 px-1.5 py-0.5 rounded whitespace-nowrap"
+              >
+                min 5 kg
+              </span>
+            </div>
           </div>
 
           <div v-if="order.estimatedBy" class="text-right text-xs text-slate-500">
@@ -229,6 +245,19 @@
           </div>
         </div>
       </div>
+
+      <!-- Minimum price notice (matching OrderPriceCalculationCard, 5kg minimum) -->
+      <div
+        v-if="minimumPrice !== null"
+        class="flex items-center gap-1.5 text-[11px] text-amber-700 bg-amber-50 border border-amber-200/80 rounded-lg px-2.5 py-1.5"
+      >
+        <svg class="w-3.5 h-3.5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+        </svg>
+        <span class="font-medium">
+          {{ t('orders.minimumPrice').replace('{amount}', formatAmount(minimumPrice) + ' AMD') }}
+        </span>
+      </div>
     </div>
 
     <!-- ── VIEW MODE ─────────────────────────────────────────────────────── -->
@@ -290,10 +319,28 @@
         </div>
 
         <!-- Actual Weight -->
-        <div class="p-3.5 rounded-2xl bg-slate-50 border border-slate-100 space-y-1">
-          <span class="text-[10px] font-bold text-slate-400 uppercase tracking-wider block">
-            {{ t('manageOrders.weight') }}
-          </span>
+        <div
+          :class="[
+            'p-3.5 rounded-2xl border space-y-1 transition-all',
+            actualWeight > 0 && !isVolumetricLarger
+              ? 'bg-primary/5 border-primary/20 ring-1 ring-primary/15'
+              : 'bg-slate-50 border-slate-100'
+          ]"
+        >
+          <div class="flex items-center justify-between">
+            <span
+              class="text-[10px] font-bold uppercase tracking-wider block"
+              :class="actualWeight > 0 && !isVolumetricLarger ? 'text-primary' : 'text-slate-400'"
+            >
+              {{ t('manageOrders.weight') }}
+            </span>
+            <span
+              v-if="actualWeight > 0 && numericVolumetricWeight > 0 && !isVolumetricLarger"
+              class="text-[9px] font-bold text-primary bg-primary/10 px-1 py-0.5 rounded"
+            >
+              {{ t('orders.largerWeightApplied') }}
+            </span>
+          </div>
           <div class="text-base font-extrabold text-slate-900 flex items-baseline gap-1">
             {{ order.weight }} <span class="text-xs font-medium text-slate-400">kg</span>
           </div>
@@ -310,10 +357,28 @@
         </div>
 
         <!-- Volumetric Weight -->
-        <div class="p-3.5 rounded-2xl bg-primary/5 border border-primary/10 space-y-1">
-          <span class="text-[10px] font-bold text-primary uppercase tracking-wider block">
-            {{ t('manageOrders.volumetricWeight') }}
-          </span>
+        <div
+          :class="[
+            'p-3.5 rounded-2xl border space-y-1 transition-all',
+            numericVolumetricWeight > 0 && isVolumetricLarger
+              ? 'bg-primary/5 border-primary/20 ring-1 ring-primary/15'
+              : 'bg-slate-50 border-slate-100'
+          ]"
+        >
+          <div class="flex items-center justify-between">
+            <span
+              class="text-[10px] font-bold uppercase tracking-wider block"
+              :class="numericVolumetricWeight > 0 && isVolumetricLarger ? 'text-primary' : 'text-slate-400'"
+            >
+              {{ t('manageOrders.volumetricWeight') }}
+            </span>
+            <span
+              v-if="actualWeight > 0 && numericVolumetricWeight > 0 && isVolumetricLarger"
+              class="text-[9px] font-bold text-primary bg-primary/10 px-1 py-0.5 rounded"
+            >
+              {{ t('orders.largerWeightApplied') }}
+            </span>
+          </div>
           <div class="text-base font-extrabold text-primary flex items-baseline gap-1">
             {{ volumetricWeight }} <span class="text-xs font-medium text-primary/70">kg</span>
           </div>
@@ -327,9 +392,9 @@
             </span>
             <span
               v-if="billableWeight > chargeableWeight"
-              class="text-[9px] font-bold text-amber-700 bg-amber-100 border border-amber-200 px-1 py-0.5 rounded"
+              class="text-[10px] font-bold text-amber-700 bg-amber-100 border border-amber-200 px-1.5 py-0.5 rounded whitespace-nowrap"
             >
-              min 5kg
+              min 5 kg
             </span>
           </div>
           <div class="text-base font-extrabold text-primary flex items-baseline gap-1">
@@ -578,9 +643,20 @@
         <!-- Recalculate Price hint + price field -->
         <div
           v-if="recalculatedPrice !== null"
-          class="p-3 rounded-2xl bg-primary/5 border border-primary/15 flex items-center justify-between text-xs"
+          class="p-3 rounded-2xl bg-primary/5 border border-primary/15 flex items-center justify-between text-xs flex-wrap gap-2"
         >
-          <span class="font-medium text-slate-600">{{ t('manageOrders.recalculatePrice') }}:</span>
+          <div class="flex items-center gap-1.5 flex-wrap">
+            <span class="font-medium text-slate-600">{{ t('manageOrders.recalculatePrice') }}:</span>
+            <span class="text-slate-500 font-semibold">
+              ({{ editBillableWeight?.toFixed(2) }} kg × {{ formatAmount(appliedTariffRate) }} AMD/kg)
+            </span>
+            <span
+              v-if="editBillableWeight !== null && editChargeableWeight !== null && editBillableWeight > editChargeableWeight"
+              class="text-[10px] font-bold text-amber-700 bg-amber-100 border border-amber-200 px-1.5 py-0.5 rounded whitespace-nowrap"
+            >
+              min 5 kg
+            </span>
+          </div>
           <div class="flex items-baseline gap-1">
             <span class="text-base font-extrabold text-primary">{{ formatAmount(recalculatedPrice) }}</span>
             <span class="text-xs font-bold text-primary/70">AMD</span>
@@ -681,6 +757,13 @@ const numericVolumetricWeight = computed<number>(() => {
   return (l * w * h) / div
 })
 
+// Minimum Billable Weight Policy (5 kg minimum)
+const MIN_BILLABLE_KG = 5
+
+const isVolumetricLarger = computed<boolean>(() => {
+  return numericVolumetricWeight.value > actualWeight.value
+})
+
 // Chargeable weight based on volumetric weight or just actual weight
 const chargeableWeight = computed<number>(() => {
   const actual = actualWeight.value
@@ -693,10 +776,21 @@ const chargeableWeight = computed<number>(() => {
 
 // Billable weight (5kg minimum policy enforced)
 const billableWeight = computed<number>(() => {
-  if (props.order.billableWeight !== undefined && props.order.billableWeight !== null && Number(props.order.billableWeight) > 0) {
-    return Number(props.order.billableWeight)
+  const rawBillable = Number(props.order.billableWeight)
+  if (!isNaN(rawBillable) && rawBillable > 0) {
+    return Math.max(rawBillable, MIN_BILLABLE_KG)
   }
-  return Math.max(chargeableWeight.value, 5)
+  if (chargeableWeight.value > 0) {
+    return Math.max(chargeableWeight.value, MIN_BILLABLE_KG)
+  }
+  return 0
+})
+
+// Minimum price notice (matching OrderPriceCalculationCard, 5kg minimum)
+const minimumPrice = computed<number | null>(() => {
+  const rate = parseFloat(String(appliedTariffRate.value))
+  if (isNaN(rate) || rate <= 0) return null
+  return Math.round(rate * MIN_BILLABLE_KG * 100) / 100
 })
 
 const isLockedTariff = computed<boolean>(() => {
@@ -781,8 +875,7 @@ const isProposedPriceValid = computed(() => {
 const previewPriceFromInput = computed<number | null>(() => {
   const val = parseFloat(proposedPriceInput.value)
   if (isNaN(val) || val <= 0) return null
-  const weight = chargeableWeight.value
-  if (!weight || weight <= 0) return null
+  const weight = billableWeight.value > 0 ? billableWeight.value : MIN_BILLABLE_KG
   return Math.round(weight * val * 100) / 100
 })
 
@@ -799,8 +892,8 @@ const handleSubmitEstimate = async () => {
 
   isSubmittingEstimate.value = true
   try {
-    const weight = chargeableWeight.value
-    const calculatedPrice = (weight && weight > 0) ? Math.round(weight * priceNum * 100) / 100 : priceNum
+    const weight = billableWeight.value > 0 ? billableWeight.value : MIN_BILLABLE_KG
+    const calculatedPrice = Math.round(weight * priceNum * 100) / 100
 
     const updated = await ordersService.submitEstimate(props.order.id, {
       estimatedPrice: priceNum,
@@ -883,14 +976,29 @@ const editVolumetricWeight = computed<number | null>(() => {
 
 const recalculatedPrice = computed<number | null>(() => {
   const currentRate = appliedTariffRate.value
-  if (!isEditing.value || !currentRate) return null
-  const actualW = parseFloat(editForm.weight)
-  const volW = editVolumetricWeight.value
-  if (isNaN(actualW) || actualW <= 0) return null
-  const chargeableW = volW !== null && volW > 0 ? Math.max(actualW, volW) : actualW
+  if (!isEditing.value || !currentRate || editBillableWeight.value === null) return null
   const rate = parseFloat(String(currentRate))
   if (isNaN(rate) || rate <= 0) return null
-  return Math.round(chargeableW * rate * 100) / 100
+  return Math.round(editBillableWeight.value * rate * 100) / 100
+})
+
+const editChargeableWeight = computed<number | null>(() => {
+  if (!isEditing.value) return null
+  const actualW = parseFloat(editForm.weight)
+  const volW = editVolumetricWeight.value
+  const hasActual = !isNaN(actualW) && actualW > 0
+  const hasVol = volW !== null && volW > 0
+  if (hasActual && hasVol) {
+    return Math.round(Math.max(actualW, volW) * 100) / 100
+  }
+  if (hasActual) return actualW
+  if (hasVol) return volW
+  return null
+})
+
+const editBillableWeight = computed<number | null>(() => {
+  if (editChargeableWeight.value === null) return null
+  return Math.max(editChargeableWeight.value, MIN_BILLABLE_KG)
 })
 
 // ─── Validation ──────────────────────────────────────────────────────────────
@@ -966,6 +1074,9 @@ const handleSave = async () => {
     // Include recalculated shipping price if available
     if (recalculatedPrice.value !== null) {
       formData.append('price', String(recalculatedPrice.value))
+      if (editBillableWeight.value !== null) {
+        formData.append('billableWeight', String(editBillableWeight.value))
+      }
     }
 
     const baseUrl = getApiUrl()
