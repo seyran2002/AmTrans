@@ -88,10 +88,11 @@ useHead({
     <div class="absolute top-1/3 right-1/4 w-64 h-64 rounded-full bg-secondary/10 blur-3xl pointer-events-none z-[1]" />
 
     <!-- ── 3. Main Hero Content Container ── -->
-    <div class="relative z-10 w-full max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 pb-4 flex-1 flex flex-col justify-center items-center text-center hero-content min-h-0">
+    <div class="relative z-10 w-full max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 pb-4 flex-1 flex flex-col justify-center items-center text-center hero-content min-h-0
+  [@media(min-width:1024px)_and_(max-height:750px)]:pb-2">
 
       <!-- Badge with Primary Brand Styling -->
-      <div class="hidden min-[380px]:inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-primary/20 backdrop-blur-md border border-primary/40 mb-6 sm:mb-8 shadow-lg shadow-primary/10">
+      <div class="hidden min-[400px]:inline-flex [@media(min-width:1024px)_and_(max-height:800px)]:hidden items-center gap-2 px-4 py-1.5 rounded-full bg-primary/20 backdrop-blur-md border border-primary/40 mb-6 sm:mb-8 shadow-lg shadow-primary/10">
         <span class="w-2 h-2 rounded-full bg-secondary animate-pulse" />
         <span class="text-[10px] font-bold uppercase tracking-[0.2em] text-white drop-shadow-[0_1px_2px_rgba(0,0,0,0.8)]">
           {{ $t('home.hero.welcome') }}
@@ -99,7 +100,7 @@ useHead({
       </div>
 
       <!-- Main Headline with Primary Dominant Gradient -->
-      <h1 class="text-3xl sm:text-5xl md:text-6xl lg:text-6xl xl:text-7xl font-extrabold text-white tracking-tight leading-[1.1] mb-4 sm:mb-5 max-w-4xl shrink-0">
+      <h1 class="text-3xl sm:text-5xl md:text-5xl lg:text-6xl xl:text-7xl [@media(min-width:1024px)_and_(max-height:750px)]:text-5xl font-extrabold text-white tracking-tight leading-[1.1] mb-4 sm:mb-5 max-w-4xl shrink-0">
         {{ $t('home.hero.title1') }}
         <span class="block sm:inline bg-gradient-to-r from-secondary via-amber-400 to-amber-300 bg-clip-text text-transparent drop-shadow-sm">
           {{ $t('home.hero.title2') }}
@@ -107,7 +108,7 @@ useHead({
       </h1>
 
       <!-- Short Supporting Description -->
-      <p class="text-xs sm:text-sm md:text-base lg:text-lg text-slate-100 font-normal leading-relaxed max-w-2xl sm:max-w-3xl mb-6 sm:mb-8 shrink-0 drop-shadow-[0_1px_3px_rgba(0,0,0,0.8)]">
+      <p class="text-xs sm:text-sm md:text-base lg:text-lg [@media(min-width:1024px)_and_(max-height:750px)]:text-sm text-slate-100 font-normal leading-relaxed max-w-2xl sm:max-w-3xl mb-6 sm:mb-8 shrink-0 drop-shadow-[0_1px_3px_rgba(0,0,0,0.8)]">
         {{ $t('home.hero.description') }}
       </p>
 
@@ -186,7 +187,7 @@ useHead({
     </div>
 
     <!-- ── 6. Scroll Indicator (Primary Accent) ── -->
-    <div class="relative bottom-8 z-10 pb-12 shrink-0 flex flex-col items-center gap-1.5 opacity-90 hover:opacity-100 transition-opacity duration-300">
+    <div class="relative bottom-8 [@media(min-width:1024px)_and_(max-height:800px)]:bottom-3 z-10 pb-12 [@media(min-width:1024px)_and_(max-height:800px)]:pb-1 shrink-0 flex flex-col items-center gap-1.5 opacity-90 hover:opacity-100 transition-opacity duration-300">
       <span class="text-[9px] font-bold uppercase tracking-[0.2em] text-white drop-shadow-[0_1px_2px_rgba(0,0,0,0.8)]">Scroll</span>
       <div class="w-4 h-7 rounded-full border-2 border-white/60 flex items-start justify-center p-0.5">
         <span class="w-1 h-1.5 rounded-full bg-white animate-bounce" />
