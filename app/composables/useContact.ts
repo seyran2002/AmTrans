@@ -45,7 +45,7 @@ export function useContact() {
         const val = form.value.message.trim()
         if (!val) return t('contact.validation.messageRequired')
         if (val.length < 5) return t('contact.validation.messageMin')
-        if (val.length > 5000) return t('contact.validation.messageMax')
+        if (val.length > 6000) return t('contact.validation.messageMax')
         return ''
       }
       default:

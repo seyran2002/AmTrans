@@ -25,7 +25,7 @@ export function useSystemSettings() {
 
   const volumetricDivisor = computed<number>(() => {
     const div = Number(settings.value?.volumetricDivisor)
-    return div > 0 ? div : 5000
+    return div > 0 ? div : 6000
   })
 
   const clearMessages = () => {

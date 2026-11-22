@@ -382,7 +382,7 @@ const billableWeight = computed<number>(() => {
   const l = Number(props.order.length) || 0
   const w = Number(props.order.width) || 0
   const h = Number(props.order.height) || 0
-  const vol = (l > 0 && w > 0 && h > 0) ? (l * w * h) / 5000 : 0
+  const vol = (l > 0 && w > 0 && h > 0) ? (l * w * h) / 6000 : 0
   const chargeable = Math.max(actual, vol)
   return Math.max(chargeable, 5)
 })

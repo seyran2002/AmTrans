@@ -426,7 +426,7 @@ const getChargeableWeight = (order: Order): number => {
   const l = Number(order.length) || 0
   const w = Number(order.width) || 0
   const h = Number(order.height) || 0
-  const div = volumetricDivisor.value || 5000
+  const div = volumetricDivisor.value || 6000
   const vol = (l > 0 && w > 0 && h > 0) ? (l * w * h) / div : 0
   if (vol > 0 && actual > 0) {
     return Math.round(Math.max(actual, vol) * 100) / 100

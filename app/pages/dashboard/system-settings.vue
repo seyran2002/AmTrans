@@ -65,19 +65,8 @@ const validationError = computed<string>(() => {
   return ''
 })
 
-const isFormValid = computed(() => {
-  const val = Number(volumetricDivisorInput.value)
-  return Number.isInteger(val) && val >= 1 && val <= 100000
-})
-
-const isDirty = computed(() => {
-  if (!settings.value) return false
-  return Number(volumetricDivisorInput.value) !== settings.value.volumetricDivisor
-})
-
 const handleSave = async () => {
   touched.value = true
-  if (!isFormValid.value) return
 
   clearMessages()
   const success = await saveSettings({ volumetricDivisor: Number(volumetricDivisorInput.value) })
@@ -299,7 +288,7 @@ onMounted(async () => {
           size="md"
           :block="false"
           :loading="isSaving"
-          :disabled="isSaving || !isFormValid || !isDirty"
+          :disabled="isSaving"
           @click="handleSave"
         >
           <svg v-if="!isSaving" class="w-4 h-4 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -307,14 +296,6 @@ onMounted(async () => {
           </svg>
           <span>{{ isSaving ? t('systemSettings.saving') : t('systemSettings.saveButton') }}</span>
         </BaseButton>
-
-        <!-- Saved indicator -->
-        <span v-if="!isDirty && settings" class="flex items-center gap-1.5 text-xs font-semibold text-emerald-600">
-          <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7" />
-          </svg>
-          {{ t('systemSettings.upToDate') }}
-        </span>
       </div>
     </div>
 

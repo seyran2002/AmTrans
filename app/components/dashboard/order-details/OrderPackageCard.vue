@@ -677,7 +677,7 @@ const numericVolumetricWeight = computed<number>(() => {
   const w = Number(props.order.width) || 0
   const h = Number(props.order.height) || 0
   if (!l || !w || !h) return 0
-  const div = volumetricDivisor.value || 5000
+  const div = volumetricDivisor.value || 6000
   return (l * w * h) / div
 })
 

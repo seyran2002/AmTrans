@@ -171,7 +171,7 @@
                 </div>
 
                 <div class="flex justify-between">
-                  <span class="text-slate-500">{{ t('howToUse.ch5.volumetricWeight') }} ({{ inputLength }}×{{ inputWidth }}×{{ inputHeight }}/5000):</span>
+                  <span class="text-slate-500">{{ t('howToUse.ch5.volumetricWeight') }} ({{ inputLength }}×{{ inputWidth }}×{{ inputHeight }}/6000):</span>
                   <span :class="['font-mono font-bold', isVolumetricLarger ? 'text-amber-600' : 'text-slate-800']">
                     {{ volumetricWeight.toFixed(2) }} kg
                     <span v-if="isVolumetricLarger" class="text-[10px] ml-1">{{ t('howToUse.ch5.higher') }}</span>
@@ -317,7 +317,7 @@ const inputHeight = ref(15)
 const inputTariff = ref(2500)
 
 const volumetricWeight = computed(() => {
-  return (inputLength.value * inputWidth.value * inputHeight.value) / 5000
+  return (inputLength.value * inputWidth.value * inputHeight.value) / 6000
 })
 
 const isVolumetricLarger = computed(() => {
