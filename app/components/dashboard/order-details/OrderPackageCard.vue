@@ -774,12 +774,9 @@ const chargeableWeight = computed<number>(() => {
   return Math.round((actual || vol || 0) * 100) / 100
 })
 
-// Billable weight (5kg minimum policy enforced)
+// Billable weight: dynamically calculated from chargeable weight following the 5kg minimum principle
+// (Never stored in order backend, always computed dynamically on the fly)
 const billableWeight = computed<number>(() => {
-  const rawBillable = Number(props.order.billableWeight)
-  if (!isNaN(rawBillable) && rawBillable > 0) {
-    return Math.max(rawBillable, MIN_BILLABLE_KG)
-  }
   if (chargeableWeight.value > 0) {
     return Math.max(chargeableWeight.value, MIN_BILLABLE_KG)
   }
@@ -1074,9 +1071,6 @@ const handleSave = async () => {
     // Include recalculated shipping price if available
     if (recalculatedPrice.value !== null) {
       formData.append('price', String(recalculatedPrice.value))
-      if (editBillableWeight.value !== null) {
-        formData.append('billableWeight', String(editBillableWeight.value))
-      }
     }
 
     const baseUrl = getApiUrl()
