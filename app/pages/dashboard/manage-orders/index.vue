@@ -288,7 +288,7 @@ const formatOfficeName = (office?: Office): string => {
     : currentLanguage.value === 'ru'
       ? (country?.ruName || country?.enName || '')
       : (country?.enName || '')
-  return [office.city, office.province, countryName].filter(Boolean).join(', ')
+  return [office.fullAddress, countryName].filter(Boolean).join(', ')
 }
 
 const officeSelectOptions = computed<SelectOption[]>(() => {
@@ -324,7 +324,7 @@ onMounted(async () => {
   if (userAssignedOfficeId) {
     activeOfficeId.value = userAssignedOfficeId
   } else if (isAdmin.value && allOffices && allOffices.length > 0) {
-    activeOfficeId.value = allOffices[0].id
+    activeOfficeId.value = allOffices[0]?.id || "";
   }
 
   // 3. If officeId resolved and not null, fetch orders by office!

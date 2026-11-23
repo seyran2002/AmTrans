@@ -38,7 +38,7 @@
             {{ fromOffice?.city || '—' }}
           </div>
           <div class="text-xs text-slate-500 font-medium mt-0.5">
-            {{ fromOffice?.province }}, {{ fromCountryName }}
+            {{ fromOffice?.province }}
           </div>
         </div>
 
@@ -86,7 +86,7 @@
             {{ toOffice?.city || '—' }}
           </div>
           <div class="text-xs text-slate-500 font-medium mt-0.5">
-            {{ toOffice?.province }}, {{ toCountryName }}
+            {{ toOffice?.province }}
           </div>
         </div>
 

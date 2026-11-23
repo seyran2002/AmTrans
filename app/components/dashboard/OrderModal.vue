@@ -369,6 +369,7 @@ import { useSystemSettings } from '~/composables/useSystemSettings'
 import { useOrderForm } from '~/composables/useOrderForm'
 import { useOrderCalculation } from '~/composables/useOrderCalculation'
 import type { Order, CreateOrderPayload, UpdateOrderPayload } from '~/types/order'
+import type { Country } from '~/types/office'
 
 // ─── Props & Emits ─────────────────────────────────────────────────────────
 const props = defineProps<{
@@ -385,7 +386,7 @@ const emit = defineEmits<{
 
 // ─── Composables ────────────────────────────────────────────────────────────
 const localePath = useLocalePath()
-const { t } = useI18n()
+const { t, currentLanguage } = useI18n()
 const { offices, isLoading: officesLoading, fetchOffices } = useOffices()
 const { receivers, isLoading: receiversLoading, fetchReceivers } = useReceivers()
 const {
@@ -489,8 +490,7 @@ const isSubmitDisabled = computed(() => {
 const officeOptions = computed(() =>
   offices.value.map(o => ({
     value: o.id,
-    label: [o.city, o.country?.enName
-].filter(Boolean).join(', ')
+    label: [o.fullAddress, o.country?.[`${currentLanguage.value}Name` as keyof Country]].filter(Boolean).join(', ')
   }))
 )
 
@@ -499,7 +499,7 @@ const destinationOfficeOptions = computed(() =>
     .filter(o => o.id !== form.fromOfficeId && o.city !== "Dubai")
     .map(o => ({
       value: o.id,
-      label: [o.city, o.country?.enName].filter(Boolean).join(', ')
+      label: [o.fullAddress, o.country?.[`${currentLanguage.value}Name` as keyof Country]].filter(Boolean).join(', ')
     }))
 )
 
