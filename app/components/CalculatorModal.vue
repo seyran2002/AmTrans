@@ -354,6 +354,7 @@ import { useOffices } from '~/composables/useOffices'
 import { useTariffs } from '~/composables/useTariffs'
 import { useSystemSettings } from '~/composables/useSystemSettings'
 import { useOrderCalculation } from '~/composables/useOrderCalculation'
+import type { Country } from '~/types/office'
 
 const props = defineProps<{
   isOpen: boolean
@@ -364,7 +365,7 @@ const emit = defineEmits<{
 }>()
 
 // ─── Composables ────────────────────────────────────────────────────────────
-const { t } = useI18n()
+const { t, currentLanguage } = useI18n()
 const { offices, isLoading: officesLoading, fetchOffices } = useOffices()
 const {
   routeTariff,
@@ -414,7 +415,7 @@ const {
 const officeOptions = computed(() =>
   offices.value.map(o => ({
     value: o.id,
-    label: [o.city, o.province].filter(Boolean).join(', ')
+    label: [o.fullAddress, o.country?.[`${currentLanguage.value}Name` as keyof Country]].filter(Boolean).join(', ')
   }))
 )
 
@@ -423,7 +424,7 @@ const destinationOfficeOptions = computed(() =>
     .filter(o => o.id !== form.fromOfficeId)
     .map(o => ({
       value: o.id,
-      label: [o.city, o.province].filter(Boolean).join(', ')
+      label: [o.fullAddress, o.country?.[`${currentLanguage.value}Name` as keyof Country]].filter(Boolean).join(', ')
     }))
 )
 
